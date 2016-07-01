@@ -1,0 +1,20 @@
+<% var navbar = componentId('commentNavBar') %>
+
+<div id="<%= navbar %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.commentModerateMenu($('#<%= navbar %>'));
+    });
+  </script>
+  
+	
+	<div class="collection filter-wrap">
+    <a href="#!" class="collection-item public active">Public</a>
+    <a href="#!" class="collection-item dirty">Dirty</a>
+  </div>
+	
+	
+  <div class='tablediv'>
+    <%- include(partials.feed) %>
+  </div>
+</div>

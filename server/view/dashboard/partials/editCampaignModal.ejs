@@ -1,0 +1,45 @@
+<div id="editCampaignModal" class="modal fade edit-campaign-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title job-modal-title" style="text-align: center">Edit Campaign</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        Name *:
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control update-company-name"  placeholder="Name" aria-describedby="basic-addon2" style="width: 100%">
+                        <small class="company-name-error-label has-error" style="display:none; color:red;">Required</small>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col-md-4">
+                        Description :
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text"  class="form-control update-company-desc"  placeholder="Description" aria-describedby="basic-addon2" style="width: 100%">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger button-update-campaign">Update Campaign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div id="deleteModal" class="modal fade delete-Campaign-modal" style="display: none; overflow: auto !important;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align: center; margin-top: 1%;">
+          <span style="text-align: center;"> Are You Sure You Want To Delete.</span></br>
+          <button class="btn btn-danger delete-okay-button" style="width:60%; margin-top:2%">Yes</button>
+          <button class="btn btn-success delete-no-button" style="width:60%; margin-top:2%">No</button>
+        </div>        
+      </div>
+    </div>
+</div>

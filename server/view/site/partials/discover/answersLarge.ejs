@@ -1,0 +1,8 @@
+<h5><i class="yc icon-star"></i> <%= title %></h5>
+<div class="row">
+  <% feed.items.forEach(function (item) { %>
+    <div class="small-6 columns">
+      <%- include(partials.answerSm, {answer: item.model}) %>
+    </div>
+  <% }) %>
+</div>

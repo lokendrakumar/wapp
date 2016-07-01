@@ -1,0 +1,250 @@
+<% var answerCardId = componentId('answerLg', answer.id) %>
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? true :false %>
+<% var videoUrlDash = isDashSupported ? answer.dash_video_url : answer.video_url %>
+<% var videoUrl = answer.video_url %>
+<% var isProfileView = ['profile'].indexOf(pagename) > -1 ? true : false; %>
+
+<div class="row answer-card" id="<%= answerCardId %>" data-answer-id="<%=answer.id%>">
+  <script>
+    $(function () {
+      app.components.answerCardLg($('#<%= answerCardId %>'));
+    });
+  </script>
+
+  <div style="display:none;" class="embedTmpl">
+    <div style="position: absolute; top: 10px; right: 10px;"><i class="icon-close scolor2 cs"></i></div>
+    <p>Title: <%= answer.question.body %></p>
+    <table width="100%">
+      <tr>
+        <td width="20%">Large</td>
+        <td width="80%">
+          <input onclick="this.select();" type="text" value="" />
+        </td>
+      </tr>
+      <tr>
+        <td>Small</td>
+        <td>
+          <input onclick="this.select();" type="text" value="<iframe scrolling='no' frameborder='0' marginheight='0px' marginwidth='0px' height='450px' width='250px'src='http://embed.frankly.me/userWidgetBatch/template.html?user=<%= answer.author.username %>&slug=<%= answer.question.slug %>'></iframe>" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="columns <%= isProfileView ? 'small-9' : 'small-10' %>">
+    <div class="overlay overlaybg" style=
+    "background-color: #fff; background-image:url('<%= answer.thumbnail_url %>')">
+    </div>
+
+    <div class="overlay bgbk text-center">
+      <div class="row collapse">
+        <div class="small-1 s-ws-left text-right s-ws-top columns">
+            <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c">
+        </div>
+        <div class="small-10 columns text-left m-ws-top">
+        <h5 class="wc s-ws-left-p lfx2">
+
+          <a href="<%= genUrl(answer.author.username) %>" class="wc">
+
+            <%= answer.author.name || answer.author.username %>
+          </a>
+        </h5>
+        </div>
+      </div>
+      <div class="question-play">
+        <h3 class="serif wc f-1.5x s-ws-bottom b-ws-top-p xs-ws-left-p xs-ws-right-p" style="word-wrap:break-word;">
+          <%= answer.question.body %>
+        </h3>
+
+        <i class="icon-play f-4x brandc cs link"></i>
+      </div>
+
+      <div class="s xs-ws-top wc">
+        <% if(answer.views > 0) { %>
+          <%= answer.views %> <span class="s">views</span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="panel-header nbrrbottom">
+      <div class="row">
+        <div class="columns small-1"><i class="icon-answer scolor2  f-2x" style="line-height: 0; margin-top: -5px"></i></div>
+
+        <div class="columns small-11">
+          <h5 class="scolor serif">
+            <a href="<%= genUrl(answer.author.username + '/' + answer.question.slug) %>" class="scolor" style="word-wrap:break-word;">
+
+              <%= answer.question.body %>
+            </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel nbrrtop">
+      
+
+      <div class="row">
+        <div class="columns small-7">
+          <div class="videoContainer">
+            <div class="videoHolder">
+              <video class="img-f" src="<%= videoUrl %>"
+                data-uuid="video-<%= answerCardId %>" data-dash="<%= isDashSupported %>"
+                syle="height: 100%" data-crop-to-fit
+                data-username="<%= answer.author.username %>" preload="none" > 
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns small-5 card-meta">
+          <div class="row text-right">
+            <div class="small-12 columns">
+              <a data-dropdown="drop<%= answer.id %>"><i class="icon-down scolor2 s"></i></a>
+              <ul class="f-dropdown text-left tiny"
+                  data-dropdown-content="" id="drop<%= answer.id %>"
+                  tabindex="-1"
+              >
+                <li>
+                  <a href="#" class="embedBtn">Embed</a>
+                </li>
+                <li>
+                  <a href="#" class="report-user" data-id="<%= answer.id %>" data-type="post">Report</a>
+                </li>
+                <li>
+                  <a href="<%= genUrl(answer.promo_video_url) %>" download>Download</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row collapse">
+            <div class="small-2 columns">
+              <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c">
+            </div>
+            <div class="small-10 columns">
+
+              <div class="s-ws-left xs-ws-top scolor">
+                <a href="<%= genUrl(answer.author.username) %>"
+                  class="scolor"
+                >
+                  <%= answer.author.name || answer.author.username %>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row scolor s text-center">
+        
+          <%if (answer.is_liked && me) { %>
+            <div class="b-ws-top b-ws-top-p small-6 cs columns link likeBtnTrg"
+                  data-target="<%= '/unlike/'+answer.id %>" data-state="liked">
+              <i class="icon-like f-2x likeBtnIcon brandc"></i>
+              <div>
+                <span class ="likeBtn">Liked </span> <span class="s scolor2 num_likes"><%= answer.num_likes %></span>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="b-ws-top b-ws-top-p small-6 cs columns link likeBtnTrg"
+                  data-target="<%= '/like/'+answer.id %>" data-state="unliked">
+              <i class="icon-like f-2x likeBtnIcon"></i>
+              <div>
+                <span class ="likeBtn">Likes</span> <span class="s scolor2 num_likes"><%= answer.num_likes %></span>
+              </div>
+            </div>
+          <% } %>  
+              
+            
+            <!-- <div class="s-ws-top small-4 cs columns">
+            <div><i class="icon-comment f-1-25x"></i></div>
+            <div>Comments <span class="s scolor2">123</span></div>
+            </div> -->
+
+            <div class="b-ws-top b-ws-top-p small-6 cs columns link">
+               
+              
+              <div>
+                  <% var slugBody = answer.question.slug %>
+                  <%  var lastIndex = slugBody.lastIndexOf("-"); %>
+                  <%   slugBody = slugBody.substring(0, lastIndex);%>
+                  <%   slugBody=slugBody.replace(/-/g,' ');%>
+                  <%    var emailBody='Watch ' + answer.author.username + '\'s answer to "' + slugBody + '" at: %0A%0A' + "http://frankly.me/" + answer.author.username + "/" + answer.question.slug;%>
+                <div id="icon-share-<%= answerCardId %>"
+                  data-url="http://frankly.me/<%= answer.author.username %>/<%= answer.question.slug %>"
+                  data-email="<%= answer.author.username %>"
+                  data-slug="<%= emailBody %>"
+                  data-title="A video has been shared to you via Frankly.me"
+              ></div>
+              <br/>
+                
+                Share
+              </div>
+            </div>
+          </div>
+
+          <% var totalComments = parseInt(answer.num_comments) %>
+          <% var shownComments = answer.num_comments < 3 ? totalComments : 3 %>
+          <div class="row comments <%= isProfileView ? '' : 's' %>"
+                style="<%= isProfileView ? 'margin-top:12.4em' : 'margin-top:11.2em' %>"
+                data-id="<%= answer.id %>"
+                data-source="<%= '/'+answer.id+'/comments' %>"
+                data-loaded-comments="<%= shownComments %>"
+                data-total-comments="<%= totalComments %>"
+          > 
+            <div class="s scolor2 xs-ws-bottom small-8 columns lfx comments-info <%= shownComments > 0 ? '' : 'hide' %>">
+              Showing <span class="count"><%= shownComments %></span>
+              of <span class="total"><%= totalComments %></span> comments
+            </div>
+
+            <div class="small-4 s columns text-right show-all <%= shownComments > 0 ? '' : 'hide' %>">
+              <a class="right s scolor cmtTrg" href="#">Expand</a>
+            </div>
+
+            <div class="comment-box small-12 columns s-ws-bottom">
+              <div class="comment-box-inner">
+                <%- include(partials.comments, {comments: answer.comments}) %>
+              </div>
+              <% if (totalComments > shownComments) { %>
+                <a href="#" class="load-more">+ Load More</a>
+              <% } %> 
+            </div>
+            <div class="row comment-input">
+              <% if (shownComments === 0) { %>
+                <div class="small-12 columns s scolor xs-ws-bottom no-comment" style="margin-bottom: 1.8em;">
+                  No comments yet, be the first to comment
+                </div>
+              <% } %>
+              <div class="small-12 columns scolor2">
+                <input
+                  class="alt nm comment-input"
+                  placeholder="Press enter to Post" type="text"
+                  data-user-img="<%= me ? (me.profile_photo_url || '/img/user.png') : '/img/user.png' %>"
+                  data-user-name="<%= me ? me.username: '' %>"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns scolor s-ws-top s meta <%= isProfileView ? 'small-3' : 'small-2' %>">
+    <div class="row hv">
+      <div class="columns <%= isProfileView ? 'small-6' : 'small-12' %>">
+        <div class="scolor2 s">
+          Asked by
+        </div>
+
+        <div>
+
+          <a href=" <%= genUrl(answer.asker.username) %>" class="scolor">
+            <%= answer.asker.name || answer.asker.username %>
+          </a>
+        </div>
+      </div>
+
+      <div class="columns <%= isProfileView ? 'small-6' : 'hide' %> xs-ws-top icon-user scolor3 f-1-5x"></div>
+    </div>
+    <!-- <div class="row hv"><div class="columns small-9 b-ws-top">387456 <div class="scolor2">views</div></div> <div class="columns b-ws-top small-3 xs-ws-top"><i class="icon-view scolor3 f-1-5x"></i></div></div> -->
+  </div>
+
+</div>
+

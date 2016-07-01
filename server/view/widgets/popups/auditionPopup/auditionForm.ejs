@@ -1,0 +1,115 @@
+<div class="participant-form-container" data-username="<%= me.username %>">
+    <script>
+      $(function () {
+        app.components.auditionPopupForm($('.participant-form-container'));
+      });
+    </script>
+  <div class="col s12 participant-form">
+    <div class="widget-popups">
+      <div class="widget-popups-header"><h1>Fill your details</h1></div>
+      <div class="widget-popups-body">
+        <form >
+          <div class="row">
+            <div class="col s6 m6">
+            <div class="widget-control">
+              <input type="text" placeholder="First Name" name="first_name" required />
+              </div>
+            </div>
+
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="text" placeholder="Last Name" name="last_name" required />
+              </div>
+            </div>
+
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="number" placeholder="Age" name="age" required />
+              </div>
+            </div>
+              
+            <div class="col s6 m6">
+             <div class="widget-control">
+               <select class="browser-default" name="gender" required>
+                  <option value="" disabled selected>Gender</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="number" maxlength="15" placeholder="Contact number" name="phone_num"  required />
+              </div>
+            </div>
+            
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="email" placeholder="Email" name="email" required />
+              </div>
+            </div>
+
+            
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="text" placeholder="Stream" name="current_employer" />
+              </div>
+            </div>
+
+            <div class="col s6 m6">
+              <div class="widget-control">
+               <input type="number" placeholder="Year" name="experience" required />
+               </div>
+             </div>
+             
+            <div class="col s6 m6">
+              <div class="widget-control">
+               <input type="text" placeholder="College" name="college" required />
+               </div>
+            </div>
+
+            <div class="col s6 m6">
+             <div class="widget-control">
+              <input type="text" placeholder="Current City" name="current_city" />
+              </div>
+            </div>
+          
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="widget-control">
+                <input type="submit" class="submit-btn btn-widgets-inline right" value="Proceed" />
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style type="text/css">
+    select::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    input[type="text"] {
+      color: #757575 !important;
+    }
+
+    input::-webkit-input-placeholder {
+      color: #757575;
+    }
+    input:-moz-placeholder {
+      color: #757575;
+    }
+
+  </style>
+</div>

@@ -1,0 +1,189 @@
+<% var postCardNoHeadId = componentId('postCardNoHead', answer.id) %>
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? true :false %>
+<!-- var videoUrlDash = isDashSupported ? answer.dash_video_url : answer.video_url -->
+<% var namedUpvotes = 1 %>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="panel brr np s-ws-top" id="<%= postCardNoHeadId %>">
+      <script>
+        $(function () {
+          app.components.postCard($('#<%= postCardNoHeadId %>'));
+        });
+      </script>
+      <div class="row">
+        <div class="small-12 columns">
+
+          <div>
+            <video class="img-f" src="<%= answer.video_url %>"
+              data-uuid="video-<%= postCardNoHeadId %>" data-dash="<%= isDashSupported %>"
+              syle="height: 100%" data-crop-to-fit
+              data-username="<%= answer.author.username %>"
+              poster="<%= answer.thumbnail_url %>">
+            </video>
+          </div>
+
+          <div class="overlay brr fx3 bgbk cs" data-init-overlay style="z-index:0;">
+            <i class="icon-play scolor f-1-5x" style="position:absolute; left:0.5em; bottom:3em;"></i>
+            <div style="top:1em; position:absolute;">
+              <h5 class="wc f-1-25x small-12 columns">
+                <%= answer.question.body %>
+              </h5>
+              <div class="scolor small-12 columns s">asked by 
+                <span class="scolor2">
+                  <span class="spanYou">
+                    <% if(answer.question.is_voted && me) { 
+                        namedUpvotes++;
+                        %>
+                      You, 
+                    <% } %>
+                  </span>
+                  <% if (answer.question.is_anonymous) {%>
+                    <a href="<%= genUrl(answer.asker.username) %>" class="scolor" target="_blank"><%= answer.asker.name || answer.asker.username %></a>
+                  <% } else { %>
+                    <span class="scolor"><%= answer.asker.name || answer.asker.username %></span>
+                  <%}%>
+                  
+                </span> <span class="upvoteText">and <span class="spanUpvotes"><%= answer.question.upvotes - namedUpvotes %></span> others </span></div>
+            </div>
+            <div style="position:absolute; bottom:1em; width:100%;">
+
+              <div class="small-11 columns">
+                <hr>
+              </div>
+              <div class="small-8 columns ">
+                <h5 class="scolor3 nm"><%= answer.author.name || answer.author.username %></h5>
+                <h6 class="scolor2 nm s2"><a href="<%= genUrl(answer.author.username) %>">/<%= answer.author.username %></a></h6>
+              </div>
+              <div class="small-4 columns">
+                <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c lg2br pvbr cs" style="margin-top:-2em;">
+              </div>
+            </div>
+          </div>
+          <div class="overlay brr bgbk fx3 cs " data-action-overlay style="display:none;">
+            <div style="position:absolute; top:1em; width:100%;" data-action-overlay-question>
+              <div class="small-12 columns">
+                <h5 class="s-ws-bottom scolor2">
+                  <%= answer.question.body %>
+                </h5>
+              </div>
+              <div class="row">
+                <div class="small-12 columns text-center m-ws-top">
+                  <i class="icon-vid scolor2 f-2x"></i>
+                </div>
+              </div>
+            </div>
+
+            <% var totalComments = parseInt(answer.num_comments) %>
+            <% var shownComments = answer.num_comments < 3 ? totalComments : 3 %>
+            <div style="position:absolute; bottom:7em; width:100%">
+              <div style="display:none;" class="row comments"
+                data-id="<%= answer.id %>"
+                data-source="<%= '/'+answer.id+'/comments' %>"
+                data-loaded-comments="<%= shownComments %>"
+                data-total-comments="<%= totalComments %>"
+                data-action-overlay-comments
+              > 
+
+                <div class="small-12 columns">
+                  <div class="s2 scolor xs-ws-bottom small-8 s-ws-top columns comments-info ">
+                    Showing <span class="count"><%= shownComments %></span>
+                    of <span class="total"><%= totalComments %></span> comments
+                  </div>
+
+                  <div class="small-4 columns text-right show-all s-ws-top">
+                    <a class="right scolor3" data-comments-hide><i class="icon-down"></i></a>
+                  </div>
+
+                  <div class="comment-box small-12 columns s-ws-bottom" style="height:15em;">
+                    <div class="comment-box-inner">
+                      <%- include(partials.comments, {comments: answer.comments}) %>
+                    </div>
+                    <% if (totalComments > shownComments) { %>
+                      <div class="text-right">
+                        <a href="#" class="load-more s">Load More</a>
+                      </div>
+                    <% } %> 
+                  </div>
+
+
+                  <div class="small-12 columns scolor2">
+                    <input
+                      class="alt nm comment-input fbl"
+                      placeholder="Press enter to Post" type="text"
+                      data-user-img="/img/user.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="position:absolute; bottom:1em; width:100%;">
+              <div class="row collapse text-center">
+                <div class="small-4 columns" id="t10">
+                  <%if (answer.is_liked && me) { %>
+                      <div class="likeBtnTrg" 
+                        data-target="<%= genUrl('unlike/'+answer.id) %>" data-state="liked">
+                        <i class="icon-like f-1-5x scolor3 link r cs likeBtnIcon"></i>
+                      </div>
+                      <div class=" s2" id="b1">
+                        <span class="scolor2 likeBtn">Liked</span> <span class="scolor num_likes"> <%= answer.num_likes %></span>  
+                      </div>
+                    <% } else { %>
+                      <div class="likeBtnTrg" 
+                        data-target="<%= genUrl('like/'+answer.id) %>" data-state="unliked">
+                        <i class="icon-like f-1-5x scolor3 link r cs likeBtnIcon"></i>
+                      </div>
+                      <div class=" s2" id="b1">
+                        <span class="scolor2 likeBtn">Like</span> <span class="scolor num_likes"> <%= answer.num_likes %></span>  
+                      </div>
+                    <% } %>
+                </div>
+                <div class="small-4 columns">
+                  <div id="icon-share-<%= postCardNoHeadId %>"
+                    data-url="<%= genUrl(answer.author.username +'/'+ answer.question.slug) %>"
+                    >
+                  </div>
+                  <div class=" s2" id="b2">
+                    <span class="scolor2">Share</span>
+                  </div>
+                </div>
+                <div class="small-4 columns">
+                  <div data-comments-show>
+                    <i class="icon-comment f-1-5x scolor3 link r cs"></i>
+                  </div>
+                  <div class=" s2" id="b3">
+                    <span class="scolor2">Comment</span> 
+                    <span class="scolor"> 
+                      <%= totalComments %>
+                    </span>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          
+          $('#t6').click(function(){
+            $('#t5').fadeIn();
+          });
+          
+          $('#t10').click(function(){
+            $('#t10 i').removeClass('scolor3').addClass('wc');
+            $('#b1 .scolor2').html('Liked').addClass('wc').removeClass('scolor2');
+            $('#b1 .scolor').html('35');
+          });
+
+
+        </script>
+
+        <script type="text/javascript">
+          $('#b1').click(function(){
+            $('#b1').html('<span class="s2" style="display:inline-block; vertical-align:32%;">Liked</span> <i class="icon-like f-1-25x"></i> ').removeClass('wc').addClass('scolor');
+          });
+
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

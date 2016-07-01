@@ -1,0 +1,29 @@
+<div class="small-7 columns">
+  <% var frankstersFeedId = pagename+'-frankstersFeed' %>
+  <div id="<%= frankstersFeedId %>">
+    <script>
+      $(function () {
+        app.components.stdFeedHolder($('#<%= frankstersFeedId %>'));
+      });
+    </script>
+    
+    <div class="feed">
+    <% feed.items.forEach(function (item, index) { %>
+
+      <% if (index % 3 === 0) { %>
+        <div class="row">
+      <% } %>
+      
+      <div class="small-4 columns s-ws-bottom <%= index === feed.items.length-1 ? 'end' : '' %>">
+        <%- include(partials.userSm, {user: item.model, showBio: true, isPanel: true}) %>
+      </div>
+      
+      <% if (index % 3 === 2 || index === feed.items.length-1) { %>
+        </div>
+      <% } %>
+    <% }) %>
+    </div>
+
+    <div class="feed-end" data-page="<%= pageNum %>"></div>
+  </div>
+</div>

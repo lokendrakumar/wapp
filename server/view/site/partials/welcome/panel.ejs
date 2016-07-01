@@ -1,0 +1,42 @@
+<div class="b-ws-top text-center">
+	<h2>Welcome aboard</h2>
+	<h3 class="scolor f-l">Select the categories that interest you the most</h3>
+</div>
+<div class="b-ws-top">
+<%- include(partials.wall) %>
+</div>
+<div class="row collapse">
+	<div class="small-12 columns b-ws-top">
+		<dl class="sub-nav m-ws-bottom wbg large" style="display:none;">
+		  <dd><a href="#">Category 2</a></dd>
+		  <dd><a href="#">Category 1</a></dd>
+		  <dd><a href="#">something else</a></dd>
+		</dl>
+	</div>
+</div>
+<div class="progress-wrapper footer fixed tr wbg s-ws-top-p s-ws-bottom-p" style="display:none;">
+	<div class="row">
+		<div class="progress small-12 alert radius">
+		  <span class="meter" style="width: 10%"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-9 columns text-right">
+			<div class="scolor xs-ws-top">Step 1 of 2</div>
+		</div>
+		<div class="small-3 columns">
+			<div class="xs-ws-top"><a class="s">I would rather get lost, lets skip</a></div>
+			<div class="button small fullwidth" style="display:none;">Finish</div>
+		</div>
+	</div>
+</div>
+<script>
+$('.iplus').click(function(){
+	$('.footer').delay(1000).fadeIn(500);
+	$('.sub-nav').fadeIn(500).delay(500).append('<dd id="new" style="display:none;"><a href="#">Category 2</a></dd>');
+	$('#new').fadeIn().addClass('active');
+	setTimeout(function() {
+      $('#new').removeClass('active');
+	}, 2000);
+});
+</script>

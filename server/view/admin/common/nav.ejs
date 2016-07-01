@@ -1,0 +1,86 @@
+<% var navId = componentId('frankly-main-navbar') %>
+<div class="navbar-fixed" id="<%= navId %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.navBar($('#<%=navId%>'));
+    });
+  </script>
+  <nav style="background-color: #2c2c2c">
+    <div class="container">
+      <div class="nav-wrapper">
+        <%# <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="mdi-navigation-menu"></i></a>%>
+        <a href="/" class="brand-logo"><img class="responsive-img" src="/img/logo.png" style="max-height: 64px;" /></a>
+        <ul class="menu-first">
+          <% if (me) { %>
+            <li><a href="<%= genUrl('feed') %>" class="" data-link-home><i class="icon-home left"></i> <span class="hide-on-med-and-down">Home</span></a></li>
+          <% } %>
+          <li><a href="<%= genUrl('discover') %>" class="" data-link-discover><i class="icon-discover left"></i> <span class="hide-on-med-and-down">Discover</span></a></li>
+        </ul>
+        <% var search = componentId('search') %>
+        <script>
+          $(function () {
+            app.components.searchClick($('#<%= search %>'));
+          });
+        </script>
+        <% var searchContent1 = (typeof searchText  === "undefined") ? "" : searchText; %>
+        <div id="<%= search %>" class="hide-on-med-and-down">
+          <div class="search" data-search-url="<%=genUrl("search")%>">
+            <%# <form>%>
+              <span class="icon-search"></span>
+              <input id="search" type="text" required placeholder="Search" value="<%=searchContent1%>">
+            <%# </form>%>
+          </div>
+        </div>
+        <ul class="right">
+          <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown1">@username<i class="mdi-navigation-arrow-drop-down right"></i></a></li> -->
+          <%if(me){ %>
+            <li><a class="right btn-nav-login evtToggle link"> <i class="icon-notifiaction" style="font-size: 26px"></i></a>
+            <script>
+              $(function () {
+                app.components.PushStreamConnecter('<%=me.id%>');
+              });
+              $(".evtToggle").click(function()
+              {
+                $(".notification-wrapper").toggle();
+              });
+
+            </script>
+            <div class="notification-wrapper" id="<%=me.id%>">
+            <div class="arrow-up"></div>
+              <div class="notification-footer"><a href="/notification">See All</a></div>
+                <ul class="notifications-list">
+                </ul>
+              </div>
+              </li>
+          <%}%>
+          <% if (me == null) { %>
+            <li><a href="#frankly-auth-modal" class="modal-trigger"><span class="">Login</span></a></li>
+          <% } else { %>
+            <li><a class="dropdown-button" href="#!" data-activates="navBarDropdown">
+              <i class="icon-profile left hide-on-large-only"></i><span class="hide-on-med-and-down">@<%= me.username %></span>
+              <i class="material-icons right">arrow_drop_down</i></a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<ul id="navBarDropdown" class="dropdown-content">
+  <li><a href="<%= genUrl(me ? me.username : '') %>">View Profile</a></li>
+  <li><a href="<%= genUrl('settings') %>">Settings</a></li>
+  <li><a href="" class="logout">Logout</a></li>
+</ul>
+
+<div class="notification-template" style="display:none">
+  <li>
+    <div class="notification-click">
+      <div class="notification-video">
+        <img src="" class="notificationimg circle responsive-img" alt="/img/user.png">
+
+      </div>
+      <div class="notification-text">
+        <p class="notificationtext"></p>
+      </div>
+    </div>
+  </li>
+</div>

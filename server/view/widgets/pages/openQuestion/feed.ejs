@@ -1,0 +1,32 @@
+<% var feedHolderId = componentId('widgetFeedHolder') %>
+<% var questionIndexValue = typeof(questionIndex) === 'undefined' ? 0 : questionIndex %>
+<% var postIndexValue = typeof(postIndex) === 'undefined' ? 0 : postIndex %>
+<% var userIndexValue = typeof(userindex) === 'undefined' ? 0 : userindex %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.openQuestionHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed" style="white-space:nowrap;overflow:auto;overflow-y:hidden;margin:0px;padding:0px;width:5000px;">
+    <ul style="margin:0" id="video">
+      <% answers.forEach(function (answer) { %>
+       <li style="display:inline-block;">
+          <%- include(partials.openAnswerCard, {post: {answer: answer}} )%>
+          </li>
+      <% }) %>
+    </ul>
+    <div class="fixed-action-btn" style="top: 40%; right:0;display:inline-block;position:fixed;z-index: 0;">
+      <a class="btn-floating white btn-flat load-more-btn">
+        <img src="/img/next.png" width="36" height="36" title="load more comments">
+      </a>
+    </div>
+    <div class="fixed-action-btn" style="top: 40%; left:0;display:inline-block;position:fixed;z-index: 0; width:0px">
+      <a class="btn-floating white btn-flat load-less-btn">
+        <img src="/img/previous.png" width="36" height="36" title="load more comments">
+      </a>
+    </div>
+  </div>
+  <div class="feed-end" data-post-index="<%= offset %>"></div>
+</div>

@@ -1,0 +1,56 @@
+<% var answerCardId = componentId('share', 1) %>
+
+<div class="frankly-card grey lighten-2 valign-wrapper" style="height:100%;" id="<%= answerCardId %>">
+  <script>
+    $(function () {
+      app.components.shareCard($('#<%= answerCardId %>'));
+    });
+  </script>
+  <div class="card-content white-text">
+    
+    <div class="row">
+      <div class="col l12">
+        <div class="row center-align valign">
+          <div class="col s12 black-text "><h5>Share your views !</h5></div>
+           <div class="col s12 grey-text text-darken-2 flow-text"><p>Share your answer on social media and share your thoughts further<p></div>
+        </div>
+        <br />
+        <div class="row center">
+          <a class="grey lighten-2 btn-floating red-text close-btn"><i class="material-icons red-text">close</i></a>
+        </div>
+      </div>
+    </div> 
+    <div class="row" style="position:relative;" >
+      <div class="shareContainer" style="position:fixed;bottom:0px;margin-left:20px" data-user-id="<%= me?me.id:''%>" >
+        <div class="row shareIcons center">
+          <div class="col s12 grey-text text-darken-2 left-align">Share on:</div>
+          <div class="col s4 shareIcon link"><img src="/img/frankly-icon.png" class="frankly-icon small mdi-action-class selectedShare" ></img></div>
+          <div class="col s4 shareIcon link"><img src="/img/facebook_transparent_bg_icon.png" class="facebook-icon small mdi-action-class toggle" style="background:#BAB8B7;border-radius: 2px;padding: 2px;"></img></div>
+          <div class="col s4 shareIcon link"><img src="/img/twitter_transparent_bg_icon.png" class="twitter-icon small mdi-action-class toggle"  style="background:#BAB8B7;border-radius: 2px;padding: 2px;"></img></div>
+          <!-- <div class="col s3 shareIcon" style="display:none"><img src="/img/youtube_square_gray_32.png" class="youtube-icon small mdi-action-class toggle" ></img></div> -->
+        </div>
+        <div class="row">
+          <button class="waves-effect waves-light btn col s12 mainShareButton red lighten-1">Share</button>
+        </div>
+       </div>
+      </div>
+  </div>
+  <!-- Facebook Conversion Code for Federer V/S Murray -->
+  <% if (resourceId == '54de02beb20945d9a7b5940fa8bd67c4') { %>
+    <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+    }
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', '6026912555349', {'value':'0.00','currency':'INR'}]);
+    </script>
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6026912555349&amp;cd[value]=0.00&amp;cd[currency]=INR&amp;noscript=1" /></noscript>
+  <% } %>
+</div>

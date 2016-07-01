@@ -1,0 +1,11 @@
+<% var answer = componentId('answer') %>
+
+
+<tbody id="<%= answer %>" >
+  <script type="text/javascript">
+    $(function () {
+      app.components.videoModerate($('#<%= answer %>'));
+    });
+  </script>
+<%- include(partials.feed) %>
+</tbody>

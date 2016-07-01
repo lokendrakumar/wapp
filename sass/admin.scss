@@ -1,0 +1,134 @@
+/*============
+Admin Question Page Css
+==============*/
+
+.flag-pan { font-size: 20px;
+	i { float: left; margin-top: 2px; margin-right: 6px; color: #EA6153;}
+	label { margin-left: 10px;}
+	&.active i { color: #4caf50;}
+}
+
+.filter-wrap { margin: 20px 0;
+	a.collection-item { display: inline-block; border-bottom: none; background: none; color: #EA6153; font-weight: 400; font-size: 13px;
+		&.active { background: #EA6153;}
+	}
+}
+
+.quest-table { border: none; border: 1px solid #eee; border-bottom: none; margin: 20px 0;
+	th { font-weight: 500; padding: 15px 15px; color: #777; }
+	tr { border-bottom: 1px solid #eee;
+		td { padding: 15px 15px; color: #999;
+			a { cursor: pointer;}
+			.questionFlag { color: #777;
+				&.active { color: #EA6153;}
+			}
+			.questionApprove, .commentApprove { color: #4caf50; }
+			.questionDelete, .commentDelete { color: #EA6153; }
+			img { max-width: 60px; margin: 0 auto; position: relative;}
+			textarea { overflow: auto; padding: 3px 5px; min-height: 51px; position: relative;
+				&:focus { border: 1px solid #AC7773; box-shadow: none; outline: 0; }
+			}
+		}
+	}
+}
+.theme-color-red{
+	background-color: #EA6153;
+
+	&:hover{
+		background-color: #EA6153;
+	 }
+}
+
+.collapse-button-border .btn{
+	border-bottom: 0;
+}
+
+.kareoke-categories { 
+	li.collection-item { height: auto; padding: 0px !important; list-style: decimal; list-style-position: inside; color: #777;
+		.catName { padding: 10px 20px 10px 10px; display: block; position: relative;
+			&:hover { background: #ECECEC;}
+			&.active { background: #ECECEC;}
+			i { float: right;}
+
+      .toggle-opt i { color: #333;}
+		}
+		img { width: 40px; height: 40px; vertical-align: middle; display: inline-block; margin-right: 10px; margin-left: 10px; } }
+}
+
+.trackwrap {
+  li.collection-item { list-style: decimal; list-style-position: inside; color: #777; padding-left: 10px !important; position: relative;
+    > span { margin-left: 5px; display: inline-block; vertical-align: middle; max-width: 260px;}
+  }
+}
+
+.btn-control { position: absolute; top: 0; bottom: 0; margin: auto; right: 20px; height: 25px;
+  i {  color: #333; margin-left: 15px; cursor: pointer;}
+}
+
+
+.karaoke-sectitle { padding: 15px 20px; background: #fff; margin: 0;}
+.custm-karaoke-card { padding-bottom: 0px; background: #fff; overflow: visible;
+  .collection { border-left: none; border-right: none; overflow: visible;}
+}
+.toggle-opt { position: relative;
+	i { cursor: pointer; }
+	.opt-wrap { display: none; position: absolute; width: 130px; height: 80px; border: 1px solid #ddd; box-shadow: 1px 1px 3px #ddd; -webkit-box-shadow: 1px 1px 3px #ddd; -moz-box-shadow: 1px 1px 3px #ddd; right: 22px; top: 100%; z-index: 1; background: #fff; padding:4px 10px;
+    .toggle-close { position: absolute; right: 10px; top: 6px; font-size: 15px;}
+		input { padding: 4px 10px; border: 1px solid #ddd; width: 100%; font-size: 14px; float: left; height: auto; margin-top: 5px;} 
+	}
+}
+.dubsmashCat > span { max-width: 200px; display: inline-block; vertical-align: top;}
+
+.search-wrap { a { background: #EA6153; width: auto;
+	&:focus, &:hover { background: #EA6153 !important;}
+} }
+
+.search_resultspan i { cursor: pointer;}
+
+.avl-tarcks i { cursor: pointer;}
+
+.add-wrap { position: absolute; padding: 12px 20px; top: 100%; right: 10px; min-width: 420px; display: none; z-index: 99;
+  .input-field { margin-top: 0;}
+  label { color: #333;}
+  input { color: #333;}
+  .btn {background: #EA6153; width: auto; height: auto; line-height: normal; padding: 8px 12px;
+  &:focus, &:hover { background: #EA6153 !important;}
+    input[type="submit"] { background: none; border: none; color: #fff; font-weight: 400; font-style: normal;}
+  }
+  .file-field .btn { padding: 10px 12px; top: 9px; line-height: normal;} 
+}
+
+
+.category-addwrap { position: absolute; padding: 12px 20px; top: 100%; right: 5px; min-width: 420px; display: none; z-index: 99;
+  .input-field { margin-top: 0;}
+  label { color: #333;}
+  input { color: #333;}
+  .btn {background: #EA6153; width: auto; height: auto; line-height: normal; padding: 8px 12px;
+  &:focus, &:hover { background: #EA6153 !important;}
+    input[type="submit"] { background: none; border: none; color: #fff; font-weight: 400; font-style: normal;}
+  }
+  .file-field .btn { padding: 10px 12px; top: 9px; line-height: normal;} 
+}
+.relative { position: relative;}
+
+
+
+
+/****** Search box dropdown list css *******/
+
+
+.ui-widget-content a { font-size: 1rem; }
+.ui-widget { font-family: inherit !important; };
+.ui-state-focus{ 
+	background: #EA6153 !important; 
+	color: #fff !important ;
+	&:hover > a{
+		color: #fff !important;
+	};
+}
+.ui-state-focus > a.grey-text.text-darken-2{
+	color: #fff !important;
+}
+.kareoke-categories li.collection-item a i.more-vert-right{
+	right: 40px !important;
+}

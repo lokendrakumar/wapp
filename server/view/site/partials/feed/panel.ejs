@@ -1,0 +1,33 @@
+<div class="row b-ws-top">
+  <div class="columns small-2 text-center">
+    <%- include(partials.leftPane) %>
+  </div>
+
+  <div class="columns small-7">
+    <%- include(partials.feed, {feed: feed}) %>
+  </div>
+
+  <div class="small-3 columns" id="category-trendingQuestionsWidget" data-page="1" data-category="19ff1a7507ea44aebb9eedd36df144c3">
+    <h5>
+      <i class="bc icon-hashtag s-ws-bottom"></i>Trending Questions asked to Franksters you follow
+    </h5>
+
+    <div class="feed" style="display: block;">
+      <% questions.items.forEach(function (item) { %>
+        <%- include(partials.questionSm, {question: item.model}) %>
+      <% }) %>
+    </div>
+
+    <h5 class="b-ws-top">Other Franksters you may like</h5>
+
+    <div class="panel">
+      <div class="row">
+        <% users.items.forEach(function (item) { %>
+          <div class="small-6 columns text-center m-ws-bottom">
+            <%- include(partials.userSm, {user: item.model, isXs: true, showTitle: true}) %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

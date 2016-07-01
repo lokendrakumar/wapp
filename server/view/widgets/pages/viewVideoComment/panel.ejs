@@ -1,0 +1,49 @@
+<% if (comments.count == 0) { %>
+<div class="row center">
+  <img src="/img/no-video-comment.png" alt="" height="200" width="200">
+  <p class="grey-text">Add the first video comment</p>
+  
+<div class="row videoComment center" data-count="<%= comments.count %>">
+  <script>
+    $(function () {
+      app.components.videoComment($('.videoComment'));
+    });
+  </script>
+
+    <div class="commentBtn" data-url="<%= genUrl('recorder/recorder?type=blog&resourceId=&sourceUrl=' + sourceUrl) %>">
+      <div class="waves-effect waves-light btn red lighten-1" style="text-transform: capitalize!important"><img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image" >Add Video comment</div>
+    </div>
+</div>
+
+</div>
+<% } %>
+
+<div id="view-video-comment" data-url="<%= sourceUrl %>">
+  <script>
+    $(function () {
+      app.components.videoCommentHolder($('#view-video-comment'));
+    });
+  </script>
+  
+  <div class="commentCard" style="white-space:nowrap;overflow:auto;overflow-y:hidden;margin:0px;padding:0px;width:5000px;">
+      <ul style="margin:0" id="video">
+          <% comments.model.forEach(function (comment){ %>
+        <li style="display:inline-block;">
+            <%- include(partials.videoCommentCard, {comment: comment.post}) %> 
+
+        </li>
+          <% }); %>
+      </ul>
+     <div class="fixed-action-btn" style="top: 40%; right:0;display:inline-block;position:fixed;z-index: 0;">
+      <a class="btn-floating white btn-flat load-more-btn">
+        <img src="/img/next.png" width="36" height="36" title="load more comments">
+      </a>
+    </div>
+    <div class="fixed-action-btn" style="top: 40%; left:0;display:inline-block;position:fixed;z-index: 0; width:0px">
+      <a class="btn-floating white btn-flat load-less-btn">
+        <img src="/img/previous.png" width="36" height="36" title="load more comments">
+      </a>
+    </div>
+  </div>
+  <div class="checkLimit" style="display:none" data-offset="<%= offset %>"></div>
+</div>

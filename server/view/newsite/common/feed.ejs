@@ -1,0 +1,30 @@
+<% var page = typeof(page) === 'undefined' ? 'page' : page %>
+<% var feedHolderId = componentId('feedHolderId' + page) %>
+<% var pageNum = typeof(pageNum) === 'undefined' ? 0 : pageNum %>
+<% var useroffset = typeof(useroffset) === 'undefined' ? 0 : useroffset %>
+<% var count = columnNumber %>
+<% var categoryName = (typeof categoryName === 'undefined' ) ? 0 : categoryName %>
+
+<div id="<%= feedHolderId %>" class = '<%= categoryName %>' data-category-id ='<%= categoryName %>' >
+  <script>
+    $(function () {
+      app.components.stdFeedNew($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed">
+    <div class="row">
+      <% for (var j = 1; j <= count; j++){ %>
+        <div class="col s12 m6 l<%= Math.floor(12/count) %>" >
+          <div class="row column<%= j %>">
+            <% for (var i = j-1; i < feed.items.length; i += count) { %>
+              <div class="col s12">
+                <%- include(partials.feedColumn, {item: feed.items[i]} ) %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="feed-end" data-post-index="<%= pageNum %>" data-userpost-index='<%= useroffset %>'></div>
+</div>

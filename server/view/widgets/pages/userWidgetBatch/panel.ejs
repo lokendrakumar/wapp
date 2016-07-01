@@ -1,0 +1,36 @@
+<script type="text/javascript">
+  
+  $('body').removeClass('grey lighten-3');
+  
+</script>
+
+<!--atul code-->
+<div class="custom-container-widget-full">
+<div class="custom-container-wi">
+  <div class="row">
+    <div class="col s12 m2 hide">
+      <p class="user-about-fixed"><%= user.bio  %></p>
+    </div>
+    <div class="col s12 m12 askBox" data-target="<%= '/ask/'+user.id %>">
+      <script>
+        $(function () {
+          app.components.askBox($('.askBox'));
+        });
+      </script>
+      <div class="row userWidgetbatch-margin">
+        <div class="input-field text-box-container col s12 m9">
+          <textarea class="postArea post-textarea-expand" id="evtAsk1" length="300" placeholder="Ask @<%= user.username %> frankly"></textarea>
+        </div>
+        <div class="col s12 m3">
+          <a class="waves-effect waves-light btn my-button askBtn">ASK QUESTION</a>
+        </div>
+      </div>
+      <%- include(partials.feed) %>
+    </div>
+  </div>
+  </div>
+  </div>
+
+<!--atul code-->
+
+

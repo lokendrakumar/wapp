@@ -1,0 +1,87 @@
+<%- include(partials.top) %>
+<!-- body starts here -->
+<div class="contain-to-grid fixed" id="nav">
+  <%- include(partials.nav) %>
+</div>
+<%- include(partials.modals) %>
+
+<% var profileLeftPaneId = 'profile'+profile.id+'LeftPane' %>
+<% var introModalUrl = '/modal/profile-video/'+profile.id %>
+  <style type="text/css">
+    .video-wrapper-cir {
+      width: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+    }
+    video {
+      width: 100%;
+      margin-top: -15%
+    }
+  </style>
+
+<div id="<%= profileLeftPaneId %>">
+  <script>
+    $(function () {
+      app.components.campaignCard($('#<%= profileLeftPaneId %>'));
+    });
+  </script>
+  <div class="row">
+    <div class="small-12 medium-4 small-centered text-center columns s-ws-top">
+      <div class="video-wrapper-cir">
+        <video class="introVideo" src="<%= profile.intro_video_url %>" style="display:none;"></video>
+        <div class="playBtn overlay">
+          <i class="icon-vid wc f-4x" style="position:absolute;left:45%; top:45%;"></i>
+          <img class="img-f s-ws-bottom nm" src="<%= profile.profile_photo_url %>" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns text-center b-ws-top">
+      <div class="scolor f-1-5x f-l">Talk Frankly to</div>
+      <h2 class="f-3x"><%= profile.name %></h2>
+      <h5 class="scolor"><%= profile.bio %></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="panel">
+        <div class="row">
+          <h3 class="text-center scolor f-l m-ws-top">Let's get started</h3>
+          <div class="small-12 medium-5 large-3 small-centered columns m-ws-top b-ws-bottom">
+            <div class="button large fullwidth fullbtn f-l askUser" data-username="<%= profile.username %>">
+              <img src="/img/logo-white.png" class="left"/>
+              <div>Ask <%= profile.name %></div>
+            </div>
+          </div>
+          <!-- <p class="scolor text-center s-ws-top">
+            Frankly.me is a platform that lets you connect with your celebrities and get replies in video selfies
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="text-center s-ws-bottom scolor f-l f-2x">Other answers by <%= profile.name %></h3>
+    <% feed.forEach(function (item) { %>
+        <div class="small-12 large-4 medium-6 end columns">
+          <%- include(partials.answerSm, {answer: item.model}) %>
+        </div>
+    <% }) %>
+  </div>
+  <div class="row">
+    <h3 class="text-center f-l scolor b-ws-top s-ws-bottom f-2x">Other similar celebrities on the platform</h3>
+    <div class="panel">
+      <div class="row">
+        <% showcase.forEach(function (item) { %>
+          <div class="small-12 medium-4 columns">
+            <%- include(partials.userSm, {user: item.model, showTitle: true}) %>
+          </div>  
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- body ends here -->
+<%- include(partials.bottom) %>

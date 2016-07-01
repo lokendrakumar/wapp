@@ -1,0 +1,10 @@
+<h5><i class="icon-star yc"></i> <%= title %></h5>
+<div class="panel">
+  <div class="row">
+    <% feed.items.forEach(function (item) { %>
+      <div class="small-3 columns">
+        <%- include(partials.userSm, {user: item.model, showTitle: true}) %>
+      </div>
+    <% }) %>
+  </div>
+</div>

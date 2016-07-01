@@ -1,0 +1,38 @@
+<% var feedHolderId = componentId('widgetFeedHolder') %>
+<% var questionIndexValue = typeof(questionIndex) === 'undefined' ? 0 : questionIndex %>
+<% var postIndexValue = typeof(postIndex) === 'undefined' ? 0 : postIndex %>
+<% var userIndexValue = typeof(userindex) === 'undefined' ? 0 : userindex %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.stdFeedHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed">
+
+    <div class="row">
+      <% answers.forEach(function (answer) { %>
+        <% if(pagename == 'replyPopup') { %>
+          <div class="small-12 columns end">
+            <%- include(partials.widgetBatchCard, {a: answer} )%>
+          </div>
+        <% } else { %>
+          <div class="small-12 medium-6 columns end">
+            <%- include(partials.widgetBatchCard, {a: answer} )%>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+  <!-- <div class="row text-center s-ws-bottom">
+    <div class="feed-end-holder s-ws-bottom">
+      <div class="feed-end " data-question-index="<%= questionIndexValue %>" data-post-index="<%= postIndexValue %>" data-user-index="<%= userIndexValue %>"></div>
+    </div>
+  </div> -->
+    <div class="feed-end" data-post-index="<%= pageNum %>"></div>
+</div>
+
+
+
+

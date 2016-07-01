@@ -1,0 +1,50 @@
+<% questions.items.forEach(function(question, index) { %>
+<% question = question.model %>
+<% var questionCardId = componentId('askPopupQuestionCard', question.id); %>
+<div class="col s12 m6 l6" id="<%= questionCardId %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.askPopupQuestionCard($('#<%= questionCardId %>'));
+    });
+  </script>
+  
+  <div class="card-panel grey lighten-2 question-card">
+    <div class="row">
+      <p class="grey-text text-darken-3 margin-none" style="word-wrap: break-word;">
+        <%= question.body %>
+      </p>
+    </div>
+    <div class="row margin-none grey-text text-darken-1">
+      <span>asked by @<%= question.from.name || question.from.username %> </span> 
+      <div class="center-align">
+        <% if (question.upvotes > 0) { %>
+        <span class="upvote-count"> and <%= question.upvotes %> others
+        <% } %>
+        </span>
+      </div>
+    </div>
+    <div class="row center margin-none">
+      <div class="col s12 right">
+      <% if(question.is_voted && me) { %>
+        <% if (question.from.id !== me.id && question.to.id !== me.id) { %> 
+          <div class="btn-hollow grey lighten-2 right waves-effect request-answer-btn" data-state="downvote" data-target="<%= genUrl('downvote-answer/'+question.id) %>">Answer Requested</div>
+      <% } %>
+      <% } else {%>
+        <div class="btn-hollow grey lighten-2 right waves-effect request-answer-btn" data-target="<%= genUrl('request-answer/'+question.id) %>" data-state="request" data-share>Request Answer</div>
+      <% } %>
+      </div>
+    </div>
+    <div class="row center margin-none">
+      <div class="col s12 center-align p-t share-question" data-url="http://frankly.me/<%= profile.username %>/<%= question.slug %>" data-text="<%= question.body %>">
+        <a href="" class="btn-default share-fb blue darken-4 waves-effect waves-light social-btn-sq"><i class="icon-facebook-transparent"></i></a>
+        <a href="" class="btn-default share-twt blue lighten-2 waves-effect waves-light social-btn-sq"><i class="icon-twitter"></i></a>
+        <a href="" class="btn-default share-ggl red lighten-1 waves-effec waves-lightt social-btn-sq"><i class="  icon-google-plus"></i></a>
+      </div>    
+    </div>            
+  </div>
+</div>
+      
+<% }); %>
+<div style="display:none" data-offset-stats="<%= questions.next_index %>"></div>
+
+

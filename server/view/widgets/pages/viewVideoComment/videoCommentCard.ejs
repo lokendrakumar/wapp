@@ -1,0 +1,54 @@
+<% var videoCommentCardId = 'videoComment'+comment.id %>
+<% var commenter =comment.answer_author.username%>
+<% var videoUrl = comment.answer.media.media_url %>
+<div class="grey darken-4 frankly-video-comment-card" id ='<%=videoCommentCardId%>' data-share-url="<%= genUrl(commenter) %>" data-post-id="<%= comment.id %>">
+ <script>
+    $(function () {
+      app.components.videoCommentCard($('#<%=videoCommentCardId%>'));
+    });
+  </script>
+  <div class="link answer-first">
+    <img class="answerImg" src="http://api.frankly.me/image/resize?image_url=<%=comment.answer.media.thumbnail_url%>&h=300&w=180" style="width:100%" />
+    <div class="row">
+      <div class="col s12 center-align play-video-icon">
+        <p><i class="mdi-av-play-arrow link"></i></p>
+      </div>
+    </div>
+    <div class="card-credits">
+      <div class="col s6 user-name-display center">
+        <a href="<%= genUrl(comment.answer_author.username) %>" target="_blank" class="white-text">@<%= comment.answer_author.username%></a>
+      </div>
+    </div>
+  </div>
+  <div class="answer-video videoContainer" style="display:none";>
+    <div class="videoHolder link">
+      <video src="<%=videoUrl%>"
+      data-user-id ='<%=comment.answer_author.id %>' style="width: 100%;" data-username=" <%= commenter%>" data-userid="<%= comment.answer_author.id %>" data-entity-link="<%= videoUrl%>"  class="answerVideo" data-uuid="intro-<%=videoCommentCardId%>"></video>
+    </div>
+  </div>
+
+  <div class="answer-paused grey darken-4"  style="display:none ;height:100%">
+    <div class="row">
+      <div class="col s12 center-align play-video-icon">
+        <p><i class="mdi-av-play-arrow link"></i></p>
+      </div>
+    </div>
+    <div class="card-credits">
+      <div class="col s6 user-name-display center">
+        <a href="<%= genUrl(comment.answer_author.username) %>" target="_blank" class="white-text">@<%= comment.answer_author.username%></a>
+      </div>
+    </div>
+  </div>
+  <div class="answer-blank grey darken-4"  style="display:none ;height:100%">
+    <div class="row">
+      <div class="col s12 center-align red-text replay-video-icon play-video-icon">
+        <p><i class="mdi-av-replay medium link"></i></p>
+      </div>
+    </div>
+    <div class="card-credits">
+      <div class="col s6 user-name-display center">
+        <a href="<%= genUrl(comment.answer_author.username) %>" target="_blank" class="white-text">@<%= comment.answer_author.username%></a>
+      </div>
+    </div>
+  </div>
+</div>

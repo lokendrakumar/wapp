@@ -1,0 +1,6 @@
+<%if(!post.is_answered) { %>
+  <%- include(partials.questionCard, {question :post.question} ) %>
+<%}%>
+<%if(post.is_answered) { %>
+  <%- include(partials.answerCard ) %>
+<%}%>

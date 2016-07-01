@@ -1,0 +1,164 @@
+<% var authModalId = componentId('authModal') %>
+
+<div class="row auth" id="<%= authModalId %>">
+  <script>
+    $(function () {
+      app.components.authModal($('#<%= authModalId %>'));
+    });
+  </script>
+  <div class="normal-back">
+    <div class="s-ws-top small-5 columns text-left back-button-normal" > 
+      <div class="scolor2 s cs frankly-back" style="display:none;">Back</div>  
+    </div>
+    <div class="s-ws-top small-7 columns text-right">
+      <i class="icon-close scolor2 cs"></i>
+    </div>
+  </div>
+  <div class="small-12 columns">
+    <div data-alert class="alert-box radius" id="authModalMessage" style="display:none;"></div>
+  </div>
+  <div id="alert-hook2" class="small-12 columns" style="display:none;">
+    
+    <div data-alert="" id="alert-box2" class=" alert-box radius text-center">Welcome back to frankly.me. Please login to continue
+      <a href="#" class="close">×</a>
+    </div>
+  
+  </div>
+  <div class="authModalClass">
+    <div class="small-12 columns m-ws-top m-ws-bottom" id="socialBtn">
+      <div class="button fullwidth fb"><i class="icon-facebook left"></i> Sign in with Facebook</div>
+      <div class="button fullwidth twt"><i class="icon-twitter left"></i> Sign in with Twitter</div>
+      <div class="button fullwidth ggl"><i class="icon-google left"></i> Sign in with Google</div>
+
+      <div class="row">
+
+    <div class="small-12 columns s2 scolor2 text-cter s-ws-bottom xs-ws-top">
+      By signing up, you agree to our <a class="scolor" href="http://frankly.me/tos" target="_blank">terms and conditions</a> and <a class="scolor" href="http://frankly.me/privacy" target="_blank">privacy policy</a>
+    </div>
+    </div>
+    </div>
+    <div class="small-12 columns text-center scolor xs-ws-top hide-if-form">
+      <i>or</i>
+    </div>
+    <!-- <div class="small-6 columns s-ws-bottom s-ws-top show-if-form">
+      <div class="xs-ws-top scolor cs" id="back-btn">Back</div>
+    </div> -->
+    <div class="small-6 columns s-ws-bottom s-ws-top hide-if-form">
+      <div class="xs-ws-top scolor cs s2" id="loginTrg">Already a user?</div>
+    </div>
+    <div class="small-6 columns s-ws-bottom s-ws-top hide-if-form">
+      <div class="button secondary alt fullwidth tiny" id="signUpTrg">Create New Account</div>
+    </div>
+  </div>
+  <div class="small-12 columns s-ws-top" style="display:none;" id="loginDisplay">
+    
+    <form id="loginForm" onsubmit="javascript:return false;">
+      <div class="row">
+        <div class="large-12 columns email-field">
+          <label>Your Email/Username
+            <input type="text" name="email" id="email" required />
+          </label>
+          <small class="invalidEmailUsernameMessage error" style="display: none">Invalid Email/Username</small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns password-field">
+          <label>Your Password
+            <input type="password" id="password" name="password"  required />
+          </label>
+          <!-- <small class="error">Your Password is invalid</small> -->
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="small-12 columns">
+          <button type="submit" id="login-btn" class="button fullwidth small alt xs-ws-top fullwidth">Sign In</button>
+        </div>
+      </div>
+      <div class="row s">
+        <div class="small-6 columns s xs-ws-top">
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        <div class="small-6 columns s scolor xs-ws-top">
+          <input type="checkbox" checked /> Keep me signed in
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="small-12 columns s-ws-top" style="display:none;" id="signupDisplay">
+    <form id="signupForm" onsubmit="javascript:return false;">
+      <div class="row">
+        <div class="large-12 columns email-field">
+          <label>Your Name
+            <input type="text" id="name" required pattern="^[a-zA-Z ]*$" title="Special characters are not allowed" />
+          </label>
+          <!-- <small class="error">Name is required</small> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns password-field">
+          <label>Your Email
+            <input type="email" id="email" required />
+          </label>
+          <!-- <small class="error">Email is required and must be a valid format</small> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns password-field">
+          <label>Create New Password
+            <input type="password" id="password" required />
+          </label>
+          <!-- <small class="error">Password is required </small> -->
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="small-12 columns">
+          <button id="register-btn" class="button fullwidth small alt xs-ws-top fullwidth">Create New Account</button>
+        </div>
+      </div>
+      <div class="row s">
+        <div class="small-6 columns s xs-ws-top">
+          
+        </div>
+        <div class="small-6 columns s scolor xs-ws-top">
+          <input type="checkbox" checked /> Keep me signed in
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns s2 scolor2 text-cter s-ws-bottom xs-ws-top">
+          By signing up, you agree to our <a class="scolor" href="http://frankly.me/tos" target="_blank">terms and conditions</a> and <a class="scolor" href="http://frankly.me/privacy" target="_blank">privacy policy</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="forgot-password-back" style="display:none;"> 
+    <div class="s-ws-top small-5 columns text-left"> 
+      <div class="scolor2 s cs back-button-forgot-password">Back</div>  
+    </div>
+    <div class="s-ws-top small-7 columns text-right">
+        <i class="icon-close scolor2 cs"></i>
+      </div>
+  </div>
+    <div class="small-12 columns s-ws-top forgotPasswordDisplay" style="display:none;">
+      <form id="signupForm" onsubmit="javascript:return false;">
+        <div class="row">
+          <div class="large-12 columns email-field">
+            <label>Your Email Address
+              <input class="forgotPasswordEmailInput" type="text" name="email" id="email" required />
+            </label>
+              <!-- <small class="error">Email is required and must be a valid format</small> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <button type="submit" class="button fullwidth small alt xs-ws-top fullwidth sendEmailButton">Send Mail</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+$(document).foundation();
+</script>

@@ -1,0 +1,230 @@
+<% var answerCardId = componentId('answerLg', a.id) %>
+<% var namedUpvotes = 1 %>
+
+<div id="<%=answerCardId%>">
+
+  <script>
+    $(function () {
+    app.components.userWidgetBatch($('#<%=answerCardId%>'));
+    });
+  </script>
+  <style>
+    hr {
+      border: solid #595959;
+      border-width: 1px 0 0;
+      clear: both;
+      margin: 0.75rem 0 0.6875rem;
+      height: 0;
+    }
+    .video-wrapper-cir {
+      width: 100%; 
+      border-radius: 50%;
+      overflow: hidden;
+      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+    }
+    .shareBtn.rc.widgetShareButton.sharer-0 {
+      width: auto !important;
+  } 
+  </style>
+  <div style="display:none;" class="embedTmpl">
+    <div style="position: absolute; top: 10px; right: 10px;"><i class="icon-close scolor2 cs"></i>
+    </div>
+    <p>Title: <%= a.question.body %></p>
+    <table width="100%">
+      <tr>
+        <td width="20%">Large</td>
+        <td width="80%">
+        <input onclick="this.select();" type="text" value="" />
+      </td>
+      </tr>
+      <tr>
+        <td>Small</td>
+        <td>
+          <input onclick="this.select();" type="text" value="<iframe scrolling='no' frameborder='0' marginheight='0px' marginwidth='0px' height='450px' width='250px'src='http://embed.frankly.me/v1/userWidgetBatch/template.html?user=<%= a.author.username %>&slug=<%= a.question.slug %>'></iframe>" />
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="panel brr np">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="videoContainer">
+          <div class="videoHolder">
+            <video class="img-f profile-video" src="<%=a.video_url%>" data-uuid="<%=answerCardId%>" data-dash="true" syle="height: 100%" data-crop-to-fit="" data-username="<%=user.username%>" preload="none" poster="<%=a.thumbnail_url%>"> 
+            </video>
+          </div>
+        </div>
+        <div  class="overlay brr fx3 bgbk cs beforePlaying" style="z-index:0;">
+          <div style="position:absolute; right:1em; top:0.5em; height:10px;" id="options" data-dropdown="<%=answerCardId%>dropdown" aria-controls="<%=answerCardId%>dropdown" data-options="is_hover:true; hover_timeout:5000; align:left" aria-expanded="false"><i class="icon-options scolor3 cs"></i>
+          </div>
+          <ul id="<%=answerCardId%>dropdown" class="f-dropdown" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+            <li><a href="#" class="embedBtn">Embed</a></li>
+            <li><a href="#" class="report-user" data-id="<%= a.id %>" data-type="post">Report</a></li>
+          </ul>
+          <i class="icon-play scolor f-1-5x" style="position:absolute; left:15px; bottom:20%;"></i>
+          <div style="top:1em; position:absolute;" class="questionOverlay">
+            <h5 class="wc small-12 columns"><%=a.question.body%>?</h5>
+            <div class="scolor small-12 columns s">asked by <span class="scolor2"><%=a.asker.name || a.asker.username%> </span> 
+              <span >
+                <span class="spanYou">
+                  <% if(a.question.is_voted && me) { 
+                      namedUpvotes++;
+                      %>
+                    You, 
+                  <% } %>
+                </span>
+                
+              </span> 
+              <span class="upvoteText">and <span class="spanUpvotes"><%= a.question.upvotes - namedUpvotes %></span> others </span>
+            </div>
+          </div>
+          <div style="position:absolute; bottom:1em; width:100%;">
+
+            <div class="small-10 columns">
+              <hr>
+            </div>
+            <div class="small-7 columns ">
+              <h5 class="scolor3 nm"><%=user.name || user.username%></h5>
+              <h6 class="scolor2 nm s2">@<%=user.username%></h6>
+            </div>
+            <div class="small-5 columns" >
+              <div class="videoContainer video-wrapper-cir"  style="margin-top:-2.5em;">
+                <div class="videoHolder">
+                  <video  src="<%=user.intro_video_url%>" class="intro-video" style="width: 100%" data-uuid="intro-<%=answerCardId%>" data-crop-to-fit data-square-video></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay brr bgbk fx3 cs overlayOnPause" style="display:none;">
+          <div style="position:absolute; right:1em; top:0.5em; height:10px;" id="options" data-dropdown="<%=answerCardId%>dropdown2" aria-controls="<%=answerCardId%>dropdown2" data-options="is_hover:true; hover_timeout:5000; align:left" aria-expanded="false"><i class="icon-options scolor3 cs"></i>
+          </div>
+          <ul id="<%=answerCardId%>dropdown2" class="f-dropdown" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+            <li><a href="#" class="embedBtn">Embed</a></li>
+            <li><a href="#" class="report-user" data-id="<%= a.id %>" data-type="post">Report</a></li>
+          </ul>
+          <div style="position:absolute; top:1em; width:100%;" class="pauseQuestionOverlay" >
+            <div class="small-12 columns">
+              <h5 class="s-ws-bottom scolor2"><%=a.question.body%>?</h5>
+            </div>
+            <div class="row">
+              <div class="small-12 columns text-center m-ws-top playIcon" >
+                <i class="icon-vid scolor2 f-2x"></i>
+              </div>
+            </div>
+          </div>
+
+          <div style="position:absolute; bottom:7em; width:100%">
+            <div  style="display:none;" class="row comments" data-id="<%= a.id %>"
+                  data-source="<%= '/'+a.id+'/comments' %>"
+                  data-loaded-comments="<%= shownComments %>"
+                  data-total-comments="<%= totalComments %>"
+            > 
+              <% var totalComments = parseInt(a.num_comments) %>
+              <% var shownComments = a.num_comments < 3 ? totalComments : 3 %>
+              <div class="small-12 columns">
+                <div class="s2 scolor xs-ws-bottom small-8 s-ws-top columns comments-info ">
+                  Showing <span class="count"><%= shownComments %></span>
+                  of <span class="total"><%= totalComments %></span> comments
+                </div>
+
+                <div class="small-4 columns text-right show-all hide-comments s-ws-top">
+                  <a class="right scolor3" ><i class="icon-down"></i></a>
+                </div>
+
+                <div class="comment-box small-12 columns s-ws-bottom" style="height:15em;">
+                  <div class="comment-box-inner">
+                    <%- include(partials.comments, {comments: a.comments}) %>
+                  </div>
+
+                  <div class="text-right">
+                    <% if (totalComments > shownComments) { %>
+                      <a href="#" class="load-more s">Load More</a>
+                    <% } %>
+                  </div>
+
+                </div>
+                <div class="row comment-input nm">
+                  <% if (shownComments === 0) { %>
+                    <div class="small-12 columns s scolor xs-ws-bottom no-comment" style="margin-bottom: 1.8em;">
+                      No comments yet, be the first to comment
+                    </div>
+                  <% } %>
+                  <div class="small-12 columns scolor2">
+                    <input class="alt nm comment-input fbl" placeholder="Press enter to Post" type="text" data-user-img="<%= me ? (me.profile_photo_url || '/img/user.png') : '/img/user.png' %>"data-user-name="<%= me ? me.username: '' %>">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute; bottom:1em; width:100%;" class="icons">
+            <div class="row collapse text-center">
+              <div class="small-4 columns">
+                <%if (a.is_liked && me) { %>
+                  <div class="likeBtnTrg"
+                        data-target="<%= '/unlike/'+a.id %>" data-state="liked">
+                    <i class="icon-like f-1-5x  link r cs likeBtnIcon"></i>
+                    <div class="s3">
+                      <span class ="scolor2 likeBtn">Liked </span> <span class="s scolor num_likes"><%= a.num_likes %></span>
+                    </div>
+                  </div>
+                <% } else { %>
+                  <div class="likeBtnTrg"
+                        data-target="<%= '/like/'+a.id %>" data-state="unliked">
+                    <i class="icon-like f-1-5x link rc r cs likeBtnIcon"></i>
+                    <div class="s3">
+                      <span class ="scolor2 likeBtn">Likes</span> <span class="s scolor num_likes"><%= a.num_likes %></span>
+                    </div>
+                  </div>
+                <% } %> 
+                
+              </div>
+
+              <div class="small-4 columns">
+                <div class="shareBtn rc" id="icon-share-<%= answerCardId %>" data-url="http://frankly.me/<%= a.author.username %>/<%= a.question.slug %>" style="height: 36px;">
+                  <i class="icon-share f-1-5x link r cs"></i>
+                </div>
+                <div class="s3" style="margin-top: -12px;">
+                  <span class="scolor2">Share</span> <span class="scolor"> <%=a.num_shares%></span>  
+                </div>
+              </div>
+              <div class="small-4 columns commentBtn">
+                <div class="">
+                  <i class="icon-comment f-1-5x rc link r cs"></i>
+                </div>
+                <div class="s3 commentBtn">
+                  <span class="scolor2">Comment</span> <span class="scolor"> <%=a.num_comments%></span>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute; bottom:15px; width:100%; display:none;" class="followDiv">
+            <div class="small-12 columns">
+              <hr />
+            </div>
+            <div class="small-8 columns ">
+              <h5 class="scolor3 nm"><%=user.name || user.username%></h5>
+              <h6 class="scolor2 nm s2">@<%=user.username%></h6>
+            </div>
+            <div class="small-4 columns">
+              <% if (user.is_following && me) { %> 
+                <div class="button alt sec tiny followBtn right"
+                  data-state="following"
+                  data-target="<%= '/unfollow/'+user.id %>" data-profile="true" data-username="<%= user.username %>">
+                   Followed 
+                </div>
+              <% } else {%>
+                <div class="button alt sec tiny followBtn right"
+                  data-state="not-following"
+                  data-target="<%= '/follow/'+user.id %>" data-profile="true" data-username="<%= user.username %>">
+                  Follow 
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

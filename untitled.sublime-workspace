@@ -1,0 +1,610 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"qu",
+				"questionCard"
+			],
+			[
+				"co",
+				"comments"
+			],
+			[
+				"c",
+				"cards"
+			],
+			[
+				"com",
+				"components"
+			],
+			[
+				"r",
+				"rightPane"
+			],
+			[
+				"pos",
+				"postId"
+			],
+			[
+				"d",
+				"deleteVideo"
+			],
+			[
+				"sc",
+				"scope"
+			],
+			[
+				"curr",
+				"CurrentListItem"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"ge",
+				"getElementsById"
+			],
+			[
+				"tab",
+				"tableContent"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"re",
+				"reload"
+			],
+			[
+				"pa",
+				"pageNum"
+			],
+			[
+				"ne",
+				"nextIndex"
+			],
+			[
+				"ta",
+				"tableScroll"
+			],
+			[
+				"of",
+				"offset"
+			],
+			[
+				"par",
+				"partials"
+			],
+			[
+				"commentI",
+				"commentInputBox"
+			],
+			[
+				"pre",
+				"preventDefault"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"ans",
+				"answerCard"
+			],
+			[
+				"commentT",
+				"commentTime"
+			],
+			[
+				"commen",
+				"comment"
+			],
+			[
+				"use",
+				"userImg"
+			],
+			[
+				"user",
+				"userType"
+			],
+			[
+				"getUse",
+				"getUserType"
+			],
+			[
+				"o",
+				"options"
+			],
+			[
+				"key",
+				"key1"
+			],
+			[
+				"f",
+				"find"
+			],
+			[
+				"an",
+				"answerObj"
+			],
+			[
+				"scop",
+				"rootScope"
+			],
+			[
+				"tr",
+				"trigger"
+			],
+			[
+				"anw",
+				"answerCard"
+			],
+			[
+				"hi",
+				"hiringObj"
+			],
+			[
+				"da",
+				"dashboardObj"
+			],
+			[
+				"u",
+				"url"
+			],
+			[
+				"ur",
+				"urlType"
+			],
+			[
+				"so",
+				"sortableOptions"
+			],
+			[
+				"pe",
+				"pendingStatus"
+			],
+			[
+				"fi",
+				"find"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 306.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pac",
+				"Preferences: Browse Packages"
+			],
+			[
+				"",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 50.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/ashish/Documents/wapp/browser/widgets/components/answerCard.js",
+		"/home/ashish/Documents/wapp/browser/newsite/app.js",
+		"/home/ashish/Documents/wapp/server/view/newsite/common/top.ejs",
+		"/home/ashish/Documents/wapp/sass/helpers/_buttons.scss",
+		"/home/ashish/Documents/wapp/browser/recorder/app.js",
+		"/home/ashish/Documents/wapp/browser/newsite/behaviors/video.js",
+		"/home/ashish/Documents/wapp/public/js/newsite.js",
+		"/home/ashish/Documents/wapp/server/apps/newsite/partials.js",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/pages.js",
+		"/home/ashish/Documents/wapp/server/view/newsite/common/main.ejs",
+		"/home/ashish/Documents/wapp/server/view/newsite/components/cards/answerCard.ejs",
+		"/home/ashish/Documents/wapp/browser/newsite/behaviours",
+		"/home/ashish/Documents/wapp/server/apps/site/pages.js",
+		"/home/ashish/Documents/wapp/server/apps/newsite/routes/pages.js",
+		"/home/ashish/Documents/avdeshwapp/wapp/server/view/newsite/pages/discover/panel.ejs",
+		"/home/ashish/Documents/wapp/server/view/newsite/pages/discover/panel.ejs",
+		"/home/ashish/Documents/wapp/server/view/site/partials/common/questionSm.ejs",
+		"/home/ashish/Documents/wapp/browser/site/behaviors/requestAnswer.js",
+		"/home/ashish/Documents/wapp/server/apps/widgets/routes/popups.js",
+		"/home/ashish/Documents/wapp/server/view/newsite/common/questionCard.ejs",
+		"/home/ashish/Documents/wapp/server/routes.js",
+		"/home/ashish/Documents/wapp/server/view/newsite/common/answerCard.ejs",
+		"/home/ashish/Documents/wapp/server/view/newsite/common/comments.ejs",
+		"/home/ashish/Documents/wapp/server/view/components/answerCard.ejs",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/popups.js",
+		"/home/ashish/Documents/avdeshwapp/wapp/server/view/widgets/pages/openAvdhesh/panel.ejs",
+		"/home/ashish/Documents/wapp/main.js",
+		"/home/ashish/Documents/avdeshwapp/wapp/config/default.js",
+		"/home/ashish/Documents/wapp/config/default.js",
+		"/home/ashish/Documents/wapp/server/fn/data.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/home/showcase.ejs",
+		"/home/ashish/Documents/wapp/server/view/site/partials/home/panel.ejs",
+		"/home/ashish/Documents/wapp/browser/site/components/answerCardSm.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/home/news.ejs",
+		"/home/ashish/Documents/wapp/browser/site/components/answerCardLg.js",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/share.js",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/statics.js",
+		"/home/ashish/Documents/wapp/bin/start.sh",
+		"/home/ashish/Documents/wapp/bin/stop.sh",
+		"/home/ashish/Documents/wapp/bin/node_initd.sh",
+		"/home/ashish/Documents/wapp/bin/dev_start.sh",
+		"/home/ashish/Documents/wapp/server/fn/views.js",
+		"/home/ashish/Documents/wapp/server/fn/ffmpeg.js",
+		"/home/ashish/Documents/wapp/server/apps/dashboard/routes/pages.js",
+		"/home/ashish/Documents/wapp/browser/hiring/components/hiringRightPane.js",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/hiringRightPane.ejs",
+		"/home/ashish/Documents/wapp/browser/hiring/components/tableContent.js",
+		"/home/ashish/Documents/wapp/browser/hiring/components/hiringTableHeader.js",
+		"/home/ashish/Documents/wapp/stylus/hiring.styl",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/hiringTableHeader.ejs",
+		"/home/ashish/Documents/wapp/server/apps/widgets/routes/pages.js",
+		"/home/ashish/Documents/wapp/server/apps/widgets/routes/ajax.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/OpenQuestionController.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/views/openquestions.html",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/me/ajax.js",
+		"/home/ashish/Documents/wapp/browser/recorder/components/recorder.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/master/js/modules/controllers/demo-timepicker.js",
+		"/home/ashish/Documents/wapp/public/js/widgets.js",
+		"/home/ashish/Documents/wapp/server/apps/campaigns/routes/pages.js",
+		"/home/ashish/Documents/wapp/server/api/models.js",
+		"/home/ashish/Documents/wapp/server/api/translators.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/ManageListController.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/meta/facebook.ejs",
+		"/home/ashish/Documents/wapp/server/api/api.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/services/searchdefault.js",
+		"/home/ashish/Documents/wapp/browser/hiring/components/hiringLeftPane.js",
+		"/home/ashish/Documents/AdminAvadesh/index.html",
+		"/home/ashish/Documents/AdminAvadesh/js/custom.js",
+		"/home/ashish/Documents/AdminAvadesh/sampleHEader.ejs",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/tableContent.ejs",
+		"/home/ashish/Documents/wapp/server/apps/dashboard/pages.js",
+		"/home/ashish/Documents/wapp/browser/hiring/app.js",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/table.ejs",
+		"/home/ashish/Documents/wapp/stylus/widgets.styl",
+		"/home/ashish/Documents/wapp/server/apps/dashboard/routes/dashboardLocale.js",
+		"/home/ashish/Documents/wapp/server/view/widgets/common/main.ejs",
+		"/home/ashish/Documents/wapp/server/view/widgets/common/nav.ejs",
+		"/home/ashish/Documents/wapp/browser/widgets/behaviors/followBtn.js",
+		"/home/ashish/Documents/wapp/browser/hiring/components/hiringTop.js",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/videoAnswersModal.ejs",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/editModals.ejs",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/hiringLeftPane.ejs",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/top.ejs",
+		"/home/ashish/Downloads/Admin/index.html",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/main.ejs",
+		"/home/ashish/Documents/wapp/server/view/components/common/comments.ejs",
+		"/home/ashish/Documents/AdminAvadesh/rehiringlocal.ejs",
+		"/home/ashish/Documents/wapp/server/view/dashboard/partials/rehiring",
+		"/home/ashish/Documents/AdminAvadesh/rehiring.ejs",
+		"/home/ashish/Documents/wapp/browser/hiring/components/table.js",
+		"/home/ashish/Documents/wapp/browser/hiring/components/surveyVideoAnswers.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/profile/leftPane.ejs",
+		"/home/ashish/Downloads/admin/index.html",
+		"/home/ashish/Documents/wapp/server/view/site/partials/common/answerLg.ejs",
+		"/home/ashish/Documents/wapp/server/apps/widgets/partials.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/AppController.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/common/comments.ejs",
+		"/home/ashish/Documents/wapp/sass/components/cards/_openQuestion.scss",
+		"/home/ashish/Documents/wapp/browser/site/behaviors/comments.js",
+		"/home/ashish/Documents/wapp/browser/widgets/behaviors/comments.js",
+		"/home/ashish/Documents/wapp/server/apps/widgets/ajax.js",
+		"/home/ashish/Documents/wapp/server/apps/widgets/index.js",
+		"/home/ashish/Documents/wapp/server/apps/site/routes/ajax.js",
+		"/home/ashish/Documents/wapp/server/view/components/comman/comments.ejs",
+		"/home/ashish/Documents/wapp/sass/widgets.scss",
+		"/home/ashish/Documents/wapp/browser/widgets/behaviors/likeBtn.js",
+		"/home/ashish/Documents/wapp/browser/site/behaviors/likeBtn.js",
+		"/home/ashish/Documents/wapp/server/view/site/partials/common/userSm.ejs",
+		"/home/ashish/Documents/wapp/browser/site/components/answerableQuestionCard.js",
+		"/home/ashish/Documents/wapp/browser/site/components/userCardSm.js",
+		"/home/ashish/Documents/wapp/browser/site/behaviors/followBtn.js",
+		"/home/ashish/Documents/graph/index.html",
+		"/home/ashish/Documents/wapp/browser/widgets/behaviors/video.js",
+		"/home/ashish/lokendraprogect/JsonEditor/js/app.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/franklyDataGraphs.js",
+		"/home/ashish/Documents/wapp/server/apps/index.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/AudioListController.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/app.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/services/SearchModel.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/services/AuthService.js",
+		"/home/ashish/Documents/wapp/browser/widgets/utils/ajax.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/views/widgets.html",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/views/CelebUpdateWizard.html",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/views/admin_cqm_editor.html",
+		"/home/ashish/Documents/wapp/browser/recorder/utils/ajax.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/directives/ngQuestion.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/CommunityMgrController.js",
+		"/home/ashish/Documents/AptanaStudioWorkspace/admin/app/js/Controllers/CelebQuestionController.js"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"introVideo",
+			"answerCard",
+			"answerCardI",
+			"partials",
+			"question",
+			"#test2",
+			"$tableCheckBox",
+			"$scope.currentUserId",
+			"quesbody\n",
+			"userId",
+			"head",
+			"<a href=\"<%= genUrl(post.answer.pr",
+			"<li class = 'delete-video' ",
+			"$tableCheckBox",
+			"download>Download</a>",
+			"deleteVideo",
+			"<a href=\"\" >Delete</a>",
+			"<a href=\"\" download>Delete</a>",
+			"me.",
+			"data-user-id",
+			"<a href=\"\" >Delete</a",
+			"<a href=\"\" >Delete</a>",
+			"me.",
+			"/popup/plugin/me",
+			"<a href=\"<%= genUrl(post.answer.promo_video_url) %>\" download>Download</a>",
+			"roleBuilder",
+			"pages",
+			"if (bannerImage.files[0] || bannerVideo.files[0]) {",
+			"$scope.CurrentListItem = data.open_questions;",
+			"getElementSById",
+			"CurrentListItem",
+			"editQuestion",
+			"CurrentListItem",
+			"localStorage",
+			"videoFile",
+			"askQuestion",
+			"addQuestion",
+			"askQuestion",
+			"tableScrollBody",
+			"table-scroll-body",
+			"candidate-status",
+			"$candidateStatus",
+			"('.select-all')",
+			"$selectAllCheckboxBtn",
+			"selectAllCheckboxBtn",
+			"$selectAllCheckboxBtn",
+			"selectAllCheckboxBtn",
+			"select-all",
+			"manage",
+			"candidateStatus",
+			"candidate-status",
+			"phone_num",
+			"candidate-status",
+			"select-all",
+			"table",
+			"$('.button-view-answer')",
+			"$('.button-view-answer').on('click', function (event) {",
+			"deleteNoButton",
+			"buttonUpdateJob",
+			"button-update-job",
+			"deleteProfile",
+			"buttonEditProfile",
+			"editProfileModal",
+			"buttonEditProfile",
+			"edit-job-modal",
+			"editProfileModal",
+			"edit-job-modal",
+			"editProfileModal",
+			"('.delete-profile')\n('.delete-profile')\n",
+			"('.delete-profile')",
+			"window.location",
+			"buttonEditProfile",
+			"('.edit-profile')",
+			"$buttonEditProfile\n",
+			"$buttonEditProfile",
+			"buttonEditProfile",
+			"modal-backdrop",
+			"loadingModal",
+			"tableBody",
+			"tableBody\n",
+			"table-body",
+			"tableAppend",
+			"table-body",
+			"showLoadingModal",
+			"buttonViewAnswers",
+			"videoWillBeInsertedHere",
+			"candidate-status",
+			"$candidateStatus",
+			"selectAllCheckboxBtn",
+			"$candidateStatus",
+			"candidateStatus",
+			"tableScroll",
+			"table-scroll",
+			"$tableScroll",
+			"table",
+			"tableScroll",
+			"table-scroll",
+			"tableScroll",
+			"tableScroll\n",
+			"manage",
+			"tableCheckBox",
+			"tableScroll",
+			"#",
+			"-->",
+			"event.preventDef",
+			"rehiring.ejs",
+			"arrow-up-icon",
+			"commentsLoader",
+			"commentsOpener",
+			"comments",
+			"html",
+			"totalComments",
+			"loadedComments",
+			"showComments",
+			"commentsOpener\\",
+			"commentsOpener",
+			"load-more",
+			"cmtTrg",
+			"a.cmtTrg",
+			"commentsOpener",
+			"commentInput",
+			"loadedComments",
+			"sourceUrl",
+			"commentsInfo",
+			"inputCommentMessage",
+			"loadedComments",
+			"input-textarea",
+			"sourceUrl"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"sorta",
+				"admin/app/bower_components/angular-ui-sortable/sortable.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 332.0,
+	"status_bar_visible": true
+}

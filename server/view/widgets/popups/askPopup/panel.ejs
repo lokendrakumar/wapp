@@ -1,0 +1,336 @@
+
+<% var askPopupId = componentId('askPopup', profile.id) %>
+<div class="row grey lighten-3" id="<%= askPopupId %>" data-user-id="<%= profile.id %>" data-target="<%= genUrl('widgets/ask/'+profile.id) %>">
+  <script>
+    $(function () {
+      app.components.askPopup($('#<%= askPopupId %>'));
+    });
+  </script>
+  <style type="text/css">
+    body {
+      background-color: #eeeeee !important;
+    }
+    input, textarea {
+      background-color: white ! important ;
+      border-radius: .3em ! important ;
+      padding-left: .3em ! important ;
+      padding-right: .3em ! important;
+      border: 0 ! important ;
+    }
+    .fix-postArea {
+      position: fixed;
+      top: 0px;
+      padding-top: 15px;
+      z-index: 5;
+      width: 75%;
+      max-width: 530px ;
+      background-color: #e2e2e2;
+      margin:0;
+    }
+
+
+    .m-1{
+      margin:.2rem !important;
+    }
+    .m-2{
+      margin:.4rem;
+    }
+    .m-3{
+      margin:.6rem;
+    }
+    .m-4{
+      margin:.8rem;
+    }
+    .m-5{
+      margin:1rem;
+    }
+    .p-l-3{
+      padding-left: .3rem !important;
+    }
+    .p-r-3{
+      padding-right: .3rem !important;
+    }
+    .m-b-3{
+      margin-bottom: .3rem !important;
+    }
+   .p-3{
+      padding: .3rem !important;
+    }
+    .p-t{
+      padding-top:69%!important;
+    }
+ 
+
+    @media screen and (max-width: 600px) {
+    
+
+    .other-questions  {
+
+      margin-top: 35%  
+      }
+
+    }
+    @media screen and (min-width: 601px) {
+    
+
+    .other-questions  {
+
+      margin-top: 20%  
+      }
+
+    }
+    
+    .anon > label  {
+      padding-left: 20px !important;
+    }
+
+    .anon > label:before  {
+      top: 3px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #9e9e9e;
+    }
+
+    .question-card {
+      min-height: 350px !important ;
+      margin: 3.5rem 0 1rem 0;
+    }
+
+    input {
+      color: black;
+    }
+    .btn i, .btn-large i, .btn-default i, .btn-hollow i, .btn-floating i, .btn-large i, .btn-flat i {
+    font-size: 1.3rem;
+    line-height: 50px;
+}
+      
+    
+
+ /*    .question-card{
+   width: 280px;
+  }
+  .user-card {
+   width: 280px;
+ }  */
+  </style>
+  <!-- <div id="alert-hook" class="row">
+    <div data-alert id="alert-box" class="alert-box-wrapper alert-box radius nbrrtop text-center" style="display:none;width:80%;text-align:center; padding:5px; z-index:5;position:fixed;">
+      Loading...
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div> -->
+  <div style="max-width:580px; margin:0 auto">  
+    <div class="col s12 m12 l12">
+      <div class="ask-overview m-5">
+        <div class="profile-holder">
+          <div class="row m-b-3">
+            <div class="col s4 offset-s4 m2 offset-m5 center-align padding-none videoContainer circle-container m-5">
+              <div class="valign-wrapper videoHolder grey lighten-3 link" style="width: 100%;">
+                <video class="introVideo" data-crop-to-fit="" data-square-video="" src="<%= profile.intro_video_url %>" poster="<%= profile.thumbnail_url %>" style="width: 100%;">
+                </video>
+              </div>
+            </div>
+          </div>  
+          <div class="row center-align" style="margin-top:-4px;">
+            <span><a  class="grey-text text-darken-2" href="<%= genUrl(profile.username) %>" target="_blank">@<%= profile.username %></a></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 post-area-container">
+            <textarea class="materialize-textarea postArea margin-none left" placeholder="Ask frankly" length="300" style="padding-top: 6px;padding-left: 10px!important;"></textarea>
+          </div>  
+          <div class="col s12 m6 m-b-3 anon truncate left">
+            <input type="checkbox" id="anonymousCheckBox" />
+            <label for="anonymousCheckBox">Ask Anonymously</label>
+          </div>
+              <div class="col s12 m4 right" style="margin-top: 15px;">
+            <% if (me === null) { %>
+                <div class="btn-default red lighten-1 postIntermediateBtn truncate waves-effect waves-light right">Ask Question</div>
+            <% } else {%>
+                <div class="btn-default btn-full red lighten-1 postBtn truncate waves-effect waves-light right">Ask Question</div>
+            <% } %>
+              </div>  
+              <div class="col s12 m4 right">
+              </div>
+        </div>  
+        <div class="row center">
+          <div class="btn-hollow grey lighten-3 showQuestionBtn truncate waves-effect waves-light">
+            View Other Questions
+          </div>
+        </div>
+      </div>
+    <!--   state second question card view-->
+      <div class="card-content other-questions" style="display:none">
+        <div class="questionFeeds">
+          <% if (questions.items.length == 0) { %>
+            <div class="center">
+              <h5>be first to ask </h5>
+            </div>
+          <% } else { %>
+            <%- include(partials.question, {questions : questions}); %>
+          <% } %>
+        </div> 
+      <div class="small-12 columns questionBottom"></div>
+      </div>
+    <!--   state third ask intermediae view-->
+      <div class="card-content ask-intermediate m-5" style="display:none">
+        <div class="row asker-form-view-1">
+          <div class="row center-align">
+            <span class=" grey-text large">
+              <h5>One more step to go!</h5>
+            </span>
+          </div>
+          <span class="col s12 grey-text text-darken-1" style="padding:10px;">Enter your email</span>
+          <div class="col s12 m9">
+            <input type="email" class="validate asker-email" placeholder="Email" required>
+          </div>
+          <div class="col s6 m3 right">
+            <div class="btn-default btn-full red lighten-1 waves-effect waves-light truncate asker-form-next-btn">
+              Next
+            </div>
+          </div>
+        </div>
+        <div class="row asker-form-view-2" style="display:none">
+         <div class="row center-align">
+         <span class=" grey-text large">
+              <h5>Almost there!</h5>
+          </span>
+          </div>
+          <div class="row">
+             <div class="col s12" style="margin-left:20px">
+              
+            <span class="grey-text" >
+              Email entered <i class="tiny mdi-action-done green-text"></i>
+            </span>
+            </div>
+          </div>  
+          <span class="col s12 grey-text text-darken-1 m-1">Enter your name</span>
+          <div class="col s12 m9">
+            <input type="text" class="validate asker-name" placeholder="Name" required>
+          </div>
+          <div class="col s6 m3 right">
+            <div class="btn-default btn-full red lighten-1 waves-effect waves-light truncate asker-submit-btn">
+              Done
+            </div>
+          </div>
+        </div>
+        <div class="row asker-form-view-3" style="display:none">
+          <div class="row center-align">
+          <span class=" grey-text large">
+              <h5>Almost there!</h5>
+          </span>
+          </div>
+          <div class="row">
+            <div class="col s12" style="margin-left:20px">
+              <span class="grey-text">
+              Email entered <i class="tiny mdi-action-done green-text"></i>
+            </span>
+            </div>
+          </div>
+          <span class="col s12 grey-text text-darken-1 m-1">Enter your password</span>
+          <div class="col s12 m9">
+            <input type="password" class="validate asker-password" placeholder="Password" required>
+          </div>
+          <div class="col s6 m3 right">
+            <div class="btn-default btn-full red lighten-1 waves-effect waves-light truncate asker-login-btn">
+              Login
+            </div>
+          </div>
+          
+            <a href ="#" class="col s10  margin-top:-10px; forgot-password-btn" style="margin:-10px auto; font-size:x-small">
+              <font color="grey">Forgot password?</font>
+            </a>
+          
+        </div>
+        <div class="row center m-2">
+          <div class="col s12 center-align grey-text text-darken-2">
+            <span>
+              Let's get started:
+            </span>
+          </div>  
+          <div class="col s12 m6 offset-m3">
+            <div class="row m-3">
+              <div class="s12 col m12">
+                <div class="btn-default btn-full blue darken-4 fb waves-effect waves-light">
+                  <i class="icon-facebook-transparent left small"></i>
+                  Using Facebook
+                </div>
+              </div>
+            </div>
+            <div class="row m-3">
+              <div class="col s6 p-r-3">
+                <div class="btn-default btn-full red lighten-1 ggl waves-effect waves-light truncate">
+                  <i class="icon-google-plus left tiny"></i>
+                  Google
+                </div>
+              </div>
+              <div class="col s6 p-l-3">
+                <div class="btn-default btn-full blue lighten-1 twt waves-effect waves-light">
+                  <i class="icon-twitter left tiny"></i>
+                  Twitter
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--   state five share question you asked -->
+      <div class="card-content share-question-container m-5" style="display:none">
+        <div class="row center-align">
+         <span class=" grey-text large">
+              <h5>Bravo! Your question is posted </h5>
+         </span>
+        </div>
+        <% if (!me) { %> 
+        <div class="row left-align">
+          <span class="col grey-text">
+            Email entered <i class="tiny mdi-action-done green-text"></i>
+          </span>
+        </div>
+        <div class="row left-align">
+          <span class="col grey-text">
+            Name entered <i class="tiny mdi-action-done green-text"></i> 
+          </span>
+        </div>
+        <%}%>
+        <div class="row left-align">
+          <span class="col">
+            Share and Get more updates and visiblity from friends
+          </span>
+        </div>
+        <div class="row share-question">
+          <div class="col s12">
+              <a href="" class="btn-default share-fb blue darken-4 waves-effect waves-light social-btn-sq"><i class="icon-facebook-transparent "></i></a>
+              <a href="" class="btn-default share-twt blue lighten-2 waves-effect waves-light social-btn-sq"><i class="icon-twitter"></i></a>
+              <a href="" class="btn-default share-ggl red lighten-1 waves-effec waves-lightt social-btn-sq"><i class="  icon-google-plus"></i></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4 right">
+            <div class="btn-default btn-hollow grey lighten-3 truncate red-text text-lighten-1 skip-share-btn waves-effect waves-light">Next</div>
+          </div>  
+        </div>
+      </div>
+     <!--  answer card view -->
+      <div class="card-content discover-view m-5" style="display:none">
+        <div class="row center-align m-5">
+          <span class=" grey-text text-darken-2">
+            @<%= profile.username %> 
+          </span>
+        </div>
+        <div class="row">
+          <div class="col s12 m4 offset-m4">
+            <div class="btn-default btn-full red lighten-1 center view-profile-btn waves-effect waves-light" data-url="http://frankly.me/<%= profile.username %>">View Profile
+            </div>
+          </div>
+        </div>
+        <div class="row left-align grey-text"><span class="col">Some franksters you may like</span></div>
+        <div class="row">
+          <% users.forEach(function (user) { %>
+            <%- include(partials.userCard, {u: user}); %>
+          <% }) %>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<% if(pagename == 'profile') {%>
+  <meta property="og:title" content="Ask <%= profile.name %> anything on frankly"/>
+  <meta property="og:url" content="http://frankly.me/<%= profile.username %>"/>
+  <meta property="og:type" content="video.movie"/>
+  <meta property="og:video" content="<%=profile.promo_video_url%>" />
+  <meta property="og:video:secure_url" content="<%=profile.promo_video_url%>" />
+  <meta property="og:video:type" content="video/mp4" />
+  <meta property="og:video:width" content="260" />
+  <meta property="og:video:height" content="440" />
+  <meta property="og:image" content="http://api.frankly.me/image/background-resize?h=500&w=280&b_w=700&image_url=<%=profile.thumbnail_url%>"/>
+  <meta property="og:description" content="Check out the latest answers from <%= profile.name %> <%= profile.username %>"/>
+<%}%>
+
+<% if(pagename == 'post'|| pagename == 'answeringPopup')  {%>
+  <%if (post.is_answered) {%>
+    <meta property="og:title" content="<%=post.answer.author.name%> answers frankly: <%=post.answer.question.body%>"/>
+    <meta property="og:url" content="http://frankly.me/<%=post.answer.author.username%>/<%=post.answer.question.slug%>"/>
+    <meta property="og:type" content="video.movie"/>
+    <meta property="og:video" content="<%=post.answer.promo_video_url %>" />
+    <meta property="og:video:secure_url" content="<%=post.answer.promo_video_url %>" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="260" />
+    <meta property="og:video:height" content="440" />
+    <meta property="og:image" content="http://api.frankly.me/image/background-resize?h=500&w=280&b_w=700&image_url=<%=post.answer.thumbnail_url%>"/>
+   <!--  <meta property="og:image" content="http://api.frankly.me/image_resize?image_url=<%=post.answer.thumbnail_url%>&h=246&w=470"/>
+ -->    <meta property="og:description" content="<%=post.answer.asker.name%> asked <%=post.answer.author.name%> : <%=post.answer.question.body %>.Checkout <%=post.answer.author.name%>  video answer"/>
+
+  <% } else {%>
+    <% if (post.question.to) { %>
+      <meta property="og:title" content="<%=post.question.to.name%> was asked frankly: <%=post.question.body %>"/>
+      <meta property="og:url" content="http://frankly.me/<%=post.question.to.username%>/<%=post.question.slug%>"/>
+      <meta property="franklyme:question_to" content="http://frankly.me/<%=post.question.to.username%>"/>
+      <meta property="og:description"
+            content="<%=post.question.from.name%> asked <%=post.question.to.name%> : <%=post.question.body %>."
+      />
+    <% } else { %>
+      <meta property="og:title" content="You were asked frankly: <%=post.question.body %>"/>
+      <meta property="og:url" content="http://frankly.me/p/<%=post.question.short_id%>"/>
+      <meta property="og:description"
+            content="<%=post.question.from.name%> asked You : <%=post.question.body %>."
+      />
+    <% } %>
+    <meta property="fb:app_id" content="806571129370116"/>
+    <meta property="og:type" content="franklyme:question"/>
+    <meta property="franklyme:question_author" content="http://frankly.me/<%=post.question.from.username%>"/>
+  <% } %>
+<%}%>
+
+<% if(pagename == 'homepage') {%>
+  <meta property="og:description" content="Frankly.me | Ask me anything"/>
+  <meta property="og:title" content="Frankly.me | Ask me anything"/>
+  <meta property="og:image:url" content="http://frankly.me/img/frankly-meta.png"/>
+<%}%>
+<meta property="og:site_name" content="frankly.me"/>
+<meta property="article:publisher" content="https://www.facebook.com/me.frankly"/>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />

@@ -1,0 +1,30 @@
+<% var userCardId = componentId('userCard', u.id); %>
+<div class="col s12 m6 userContainer" id="<%= userCardId %>">
+
+  <div class="card user-card">
+    <div class="card-content center-align">
+      <div class="row">
+        <div class="col s8 offset-s2 videoContainer circle-container" style="padding: 0px; height:50px:">
+          <div class="videoHolder">
+            <video data-crop-to-fit="" data-square-video="" 
+            src="<%=u.intro_video_url%>" style="width: 100%;display:none;background-color:black" class="introVideo link" data-uuid="intro-<%=userCardId%>" preload="none" poster="/img/loader.gif"></video>
+            <img class="userImg link" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%= u.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+          </div>
+        </div>  
+      </div>
+      <p class="center-align  text-darken-2">
+        <a href="<%=genUrl('u.username') %>" class="grey-text">
+         <span>@<%= u.username %></span>
+        </a>
+      </p>
+      <div class="m-5" style="height:60px; font-size:12px;">
+        <p class="grey-text"><%= u.bio %></p>
+      </div>
+      <% if (me && u.is_following) { %>
+      <div class="followBtn following btn-hollow white" data-target="<%= '/unfollow/'+u.id %>" data-state="following">Followed</div>
+      <% } else { %> 
+      <div class="followBtn btn-hollow white" data-target="<%= '/follow/'+u.id %>" data-state="not-following">Follow</div>
+      <%}%>
+    </div>
+  </div>
+</div>

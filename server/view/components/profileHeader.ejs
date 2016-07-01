@@ -1,0 +1,61 @@
+<% var profileHeaderId = componentId('profileHeader', user.id) %>
+<% var isFollowed = user.is_following %>
+<div id="<%= profileHeaderId %>" style="margin-top: -2px;">
+  <script>
+  $(function() {
+    app.components.profileHeader($('#<%= profileHeaderId %>'));
+  });
+  </script>
+ <div class="row background-profile">
+      <div class="col m12">
+        <div class="video-w profile-video">
+          <div class=" videoContainer circle-container">
+            <div class="videoHolder link">
+            <video id="profile-video" data-crop-to-fit="" data-square-video=""
+            src="<%=user.intro_video_url%>" style="width: 100%; display: none;" class="introVideo" data-uuid="intro-<%=user.id%>" preload="none" poster="/img/loader.gif"></video>
+            <img class="userImg" data-src="" src="<%= user.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+            </div>
+          </div>
+        </div>
+        <a ref="" class="play-video">
+          <i class="icon-video-play"></i>
+        </a>
+        <a class="profile-user" target="_blank" href="<%= genUrl(user.username) %>">
+          @<%= user.username %>
+        </a>
+        <div class="profile-wrapper">
+          <ul class="profile-links left">
+            <li><a><span>Followers</span><b class="followers-count" style="font-size: 16px !important; font-weight: normal !important;"><%= user.followers %></b></a></li>
+            <li><a><span>Views</span><%= user.views %></a></li>
+            <li><a><span>Posts</span><%= user.answer_count %></a></li>
+          </ul>
+          <ul class="right follow-container">
+            <li>
+              <% if((me && me.id!==user.id) || (!me)){if(isFollowed) {%>
+                <div class='followBtn btn  user-follow following' data-state="following"
+                  data-target="<%= '/unfollow/'+user.id %>" data-username="<%= user.username%>" style="background: transparent !important; margin-top: -8px; padding-top: 0;">
+                  Followed
+                </div>
+              <% } else{ %>
+                <div class="followBtn btn user-follow" data-state="not-following"
+                  data-target="<%= '/follow/'+user.id %>" data-username="<%= user.username %>" style="background: transparent !important;margin-top:0px;padding:0px 15px;">
+                  Follow
+               </div>
+              <% } }%>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    var bgImage = new imagesLoaded('.row.background-profile', {background: true});
+    bgImage.on('done', function (instance) {
+      console.log('called');
+      setTimeout(function () {
+        $("html, body").animate({scrollTop:160}, '2000', 'swing');
+      }, 1000);
+    });
+  })
+</script>

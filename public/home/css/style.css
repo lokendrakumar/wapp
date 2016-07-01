@@ -1,0 +1,399 @@
+html, body {
+    height: 100%;
+    min-height: 678px!important;
+}
+body{
+
+    margin: 0px;
+    padding: 30px 0px 0px 0px;
+
+}
+.m-bot{margin-bottom: 0px;}
+.container-nav
+{
+
+    height: 66px;
+    background:#2B2B2B;
+    position: fixed;
+    top:0px;
+    left:0px;
+    right: 0px;
+    z-index:3;
+}
+.container-navbar
+{
+    width:1140px;
+    margin:0px auto;
+}
+
+.homepage-btn-login
+{
+
+    font-size:14px;
+    font-weight: 500;
+    color:#B9B9B9;
+    background:#414141;
+    padding:6px 15px;
+    margin-top:16px;
+    border-radius:2px;
+}
+
+
+
+.section-bg{
+    background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+section {
+    position: relative;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding-bottom: 20px;
+
+
+}
+
+
+.bg-green {
+    /*background-image: url("../images/index.svg");*/
+    background: #3dd380;
+}
+.bg-blue {
+    background: #529FCD
+}
+.bg-grey {
+    background: #362F2D;
+}
+
+.bg-navy-blue {
+    background: #36475D;
+}
+
+.bg-teal
+{
+
+    background:#2AD4C2;
+}
+.bg-pink
+{
+    background:#F26D7D;
+}
+
+.top {
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    z-index: 9999;
+    margin-top:-100px;
+}
+.top a {
+    background: #39F;
+    padding: 5px 12px;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.top span{width:15px;
+    height:15px;
+    display:block;
+    border-radius:50%;
+    border:2px solid #fff;
+    margin-top:10px;
+}
+
+.theme-img{padding-top: 70px;}
+.app-store{float: right;border:0px solid #ff0000;margin-top: 5px;}
+.app-store img{margin-left: 5px;display:inline-block;}
+h1{font-size:70px;font-weight:300;color:#fff;margin:0px 0px 0px 0px;padding:0px;-moz-animation: bounceInUp 1s;}
+.watch{color:#ffffff;display:block;font-size:35px;font-weight:300;-moz-animation: bounceInRight 1s;margin-bottom:30px;}
+.home-form{width:55%;}
+.home-form input{background:#fff;color:#D6D6D6;padding:0px 10px;border-radius: 2px;box-sizing:border-box;-moz-box-sizing:border-box;margin-bottom:5px;}
+.home-form a{background:#137941;
+    display:block;
+    color:#fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 2px;
+    -moz-animation: bounceInDown 1s;
+    text-transform:uppercase;
+}
+
+.home-form input:focus {
+  border-color: #66afe9!important;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(19, 121, 65, .6)!important;
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(19, 121, 65, .6)!important;
+}
+
+.heading-container{margin-top: 150px;background:url(../images/img_transparentelements.png) no-repeat 0 0;}
+.under-line{display: block;background:rgba(255, 255, 255,.3);height:1px;margin-bottom: 10px;width:90%;}
+.home-form-second{width:55%;}
+.home-form-second input{background:#fff;color:#D6D6D6;padding:0px 0px;border-radius: 4px;-moz-animation: bounceInUp 1s;}
+.home-form-second a{background:#D0C4C1;
+    display:block;
+    color:#000;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 4px;
+}
+
+.btn-web
+{
+
+    padding:12px 50px;
+    display: inline-block;
+    color:#fff;
+    font-size: 14px;
+    font-weight:500;
+    border-radius: 4px;
+    margin-top:50px;
+    text-align:center;
+}
+.btn-bg-blue{
+    background:#154A69;
+}
+
+.btn-bg-navy-blue{
+    background:#6591C9;
+}
+
+.btn-bg-teal{
+    background:#197B71;
+}
+
+.btn-bg-pink{
+    background:#8C333E;
+}
+
+@media only screen and (max-width : 1024px) {
+html, body {
+    height: auto;
+    margin: 0px;
+    padding: 30px 0px 0px 0px;
+}
+h1{
+    font-size:42px;
+    font-weight:300;
+    color:#fff;
+    margin:10px 0px 0px 0px!important;
+    padding:0px;
+    text-align: left;
+}
+.watch{
+    color:#ffffff;
+    display:block;
+    font-size:26px;
+    font-weight:300;
+    -moz-animation: bounceInRight 1s;
+}
+.top {
+    position: fixed;
+    top: 40%;
+    left: 10px;
+    z-index: 9999;
+    margin-top:-100px;
+}
+.home-form{width:100%;}
+.home-form-second{width:100%;}
+}
+
+
+@media only screen and (min-width : 1025px) {
+  .container {
+    width: 1140px;
+    }
+
+    html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+}
+
+@media only screen and (max-width:480px) {
+
+
+h1{
+    font-size:55px;
+    font-weight:300;
+    color:#fff;
+    margin:40px 0px 0px 0px!important;
+    padding:0px;
+    text-align: center;
+    line-height:55px;
+}
+
+.watch
+{
+    display:block;
+    font-size:25px;
+    font-weight:300;
+    text-align: center;
+}
+.img-frankly
+{
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.home-form{width:100%;}
+.home-form-second{width:100%;}
+.btn-web
+{
+
+    padding:12px 50px;
+    display: block;
+    color:#fff;
+    font-size: 14px;
+    font-weight:500;
+    border-radius: 4px;
+    margin-top:50px;
+    text-align:center;
+}
+.top {
+    position: fixed;
+    top: 40%;
+    left: 10px;
+    z-index: 9999;
+    margin-top:-100px;
+    display:none;
+}
+}
+@media only screen and (max-width:1024px) {
+
+
+.container-navbar
+{
+    width:100%;
+    padding-left:15px;
+    padding-right:15px;
+}
+.theme-img {
+    padding-top: 30px;
+    width: 245px;
+}
+}
+@media only screen and (max-width:1024px) {
+.heading-container{margin-top: 40px;background:url(../images/img_transparentelements.png) no-repeat 0 0;}
+
+}
+
+/*==============
+Login Panel CSS
+================*/
+.modal.modal-small.authModal {
+    min-height: 400px;
+}
+
+.login-panel-background{background: #f4f4f4;padding:50px 20px 0px 20px;min-height: 300px!important;max-width:390px!important;margin:0px auto!important;}
+
+.form-login input[type="email"], .form-login input[type="text"], .form-login input[type="password"]
+{
+  background: #FFFFFF;
+  width: 100%;
+  color:#D7D7D7;
+  font-size: 12px;
+  font-weight: 500px;
+  height:30px;
+  padding:0px 10px;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border:1px solid rgba(0,0,0, .1);
+          -moz-box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, .04);
+          box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, .04);
+          box-sizing:border-box;
+          -moz-box-sizing:border-box;
+
+}
+
+.form-login input[type="email"]:focus, .form-login input[type="text"]:focus, .form-login input[type="password"]:focus
+  {
+     border:1px solid rgba(0,0,0, .2);
+     box-shadow:0 1px 0 0 transparent;
+  }
+
+.form-login h6{font-size:12px;font-weight:500;color:#7E7E7E;margin-bottom: 35px;}
+
+.button-bg, .button-bg:hover, .button-bg:focus{
+  background: #EA6153;
+  color:#FCEEED;
+  font-size: 12px;
+  font-weight:bold;
+  padding:6px 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-right: 5px;
+  border-radius: 2px;-moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;-ms-border-radius: 2px;
+height:30px;
+border:0px;
+}
+
+.button-right{padding:0px 12px;}
+.btn-facebook, .btn-facebook:hover, .btn-facebook:focus{width:100%;background: #004A80!important;padding: 13px 0px 0px 15px;border-radius: 6px;height:45px;font-size: 14px;font-weight: 300;text-transform: uppercase;text-align: center;color:#ffffff;}
+.btn-social{height:45px;padding: 5px 15px;width: 105%;border-radius: 6px;text-transform: uppercase;}
+.bg-google,.bg-google:hover, .bg-google:focus{background: #E2282F!important;width:100%; font-weight: 300;}
+.bg-twitter, .bg-twitter:hover, .bg-twitter:focus{background: #00BFF3!important;width:100%;}
+.bg-mail, .bg-mail:hover, .bg-mail:focus{background: #3CB878!important;}
+
+
+.col-fb {margin-left: 5px;}
+.col-fb .col.s4 {margin: 0 -5px;width: 35%;}
+.modal.modal-small.authModal {
+    min-height: 300px;
+    background: transparent;
+}
+@media screen and(min-width:767px)
+{
+
+
+  .login-modal{width:390px!important;}
+
+}
+
+@media screen and(max-width:320px)
+{
+.login-modal{width:100%!important;}
+}
+
+#frankly-auth-modal {
+  max-width: 390px;
+  max-height: 500px;
+}
+
+.bg-twitter, .bg-twitter:hover, .bg-twitter:focus {
+    background: none repeat scroll 0 0 #00bff3 !important;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    height: 45px;
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.bg-twitter i {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .modal {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,63 @@
+<% var askBoxId = componentId('askBoxModal', profile.id) %>
+
+<div class="askQuestion" id="<%= askBoxId %>" data-user-id="<%= profile.id %>" data-target="<%= '/ask/'+profile.id %>">
+  <script>
+    $(function () {
+      app.components.askBox($('#<%= askBoxId %>'), true);
+      $(document).foundation();
+    });
+  </script>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="alert-box radius success large share-alert s-ws-top questionShare" data-alert style="display:none;">
+      <div class="row">
+        <div class="small-10 columns">
+          <p class="wc nm">I just asked <%= profile.name || profile.username %>
+          <i class="last-question"></i></p>
+        </div>
+        <div class="small-2 columns">
+          <div id="icon-share-<%= askBoxId %>"
+             data-url=""
+          ></div>
+          <br/>
+          Share 
+        </div>
+        
+      </div>
+      </div>
+    </div>
+  </div>
+  
+      
+    
+  <div class="row">
+    <div class="small-12 columns s-ws-top">
+      <div data-alert class="alert-box radius" style="display:none;"></div>
+    </div>
+    <div class="small-12 columns alert-hookBar" style="display:none;">
+      <div data-alert=""  class="alert-box radius text-center alert-boxBar">Loading...
+        <a href="#" class="close">×</a>
+      </div>
+    </div>
+    <div class="columns small-9 s-ws-top s-ws-bottom">
+      <textarea class="nm brr tr postArea" data-maxlength="300" data-minlength="15" placeholder="Ask something sensible" rows="5" autofocus></textarea>
+    </div>
+
+    <div class="columns small-3 s-ws-top s-ws-bottom">
+    <div class="text-right s-ws-bottom">
+      <i class="icon-close scolor2 cs"></i>
+      </div>
+      <div class="button fullwidth small nm postBtn" >
+        Ask Question
+      </div>
+      <div class="switch tiny round m-ws-top anonymousDiv" style="display:none;">
+        <input id="anon" type="checkbox">
+        <label class="anonLabel" for="anon" style="vertical-align:middle;"></label><span class="scolor2 s2 s-ws-left anonymousSpan"> Anonymous</span>
+      </div>
+
+      <div class="scolor s s-ws-top countDisplay" style="display:none;">
+        <span class="character-count"></span>
+      </div>
+    </div>
+  </div>
+</div>

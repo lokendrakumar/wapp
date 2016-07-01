@@ -1,0 +1,75 @@
+<video autoplay></video>
+
+<button>Done</button>
+<script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
+<script>
+(function () {
+  var stopBtn = document.querySelector('button');
+  var video = document.querySelector('video');
+  video.volume = 0;
+
+  navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+
+  var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+  };
+
+  // Not showing vendor prefixes.
+  navigator.getUserMedia({video: true, audio: true}, function(stream) {
+    var recorder = new MultiStreamRecorder(stream);
+    //recorder.mimeType = 'video/webm';
+
+    var blobs = {
+      audio: null,
+      video: null
+    };
+
+    console.log(recorder);
+
+    stopBtn.addEventListener('click', function () {
+      recorder.stop();
+      stream.stop();
+
+      var videoSrc = URL.createObjectURL(blobs.video);
+      var audioSrc = URL.createObjectURL(blobs.audio);
+
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData;
+      formData.append('audio', blobs.audio);
+      formData.append('video', blobs.video);
+
+      xhr.open('POST', 'http://localhost:3002/upload', true);
+      xhr.send(formData);
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readystate === 4 && xhr.status === 200) {
+          alert('files sent');
+        }
+      };
+
+      var video = document.createElement('video');
+      document.querySelector('body').appendChild(video);
+      video.autoplay = true;
+      video.src = videoSrc;
+    });
+
+    recorder.ondataavailable = function (data) {
+      blobs.audio = data.audio;
+      blobs.video = data.video;
+
+      console.log(data);
+
+      //console.log(window.URL.createObjectURL(data.audio));
+      //console.log(window.URL.createObjectURL(data.video));
+    };
+
+    recorder.start(10 * 60 * 1000);
+
+    video.src = window.URL.createObjectURL(stream);
+
+  }, errorCallback);
+}());
+</script>

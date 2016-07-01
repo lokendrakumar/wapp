@@ -1,0 +1,25 @@
+<header class="header-wrapper" style="height:12.5em;">
+  <div class="overlay fx overlaybg" style="background:url('https://humanisticpaganism.files.wordpress.com/2013/07/stone20edit.png') no-repeat; background-size:cover; background-position:50%;">
+  </div>
+  <div class="overlay fx bgbk ">
+    <div class="row">
+      <div class="small-12 columns text-center">
+        <h2 class="wc f-4x s-ws-top s-ws-bottom "><i class="icon-<%= category.slug %> s2"></i>
+          <%= category.name %></h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wbg m-ws-bottom">
+  <div class="row">
+    <ul class="tabs center text-center">
+      <li class="tab-title <%= filter === 'featured' ? 'active' : '' %>">
+        <a href="<%= '/category/'+category.slug+'?section='+section+'&filter=featured' %>">Featured</a>
+      </li>
+      <li class="tab-title <%= filter === 'trending' ? 'active' : '' %>">
+        <a href="<%= '/category/'+category.slug+'?section='+section+'&filter=trending' %>">Popular</a>
+      </li>
+    </ul>
+  </div>
+</div>

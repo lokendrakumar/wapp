@@ -1,0 +1,142 @@
+<% var isProfileView = ['profile'].indexOf(pagename) > -1 ? true : false; %>
+<% var questionCardId = componentId('questionLg', question.id) %>
+<% var namedUpvotes = 1 %>
+<% var includeShare = typeof(includeShare) === 'undefined' ? true : false %>
+
+
+<div class="row question-card" id="<%= questionCardId %>">
+  <script>
+    $(function () {
+      app.components.questionCard($('#<%= questionCardId %>'));
+    });
+  </script>
+  
+  <% var questionCols = includeShare ? (isProfileView ? 'small-9' : 'small-10') : 'small-12' %>
+  <div class="columns <%= questionCols %>">
+    <div class="panel">
+      <div class="row collapse">
+        <div class="small-1 small-offset-1 columns">
+          <% if (question.to) { %>
+            <img src="<%= question.to.profile_photo_url || '/img/user.png' %>" class="img-c img-h">
+          <% } %>
+        </div>
+        <div class="small-7 columns">
+          <div class="scolor lfx" style="margin-top:4px;">
+
+            <% if (question.to) { %>
+              <a href="<%= genUrl(question.to.username) %>" class="scolor">
+                <%= question.to.name || question.to.username %>
+              </a>
+            <% } %>
+
+          </div>
+        </div>
+
+        <div class="columns <%= isProfileView ? 'small-3' : 'small-2'%> text-right">
+          <a data-dropdown="drop<%= questionCardId %>"><i class="icon-down scolor2 s"></i></a> 
+
+          <ul class="f-dropdown text-left tiny" data-dropdown-content=""
+          id="drop<%= questionCardId %>" tabindex="-1">
+          <!--   <li>
+              <a href="#">Embed</a>
+            </li> -->
+
+            <li>
+              <a href="#" class="report-user" data-id="<%= question.id %>" data-type="question">Report</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns small-1 xs-ws-top"><i class="scolor2 icon-question f-2x"></i></div>
+
+        <div class="columns small-11 xs-ws-top">
+
+          <h3 class="serif">
+            <% if (question.to) { %>
+              <a href="<%= genUrl(question.to.username + "/" + question.slug) %>" class="questionUrl" style="word-wrap:break-word;">   <%= question.body %></a>
+            <% } else { %>
+              <a><%= question.body %></a>
+            <% } %>
+          </h3>
+
+
+          <div class="row s-ws-top">
+            <% var isCelebrity = question.from.is_celebrity ;%>
+            <div class="columns small-8 scolor2 s upvotes-dialog">
+              <i class="icon-user"></i> Asked by 
+              <span class= "scolor">
+                <span class="spanYou">
+                  <% if(question.is_voted && me) { 
+                      namedUpvotes++;
+                      %>
+                    You, 
+                  <% } %>
+                </span>
+                <% if (question.from.username !== 'Anonymous') {%>
+                  <a href="<%= genUrl(question.from.username) %>" class="scolor"><%= question.from.name || question.from.username %></a>
+                <% } else { %>
+                  <span class="scolor"><%= question.from.name || question.from.username %></span>
+                <%}%>
+                
+              </span> <span class="upvoteText">and <span class="spanUpvotes"><%= question.upvotes - namedUpvotes %></span> others </span>
+              
+                  
+            </div>
+
+            <div class="columns small-4 text-right" style=
+            "margin-top:-3px;">
+              <% if(question.is_voted && me) { %>
+                <% if (question.from.id !== me.id && question.to.id !== me.id) { %> 
+                  <div class="button tiny alt requestBtn fullwidth success"  data-state="downvote" data-target="<%= '/downvote-answer/'+question.id %>">
+                      <i class="icon-check"></i> Answer Requested
+                  </div>
+                <% } %>
+              <% } else {%>
+                  <div class="button tiny alt fullwidth requestBtn sec" data-target="<%= '/request-answer/'+question.id %>" data-state="request">
+                    Request Answer
+                  </div>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <% if (includeShare) { %>
+    <div class="columns <%= isProfileView ? 'small-3' : 'small-2' %> scolor s-ws-top s">
+      <div class="row hv-actv shareBtn">
+        <div class="columns small-5 s-ws-top-p" >
+          Share
+        </div>
+
+        <div class="columns small-6 s-ws-top link cs">
+           <% var slugBody = question.slug %>
+           <%  var lastIndex = slugBody.lastIndexOf("-"); %>
+           <%   slugBody = slugBody.substring(0, lastIndex);%>
+           <%   slugBody=slugBody.replace(/-/g,' ');%>
+           <%   var emailBody=question.to.username + ' was asked frankly: "' + slugBody + '" at: %0A%0A' + "http://frankly.me/" + question.to.username + "/" + question.slug;%>
+           <%   var emailBodyShort=question.to.username + ' was asked frankly: at: %0A%0A' + "http://frankly.me/p/" + question.short_id;%>
+
+          <% if (question.to) { %>
+
+            <div id="icon-share-<%= questionCardId %>"
+               data-url="http://frankly.me/<%= question.to.username %>/<%= question.slug %>"
+               data-slug="<%= emailBody %>"
+               data-title="A question has been shared to you via Frankly.me"
+            ></div>
+          <% } else { %>
+            <div id="icon-share-<%= questionCardId %>"
+               data-url="http://frankly.me/p/<%= question.short_id %>"
+               data-slug="<%= emailBodyShort %>"
+               data-title="A question has been shared to you via Frankly.me"
+            ></div>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  <% } %>
+</div>

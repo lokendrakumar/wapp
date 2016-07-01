@@ -1,0 +1,68 @@
+<% var navHasAskBtn = ['profile', 'post'].indexOf(pagename) !== -1 %>
+<% var isFeed = ['feed'].indexOf(pagename) !== -1 %>
+<% var isMe = ['me'].indexOf(pagename) !== -1%>
+<script>
+  $(function () {
+    app.components.navController($('#nav'));
+  });
+</script>
+
+<nav class="top-bar" data-topbar="">
+  <ul class="title-area">
+    <li class="name">
+      <h1 class="img-ht"><a class="img-ht" href="/"><img class="img-ht" src="/img/logo-orange.png"></a></h1>
+    </li>
+
+    <li class="toggle-topbar menu-icon">
+      <a href="#"><span>Menu</span></a>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <div class="sticky-links">
+
+      <ul class="right">
+        <% if (navHasAskBtn && !isMe) { %>
+          <li id="postBtnTop" style="display:none;">
+            <a class="button" data-modal-id="askQuestionModal" data-modal-url="/modal/ask-question/<%= profile.id %>">
+              Ask Question
+            </a>
+          </li>
+        <% } %>
+        <% if (me) { %>
+          <script>
+            $(function () {
+              app.components.PushStreamConnecter('<%=me.id%>');
+            });
+          </script>
+          <% if (isFeed) { %>
+            <% var username = me.username %>
+            <li class="active home-link"><a href="<%= genUrl('feed') %>"><i class="icon-home"></i> Home</a></li>
+          <%} else {%>
+            <li class="home-link"><a href="<%= genUrl('feed') %>"><i class="icon-home"></i> Home</a></li>
+          <%}%>
+        <%}%>
+        <% if (pagename === 'discover') { %>
+          <li class="active discover-link "><a href="<%= genUrl('discover') %>"><i class="icon-compass rc"></i> Discover</a></li>
+        <%}else{%>
+          <li class="discover-link "><a href="<%= genUrl('discover') %>"><i class="icon-compass rc"></i> Discover</a></li>          
+        <%}%>
+        <% if (me) { %>
+          <% var username = me ? me.username : '' %>
+          <li class="profile-link"><a href="<%= genUrl(me.username) %>"><img class="img-c xs-ws-right gs hv" style="height:20px;" src="<%= me.profile_photo_url || '/img/user.png' %>" /><%=username%></a></li>
+        <%}%>
+        <% if (me === null) { %>
+          <li class="signin-link"><a>Sign In</a></li>
+        <% } else  { %>
+          <li><a href="#" class="logout"><i class="icon-logout"></i></a></li>
+        <% } %>
+      </ul>
+    </div>
+  </section>
+</nav>
+
+<div id="alert-hook">
+  <div data-alert id="alert-box" class="alert-box-wrapper alert-box radius nbrrtop text-center" style="display:none;">
+    Loading...
+    <a href="#" class="close">&times;</a>
+  </div>
+</div>

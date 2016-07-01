@@ -1,0 +1,133 @@
+<% var userVideoModalId = componentId('userVideoModal', profile.id) %>
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? true :false %>
+<% var videoUrlDash = isDashSupported ? profile.dash_video_url : profile.intro_video_url %>
+<% var videoUrl = profile.intro_video_url %>
+
+<div class="row text-right">
+  <div class="s-ws-top small-12 columns">
+    <i class="icon-close scolor2 cs"></i>
+  </div>
+</div>
+<div class="row profileVideo" id="<%= userVideoModalId %>" data-user-id="<%= profile.id %>">
+  <script>
+    $(function () {
+      app.components.profileVideoModal($('#<%= userVideoModalId %>'));
+    });
+  </script>
+
+  <div class="embedTmpl" style="display:none;">
+    <div style="position: absolute; top: 10px; right: 10px;"><i class="icon-close scolor2 cs"></i></div>
+    <p>Title: <%= profile.name || profile.username %></p>
+    <table width="100%">
+      <tr>
+        <td width="20%">Large</td>
+        <td width="80%">
+          <input onclick="this.select();" type="text" value='<iframe frameborder="0" height="600px" width="600px" src="http://embed.frankly.me/userWidgetLg/template.html?user=<%= profile.username %>"> </iframe>' />
+        </td>
+      </tr>
+      <tr>
+        <td>Small</td>
+        <td>
+          <input onclick="this.select();" type="text" value='<iframe frameborder="0" height="444px" width="202px" src="http://embed.frankly.me/userWidgetSm/template.html?user=<%= profile.username %>"> </iframe>' />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="columns small-7 s-ws-bottom s-ws-top">
+    <div class="videoHolder">
+      <video class="img-f" src="<%= videoUrl %>"
+        data-uuid="video-<%= userVideoModalId %>" data-dash="<%= isDashSupported %>"
+        style="height:100%" preload="none"
+      >
+      </video>
+    </div>
+  </div>
+
+  <div class="columns small-5 m-ws-top card-meta">
+    <div class="row text-right">
+      <div class="small-12 columns">
+        <a class="s-ws-top s-ws-right" data-dropdown="drop<%= userVideoModalId %>"><i class="icon-down scolor2 s"></i></a>
+
+        <ul class="f-dropdown text-left tiny" data-options="align:left" data-dropdown-content=""
+            id="drop<%= userVideoModalId %>" tabindex="-1"
+        >
+          <li>
+            <a href="#" class="embedBtn">Embed</a>
+          </li>
+          <!-- <li>
+            <a href="#">Report</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="row scolor s text-center">
+      <div class="s-ws-top small-12 cs columns link">
+        <div id="icon-share-<%= userVideoModalId %>" style="margin:auto;"
+            data-url="http://frankly.me/<%= profile.username %> %>"
+        ></div> 
+        <br />
+
+        <div style="text-align: center;">
+          Share
+        </div>
+      </div>
+      <div class="small-12 columns m-ws-top">
+        <% if (profile.is_following) { %> 
+          <div class="button alt fullwidth small followBtn success"
+            data-state="following"
+            data-target="<%= '/unfollow/'+profile.id %>"
+          >
+            <i class="icon-check"> </i> Followed 
+          </div>
+        <% }else{%>
+          <div class="button alt fullwidth small followBtn"
+            data-state="not-following"
+            data-target="<%= '/follow/'+profile.id %>"
+          >
+            <i class="icon-plus"></i> Follow 
+          </div>
+        <% } %>
+        
+        <p class="m-ws-top s">
+          <%= profile.bio %>
+        </p>
+
+        <div class="row s b-ws-top">
+          <div class="columns small-4 m-ws-top">
+            <div>
+              <%= profile.views %>
+            </div>
+
+            <div>
+              <span class="s scolor">Views</span>
+            </div>
+          </div>
+
+          <div class="columns small-4 m-ws-top">
+            <div>
+              <%= profile.followers %>
+            </div>
+
+            <div>
+              <span class="s scolor">Followers</span>
+            </div>
+          </div>
+
+          <div class="columns small-4 m-ws-top">
+            <div class="followers-count">
+              <%= profile.following %>
+            </div>
+
+            <div>
+              <span class="s scolor">Following</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).foundation();
+</script>

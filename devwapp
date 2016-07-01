@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~/frankly/wapp ;
+subl . & 
+start gulp watch &
+start bin/dev_start.sh &
+google-chrome http://localhost:3000 ;

@@ -1,0 +1,13 @@
+<% var trendingQuestionsWidgetId = pagename+'-trendingQuestionsWidget' %>
+<div class="small-3 columns" id="<%= trendingQuestionsWidgetId %>" data-page="1" data-category="<%=category.id%>" >
+  <script>
+    $(function () {
+      app.components.trendingQuestionsWidget($('#<%= trendingQuestionsWidgetId %>'));
+    });
+  </script>
+  
+  <h5><i class="bc icon-hashtag hide"></i>Trending Questions</h5>
+
+  <div class="feed">
+  </div>
+</div>

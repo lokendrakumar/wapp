@@ -1,0 +1,88 @@
+
+<!-- body starts here -->
+
+
+
+<% var profileLeftPaneId = 'profile'+user.id+'LeftPane' %>
+<% var introModalUrl = '/modal/profile-video/'+user.id %>
+   <style type="text/css">
+    .campaign-page{
+      position:relative;
+      
+    }
+    .campaign-page .video-w{
+      display: block;
+      margin: 10px auto;
+    }
+    .campaign-bio{
+      display:block;
+    
+      text-align: center;
+    }
+  </style> 
+
+<div id="<%= profileLeftPaneId %>">
+  <script>
+    $(function () {
+      app.components.campaignCard($('#<%= profileLeftPaneId %>'));
+    });
+  </script>
+  <div class="row">
+    <div class="campaign-page">
+     <div class="video-w">
+        <div class=" videoContainer circle-container">
+          <div class="videoHolder link">
+            <video id="profile-video" data-crop-to-fit="" data-square-video=""
+            src="<%=user.intro_video_url%>" style="width: 100%; display: none;" class="introVideo1" data-uuid="intro-<%=user.id%>" preload="none" poster="/img/loader.gif"></video>
+            <img class="userImg" data-src="" src="<%= user.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="campaign-bio">
+        <h3>Talk Frankly to</h1>
+        <h4><%= user.name %></h2>
+        <h5><%= user.bio %></h5>
+      </div>
+    </div>
+  </div>
+  
+   
+  
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="panel">
+        <div class="row">
+          <h3 class="text-center scolor f-l m-ws-top">Let's get started</h3>
+          <div class="s12 m5 l3 small-centered columns m-ws-top b-ws-bottom">
+            <div class="button large fullwidth fullbtn f-l askUser" data-username="<%= user.username %>">
+              <img src="/img/logo-white.png" class="left"/>
+              <div class="btn btn-decoration-none waves-effect red lighten-1 askBtn">Ask <%= user.name %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="text-center s-ws-bottom scolor f-l f-2x">Other answers by <%= user.name %></h3>
+    <% feed.forEach(function (answer) { %>
+        <div class="col s12 l4 m4">
+          <%- include(partials.answerCard, {post: {answer: answer}} )%>
+        </div>
+    <% }) %>
+  </div>
+  <div class="row">
+    <h3 class="text-center f-l scolor b-ws-top s-ws-bottom f-2x">Other similar celebrities on the platform</h3>
+    <div class="panel">
+      <div class="row">
+        <% showcase.forEach(function (useritem) { %>
+          <div class="col s12 m4 l4 columns">
+           <%- include(partials.userCard, {users: useritem.model}) %>
+          </div>  
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- body ends here -->
+<%- include(partials.bottom) %>

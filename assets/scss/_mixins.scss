@@ -1,0 +1,13 @@
+@mixin bgcolor($bg) {
+  background: $bg;
+  @include transition (all 0.5s);
+  &.trs{
+  	background: rgba($bg,0.6);
+  	@include transition (all 0.5s);	
+		&:hover,&:focus{
+			background: rgba($bg,0.8);
+		  @include transition (all 0.5s);
+    }
+  }
+  
+}

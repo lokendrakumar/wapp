@@ -1,0 +1,274 @@
+<header class="header-wrapper hp" style="background-image:url('img/cover.png'); margin-top:-42px;">
+  <div class="overlay fx bgbk">
+    <div class="row">
+      <div class="small-12 columns b-ws-top b-ws-top-p">
+        <img src="img/logo-full.png" class="b-ws-top">
+        <h2 class="wc f-4x s-ws-top">Now Connect with your Celebrities,<span class="scolor"> easily.</span> </h2>
+        <h4 class="wc f-2x np f-l">Have frank conversations via video selfies</h4>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="small-3 small-offset-9 columns panel m-ws-top-p" style="margin-top:-4em; z-index:10;">
+    <div class="text-center scolor f-1-25x f-l s-ws-top">Are you up for it?</div>
+  
+  <div id="franklyHomeGetStarted">
+    <script>
+      $(function () {
+        app.components.getStarted($('#franklyHomeGetStarted'));
+      });
+    </script>
+    <div class="button fullwidth s-ws-top s-ws-bottom signin-link">Let's get started</div>
+  </div>
+  </div>
+</div>
+<img src="img/frankly-meta.png" style="display:none;">
+<section>
+  <div class="row">
+    <div id="scrollanimation" class="small-12 columns m-ws-top-p b-ws-bottom-p">
+      <div class="row text-center">
+        <div class="small-4 columns b-ws-top b-ws-bottom">
+          <div class="m-ws-bottom"><!-- <i class="icon-question f-3x scolor2"></i> -->
+            <img src="img/1.png">
+          </div>
+          <h3 class="f-l">Ask questions</h3>
+          <h5 class="f-l scolor">you want answered</h5>
+        </div>
+        <div class="small-4 columns b-ws-top b-ws-bottom">
+          <div class="m-ws-bottom"><!-- <i class="icon-answer f-3x scolor2"></i> -->
+            <img src="img/2.png">
+          </div>
+          <h3 class="f-l">Get replies</h3>
+          <h5 class="f-l scolor">via video selfies</h5>
+        </div>
+        <div class="small-4 columns b-ws-top b-ws-bottom">
+          <div class="m-ws-bottom"><!-- <i class="icon-comment f-3x scolor2"></i> -->
+            <img src="img/3.png">
+          </div>
+          <h3 class="f-l">Interact with everyone</h3>
+          <h5 class="f-l scolor">like never before</h5>
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+
+<section>
+<!-- <div class="flex-video widescreen"> -->
+<!-- NOTE:  make this video play/pause on click -->
+<% var videoContainerId = pagename+'introVideo' %>
+<div id="<%= videoContainerId %>">
+  <script>
+    $(function () {
+      app.components.introVideo($('#<%= videoContainerId %>'));
+    });
+  </script>
+  <video class="img-f cs" data-uuid="video-<%= videoContainerId %>"
+      src="https://s3-ap-southeast-1.amazonaws.com/node.static.frankly.me/sequence_01.mp4" type="video/mp4"
+      poster="<%= genUrl('img/intro.jpg') %>" preload="none"
+
+  >
+  </video>
+</div>
+</section>
+
+<section> 
+  <div class="row">
+    <div class="small-12 columns b-ws-bottom b-ws-top-p b-ws-top b-ws-bottom-p bdbg">
+      <h3 class="f-l text-center f-2x s-ws-top m-ws-bottom scolor">Meet the Franksters</h3>
+        <div id="franklyuserfeed">
+          <script>
+            $(function () {
+              app.components.showcasedUsers($('#franklyuserfeed'));
+            });
+          </script>
+          <dl class="sub-nav m-ws-bottom wbg large center categories">
+            <% categories.forEach(function (item) { %>              
+            <dd class="category">
+              <a data-id ="<%= item.id %>"><%= item.name %></a>
+            </dd>                   
+            <% }) %>
+          </dl>  
+          <ul class="small-block-grid-7 text-center showcase b-ws-bottom">
+            <!-- all profiles with intro video need play button, open intro modal -->
+            <%- include(partials.showcase) %>
+          </ul>
+        </div>       
+      </div>
+    </div>
+</section>
+
+<section class="b-ws-top-p b-ws-bottom-p" style="background-image:url('img/cover2.jpg'); background-size:cover; background-position:50%;"> 
+    <div class="row" id="navHome">
+      <script>
+        $(function () {
+          app.components.getStarted($('#navHome'));
+        });
+      </script>
+      <div class="text-center wc m-ws-top m-ws-bottom f-3x f-l">Ready for some frank conversations?</div>
+      <div class="small-5 small-centered columns text-center  b-ws-bottom b-ws-bottom-p">
+        
+        <div class="button fullwidth large  signin-link b-ws-bottom">Let's get started</div>
+      </div>
+      <!-- <div class="small-5 small-centered columns text-center s-ws-top b-ws-bottom b-ws-bottom-p">
+        <a href="/discover" class="button alt large fullwidth b-ws-bottom"><i class="icon-compass"></i> Discover other Franksters</a>
+      </div> -->
+    </div>
+  </section>
+  <section>
+    
+    <!-- Replace with real content -->
+    <div class="row">
+      <div class="small-8 small-centered columns b-ws-top m-ws-bottom">
+      <h4 class="f-2x text-center f-l b-ws-top-p">Gee, you really can't get enough of us, can you?</h4>
+      <h3 class="f-1-5x text-center scolor f-l m-ws-bottom">Catch us in the news</h3>
+        <div class="panel">
+          <ul class="press-orbit" data-orbit data-options="animation:fade;
+                  pause_on_hover:true;
+                  animation_speed:500;
+                  navigation_arrows:false;
+                  circular: false;
+                  timer: true;
+                  variable_height: true;
+                  bullets:false;
+                  timer_speed:10000;
+                  slide_number: false;">
+            <li data-orbit-slide="headline-1">
+              <div class="icon bq rc">
+                <blockquote>
+                <h5 class="f-1-5x"><a href="http://techcrunch.com/2015/01/06/frankly/" target="_blank">Delhi-Based Video Q&A Platform Frankly Raises $600,000 From Matrix Partners</a></h5>
+              <p>“We are trying to create a place for more meaningful conversations that have more than 140 characters,” he says. “We believe YouTube is a great platform for hosting and broadcasting, but it’s not a conversation platform. It’s a one-way communication tool.”</p>
+              </blockquote>
+            </div>
+          </li>
+          <li data-orbit-slide="headline-2">
+            <div class="icon bq rc">
+              <blockquote>
+              <h5 class="f-1-5x"><a href="http://ibnlive.in.com/news/javed-akhtar-answers-fans-question-about-battling-with-alcoholism-through-a-social-media-application/537252-79.html" target="_blank">Javed Akhtar answers fan's question about battling with alcoholism through a social media application</a></h5>
+
+              <p>User 'Adit829' asked Javed Akhtar "Sir, i see you as my motivator and i always look forward to you also know that you worked hard to quit alcohol, please tell me also, how to quit it?" </p><p>
+
+              Javed Akhtar's answer was a very thoughtful and wise one. He said that one has to understand just how much in control they are and that at any point, they feel that the intoxication is taking control, it is that moment that one should stop.</p>
+              </blockquote>
+            </div>
+          </li>
+          <li data-orbit-slide="headline-3">
+            <div class="icon bq rc">
+              <blockquote>
+              <h5 class="f-1-5x"><a href="https://www.techinasia.com/frankly-raises-investment-matrix-partners/" target="_blank">Video Q&A site Frankly.me raises $600k to engage public figures</a></h5>
+
+              <p>The platform is up against rivals like Twitter and YouTube but the founders, Nikunj Jain and Abhishek Gupta, hope to create more meaningful conversations which can have more than 140 characters. They also hope to differentiate themselves by making two-way conversations easier. Questions submitted are up-voted by other users, so the most popular ones are more visible and hopefully answered. This system has been deployed on popular forums like Reddit.</p>
+              </blockquote>
+            </div>
+          </li>
+          <li data-orbit-slide="headline-4">
+            <div class="icon bq rc">
+              <blockquote>
+              <h5 class="f-1-5x"><a href="http://yourstory.com/2015/01/frankly-me-raises-600k-matrix-partners/" target="_blank">Frankly.me raises $600k from Matrix to help connect users with public figures</a></h5>
+
+              <p>Frankly is currently in beta with around 25k registered users and Nikunj tells us that this number is growing at about 1500 users per day. Over 85 public figures are on the platform as of now including the likes of Arvind Kejriwal and Yogendra Yadav, in the field of politics, Kunal Bahl, Naveen Tiwari and Avnish Bajaj when it comes to entrepreneurship in India, some popular DJs.</p>
+              </blockquote>
+            </div>
+          </li><li data-orbit-slide="headline-5">
+            <div class="icon bq rc">
+              <blockquote>
+              <h5 class="f-1-5x"><a href="http://articles.economictimes.indiatimes.com/2015-02-11/news/59043584_1_matrix-partners-aam-aadmi-party-aap" target="_blank">Startups like Frankly.me, SpotDy make most of Delhi elections and AAP's victory</a></h5>
+
+              <p>The main campaigners of the three main political parties in the running - the AAP's Arvind Kejriwal, the BJP's Kiran Bedi, and the Congress party's Ajay Maken - all used mobile video application Frankly.me to answer citizens' queries by video. "We saw 2,000 queries directed to about 55 politicians this election, whom we started engaging with in January," said co-founder Nikunj Jain, an alumni of IIT-Delhi.</p>
+              </blockquote>
+            </div>
+          </li><li data-orbit-slide="headline-6">
+            <div class="icon bq rc">
+              <blockquote>
+              <h5 class="f-1-5x"><a href="http://www.digit.in/apps/app-of-the-week-talk-to-celebrities-frankly-25357.html" target="_blank">Frankly.Me is an app that allows users to ask questions to celebrities, who then answer through video selfies.</a></h5>
+
+              <p>Another reason for liking Frankly.Me is the interface. The app has a simple yet good looking design. While it obviously looks good on high-end phones, Frankly.Me seems to have paid a lot of attention to the lower end smartphones as well. The app runs resonably smoothly on a budget device, with minimal lags and stutters.</p>
+              </blockquote>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wbg b-ws-top">
+    <div class="row">
+      <div class="small-12 columns b-ws-top m-ws-top-p b-ws-bottom">
+        <div class="row hv-reset">
+          <a data-orbit-link="headline-1">
+            <div class="small-2 columns text-center s-ws-top">
+              <img src="img/tc.png" class="gs hv img-h">
+            </div>
+          </a>
+          <a data-orbit-link="headline-2">
+            <div class="small-2 columns text-center">
+              <img src="img/ibn.png" class="gs hv img-h">
+            </div>
+          </a>
+          <a data-orbit-link="headline-3">
+            <div class="small-2 columns text-center xs-ws-top">
+              <img src="img/techasia.png" class="gs hv">
+            </div>
+          </a>
+          <a data-orbit-link="headline-4">
+            <div class="small-2 columns text-center s-ws-top">
+              <img src="img/yourstory.png" class="gs hv">
+            </div>
+          </a>
+          <a data-orbit-link="headline-5">
+            <div class="small-2 columns text-center">
+              <img src="img/et.png" class="gs hv img-h">
+            </div>
+          </a>
+          <a data-orbit-link="headline-6">
+            <div class="small-2 columns text-center m-ws-top">
+              <img src="img/digit.png" class="gs hv img-h">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="background:url('img/cover3.jpg'); background-size:cover; background-position:100%;">
+    <div class="row">
+      <div class="small-7 columns text-right b-ws-bottom-p b-ws-top trs">
+        <div class="row">
+        <div class="small-12 columns b-ws-bottom b-ws-bottom-p">
+        <h4 class="wc f-l s-ws-top f-3x">Be a Frankster on the go</h4>
+        <!-- <p class="wc s-ws-top f-1-25x f-l">Download our popular app, made with you in mind.</p> -->
+        <p class="wc b-ws-bottom f-1-5x f-l">Psst..did we tell you it's free?</p>
+
+        <div class="f-1-5x b-ws-top wc f-l">Want some more of Frankly.me?</div>
+        <div class="f-1-25x wc f-l">Follow us on: <a href="https://www.facebook.com/me.frankly"><i class="icon-facebook s xs-ws-left"></i></a><a href="https://twitter.com/franklymeapp"><i class="icon-twitter s xs-ws-left"></i></a>
+        <a href="https://instagram.com/frankly.me/"><i class="icon-instagram s xs-ws-left"></i></a>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="small-4 columns b-ws-top m-ws-top-p">
+        <div class="b-ws-top">
+          <a href="https://play.google.com/store/apps/details?id=me.frankly" target="_blank"><img src="img/play.png" class="img-h"></a>
+        </div>
+        <div class="b-ws-top">
+          <a href="https://itunes.apple.com/in/app/frankly.me-talk-to-celebrities/id929968427?mt=8" target="_blank"><img src="img/ios.png" class="img-h"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="wbg">
+    <div class="row">
+    <div class="small-12 columns b-ws-top b-ws-bottom">
+      <ul class="inline-list s">
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/jobs">Jobs</a></li>
+        <!-- <li><a href="/press">Press</a></li> -->
+        <li><a href="/about">About</a></li>
+        <li><a href="/tos">Terms Of Service</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+
+

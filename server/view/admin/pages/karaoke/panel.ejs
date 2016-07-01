@@ -1,0 +1,23 @@
+<div class="section">
+
+	<div class="row">
+
+		<div class="col s12">
+			<%- include(partials.searchwrap) %>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col s6">
+			<%- include(partials.allcategory) %>
+		</div>
+		<div class="col s6 songs">
+			<% if (!home) {%>
+				<%- include(partials.selectedcatsongs) %>
+					<%}%>
+		</div>
+	</div>
+
+</div>

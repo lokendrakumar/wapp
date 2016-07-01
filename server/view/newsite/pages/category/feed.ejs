@@ -1,0 +1,29 @@
+  <% var feedHolderId = componentId('feedHolderId', categoryName ) %>
+  <% var count = columnNumber %>
+
+
+    <div id="<%= feedHolderId %>" class = '<%=categoryName%>' data-category-id ='<%=categoryName%>' >
+        <script>
+          $(function () {
+            app.components.stdFeed($('#<%=feedHolderId %>'));
+          });
+        </script>
+        <div class="feed">
+          <% if(pageNum>-1){ %>
+            <div class="row">
+              <% for (var j = 1; j <= count; j++){ %>
+                <div class="col s12 m6 l<%= Math.floor(12/count) %> column<%= j %>" >
+                  <div class="row">
+                    <% for (var i = j-1; i < feed.items.length; i += count) { %>
+                      <div class="col s12">
+                        <%- include(partials.feedColumn, {item: feed.items[i]} ) %>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+      <div class="feed-end" data-category-index = "<%= pageNum %>" ></div>
+    </div>

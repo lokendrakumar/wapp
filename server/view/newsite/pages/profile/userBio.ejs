@@ -1,0 +1,12 @@
+
+<% var userId = componentId('answer', user.id) %>
+<div class="col s12 m4 divuserBio" id="<%=userId%>">
+	<script>
+	$(function() {
+	  app.components.userBio($('#<%= userId %>'));
+	});
+	</script>
+    <div class="about-user">
+        <p class="userbio"><%= user.bio%></p>
+    </div>
+</div>

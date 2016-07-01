@@ -1,0 +1,26 @@
+<% var navbar = componentId('navbar') %>
+
+<div id="<%= navbar %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.questionModerateMenu($('#<%= navbar %>'));
+    });
+  </script>	
+	
+	
+  <div class="collection filter-wrap">
+    <a href="" class="collection-item public active">Public</a>
+    <a href="" class="collection-item celeb">Celeb</a>
+  </div>
+	
+	<div class="flag-pan font_400 grey-text text-darken-3 active">
+  	<i class="material-icons">class</i>
+		<input type="checkbox" class="filled-in checkboxFlag" id="filled-in-box" />
+    <label for="filled-in-box">This shows flaged content</label>
+		<div class="clearfix"></div>
+	</div>
+	
+  <div class='tablediv'>
+    <%- include(partials.feed) %>
+  </div>
+</div>

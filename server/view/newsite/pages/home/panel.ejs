@@ -1,0 +1,56 @@
+<div class="container-nav">
+  <div class="container-navbar nav-wrapper">
+  <a href="#" class="left"><img src="img/logo.png"></a>
+  <%# <a href="#frankly-auth-modal" class="homepage-btn-login right modal-trigger">Login</a>%>
+  <ul class="right" style="line-height: 40px;">
+    <li style="display:inline-block;"><a href="<%= genUrl('discover') %>" class="red-text text-lighten-2" data-link-discover><i class="icon-discover left"></i> <span class="hide-on-med-and-down">Discover</span></a></li>
+    <li style="display:inline-block; margin-left: 15px;"><a href="#frankly-auth-modal" class="modal-trigger grey-text"><span class="">Login</span></a></li>
+  </ul>
+  </div>
+</div>
+
+  <div class="top hide">
+    <span data="#one"></span>
+    <span data="#two"></span>
+    <span data="#three"></span>
+    <span data="#four"></span>
+    <span data="#five"></span>
+  </div>
+
+  <section id="one" class="bg-green section-bg">
+
+    <div class="container home">
+      <script>
+      $(function(){
+        app.components.homePage($('.home'));
+      });
+      </script>
+      <div class="row m-bot">
+        <div class="col sm12 m5">
+
+
+       <img src="home/images/img_phone_1.png" class="responsive-img theme-img animated bounceIn">
+        </div>
+        <div class="col s12 m7">
+        <div class="heading-container">
+        <img src="home/images/img_frankly.png" class="img-frankly">
+        <div class="under-line"></div>
+          <h1>Say or Do anything</h1>
+          <span class="watch">and watch others too</span>
+          <form class="home-form">
+            <input class="name "type="text" placeholder="Name" />
+            <input class="email" type="email" placeholder="Email" />
+            <input class="password" type="password" placeholder="Password" />
+            <a class="signUp" href="#">SignUp</a>
+          </form>
+          </div>
+            <div class="app-store">
+            <a href="https://play.google.com/store/apps/details?id=me.frankly"><img src="home/images/img_playstore.png" /></a>
+            <a href="https://itunes.apple.com/in/app/frankly.me-talk-to-celebrities/id929968427?mt=8"><img src="home/images/img_appstore.png" /></a>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>

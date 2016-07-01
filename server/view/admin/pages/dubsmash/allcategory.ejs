@@ -1,0 +1,81 @@
+<% categoryId = componentId('categoryId') %>
+<% var count = 0 %>
+<div class="card white custm-karaoke-card <%= categoryId %>">
+  <script type="text/javascript">
+  $(function () {
+    app.components.dubsmashCategory($('.<%= categoryId %>'));
+  });
+  </script>
+  <h6 class=" grey-text text-darken-2 white karaoke-sectitle">All Category</h6>
+<ul class="collection kareoke-categories margin-none  with-header">
+
+
+	<% feed.items.forEach(function (item) { count++; %>
+		<li class="collection-item relative">
+			<div class="dubsmashCat catName catNo<%= count %>" data-catid="<%= item.category.id %>">
+				<img src="<%= item.category.icon_url %>" alt="" class="circle">
+				<span class="title grey-text text-darken-2 cat-Name"> <%= item.category.display_name %> </span>
+			</div>
+			<div class="btn-control">
+				<div class="right toggle-opt">
+					<i class="material-icons toggle-pos">more_vert</i>
+					<div class="opt-wrap"> Place At:
+						<input type="text" class="reorderTB" placeholder="Type a Num..">
+						<i class="material-icons toggle-close">close</i>
+					</div>
+				</div>
+				<i class="secondary-content material-icons">close</i>
+				<i class="secondary-content material-icons edit-cat">edit</i>
+			</div>
+			<div class="category-addwrap card">
+				<div class="input-field">
+					<input placeholder="Category Name" type="text" class="">
+				</div>
+				<div class="file-field input-field">
+					<input class="file-path validate" type="text" />
+					<div class="btn">
+						<span>Add Image</span>
+						<input type="file" class="" />
+					</div>
+				</div>
+				<div class="input-field">
+					<input placeholder="Twitter handle" type="text" class="">
+				</div>
+
+
+				<div class="input-field">
+					<input placeholder="Latitude" type="text" class="">
+				</div>
+
+				<div class="input-field">
+					<input placeholder="Longitude" type="text" class="">
+				</div>
+
+				<div class="input-field">
+					<input placeholder="Radius" type="text" class="">
+				</div>
+
+				<p class="cst-chkbx">
+					<label>
+						<input type="checkbox" class="filled-in" /> <span>Add on Top</span></label>
+				</p>
+
+				<div class="input-field">
+					<input value="Save Category" type="submit" class="waves-effect waves-light btn">
+				</div>
+			</div>
+
+
+			<script>
+				$(document).ready(function () {
+					$(".edit-cat").click(function () {
+						$(this).parent().parent().find(".category-addwrap").show();
+					});
+				});
+			</script>
+
+
+		</li>
+		<% }); %>
+</ul>
+</div>

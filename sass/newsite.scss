@@ -1,0 +1,23 @@
+body {
+  background-color: #FFFEF0;
+  font-size: 14px;
+  font-weight: 300;
+  color: #c0c0c0;
+}
+
+@import "materialize/materialize";
+
+/**
+ * import stuff from helpers, components and layout
+ */
+
+@import "helpers/generic";
+@import "helpers/buttons";
+@import "helpers/modals";
+
+@import "components/cards/user";
+@import "components/cards/share";
+@import "components/modals/auth";
+@import "components/modals/recording";
+@import "components/margins";
+@import "components/paddings";

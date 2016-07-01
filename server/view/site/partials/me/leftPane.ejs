@@ -1,0 +1,213 @@
+<% var myLeftPaneId = componentId('myLeftPane', profile.id) %>
+<% var introModalUrl = '/modal/profile-video/'+profile.id %>
+<% var imagePanelId = myLeftPaneId+'imagePanel' %>
+<% var videoPanelId = myLeftPaneId+'videoPanel' %>
+
+<% var attachedPhotoModalId = myLeftPaneId+'attachedPhotoModal' %>
+<% var attachedVideoModalId = myLeftPaneId+'attachedVideoModal' %>
+<% var photoSnapshotModalId = myLeftPaneId+'photoSnapshotModal' %>
+<% var videoCaptureModalId = myLeftPaneId+'videoCaptureModal' %>
+
+<div id="<%= attachedVideoModalId %>" class="reveal-modal small np" data-reveal>
+  <div class="row">
+    <div class="small-8 columns videoContainer" style="min-height: 500px;">
+      <div style="overflow:hidden; display:block; height:100%" class="videoHolder">
+        <video data-crop-to-fit data-square-video data-record></video>
+        <audio style="display: none;"></audio>
+      </div>
+    </div>
+    <div class="small-4 columns b-ws-top">
+      <div class="button fullwidth small uploadProfileVideoButton">Add Video</div>
+      <div class="s-ws-top text-center rejectPofileVideoButton"><a>Reject Answer</a></div>
+    </div>
+  </div>
+</div>
+
+<div id="<%= videoCaptureModalId %>" class="reveal-modal small np" data-reveal>
+  <!-- Not setting autoplay here because videos and audios might need synchronization -->
+  <!-- based on the os of the end user -->
+
+  <div class="row">
+    <div class="small-8 columns videoContainer" style="overflow: hidden">
+      <div class="videoHolder" style="overflow: hidden; display: block; height: 100%;">
+        <video autoplay data-crop-to-fit data-square-video data-record></video>
+      </div>
+    </div>
+    <div class="small-4 columns b-ws-top b-ws-top-p">
+      <div class="recordBtn button alt fullwidth small"><i class="icon-record"></i> <span class="recordVideo">Record</span></div>
+      <div class="row">
+        <div class="small-8 columns">
+          <span class="time-played">0:00</span> / <span class="max-time">1:30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns small-3 text-center">
+  <div id="<%= myLeftPaneId %>"
+       data-attached-video-modal-id="<%= attachedVideoModalId %>"
+       data-video-capture-modal-id="<%= videoCaptureModalId %>"
+  >
+    <script>
+      $(function () {
+        app.components.myProfileLeftPane($('#<%= myLeftPaneId %>'));
+      });
+    </script>
+    <div class="row">
+      <div class="small-6 small-centered columns">
+        <div class="pv notEditing">
+          <div style="border-radius: 50%; margin-bottom: 15px; overflow: hidden; -webkit-mask: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);" class="dvHolder videoContainer">
+            <div class="dvImgOverlay" style="position:relative;">
+              <i class="icon-vid"
+                 data-modal-id="profileVideoModal"
+                 data-modal-url="<%= '/modal/profile-video/'+profile.id %>"
+                      ></i>
+              <img class="img-f userImg" src="<%= profile.profile_photo_url || '/img/user.png' %>">
+            </div>
+            <div class="videoHolder">
+              <video src="<%= profile.intro_video_url %>" data-uuid="<%= myLeftPaneId %>" 
+                data-crop-to-fit data-square-video  style="display:none;" 
+                data-username="<%= profile.username %>" class="existingProfileVideo"
+                preload="none" data-record>
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row dvProcessing s-ws-bottom" style="display:none">
+      <div class="small-10 columns b-ws-top">
+        <div class="scolor labelProcessing" >Processing</div>
+        <div class="progress small-12 success radius">
+          <span class="meter" style="width: 30%"></span>
+        </div>
+
+        <div class="scolor s2 text-center" style="display: none;">
+          <i class="icon-error"></i> Video should be less than 1:30
+          minutes and preferably in a 9:16 portrait mode
+        </div>
+      </div>
+
+      <div class="small-2 columns m-ws-top-p m-ws-top text-right">
+        <i class="icon-process yc f-1-5x"></i>
+        <i class="icon-error rc f-1-5x" style="display:none;"></i>
+        <i class="icon-check gc f-1-5x" style="display:none;"></i>
+      </div>
+    </div>
+
+    <div class="pv editing" style="display: none;">
+      <!--<span class="s2 profileMediaEditBtn">-->
+      <!--<i class="icon-edit s2">-->
+      <!--<span class="s2">edit</span>-->
+
+      <img class="img-c img-h s-ws-bottom" src="<%= profile.profile_photo_url || '/img/user.png' %>">
+      <!--</i>-->
+      <!--</span>-->
+      <div class="text-right xs-ws-bottom">
+        <div class="button tiny sec alt profileMediaEditBtn" id="t1"><span class="profileMediaEditBtnText">Edit Profile Video</span></div>
+        <div class="s2 cs" style="display:none;" id="t2">cancel</div>
+      </div>
+    </div>
+
+    <div class="row profileMediaEditArea" style="display:none;">
+      <div class="small-12 columns">
+         <div class="tabs-content">
+          <div class="content s2 videoInput active" id="<%= videoPanelId %>">
+            <div class="small-6 columns text-center scolor cs hv">
+              <i class="f-2x cs icon-attach"></i>
+              <div>
+                Attach Video
+              </div>
+
+              <input type="file" name="profileVideo"
+                     style="opacity:0;display:block;position:absolute;width:100%;height:100%;z-index:99;top:0;left:0;cursor:pointer"
+                     accept="video/*">
+
+              <div class="s scolor2">
+                or drag and drop your file here
+              </div>
+            </div>
+
+            <div class="small-6 columns text-center scolor cs hv videoCapture">
+              <i class="f-2x icon-record"></i>
+
+              <div class="recordVideoText">
+                Record Video
+              </div>
+
+              <div class="s scolor2 video-attachment-info">
+                Requires additional permissions
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="nm">
+      <span class="nameDisplay"><%= profile.name %></span>
+      <input class="nameInput" style="display:none;" type="text" value="<%= profile.name %>">
+    </h2>
+
+    <h5 class="scolor">@<%= profile.username %></h5>
+
+    <div class="button alt fullwidth small editProfileBtn">
+      Edit Profile
+    </div>
+
+    <p class="m-ws-top s">
+      <span class="bioDisplay"><%= profile.bio %></span>
+    </p>
+
+    <div class="bioInput" style="display:none;">
+      <textarea data-maxlength="56" rows="2"><%= profile.bio %></textarea>
+      <div class="scolor s text-right bioCount" >
+        <span class="character-count"></span>
+      </div>
+    </div>
+
+    <div class="row s">
+      <div class="columns small-4 ">
+        <div>
+          <%= profile.views %>
+        </div>
+
+        <div>
+          <span class="s scolor">Views</span>
+        </div>
+      </div>
+
+      <div class="columns small-4 ">
+        <div>
+          <%= profile.followers %>
+        </div>
+
+        <div>
+          <span class="s scolor">Followers</span>
+        </div>
+      </div>
+
+      <div class="columns small-4">
+        <div class="followers-count">
+          <%= profile.answer_count %>
+        </div>
+
+        <div>
+          <span class="s scolor">Answers</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="saveActions" style="display:none;">
+      <div id="profileSaveButton" class="button small fullwidth m-ws-top saveBtn"
+           data-target="/me/update-profile">
+        Save changes
+      </div>
+      <div class="xs-ws-top s cs hv cancelBtn">
+        cancel changes
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%- include(partials.header)%>
+
+<div class="row">
+  <div class="col s12 m4">
+    <ul class="custom-tabs-menu">
+        <li class="current link"><a href="#tab-frankster">frankster</a></li>
+    </ul>
+  </div>
+  <div class="col s12 m8">
+    <%- include(partials.feed, {feed: feed})%>
+  </div>
+</div>
+

@@ -1,0 +1,90 @@
+<% var profileLeftPaneId = componentId('profileLeftPane', profile.id) %>
+
+<div id="<%= profileLeftPaneId %>">
+  <script>
+    $(function () {
+      app.components.profileLeftPane($('#<%= profileLeftPaneId %>'));
+    });
+  </script>
+
+  <div class="row">
+    <div class="small-6 small-centered columns">
+      <div class="pv">
+        <div style="border-radius: 50%; margin-bottom: 15px; overflow: hidden; -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);" class="dvHolder videoContainer">
+          <div class="dvImgOverlay" style="position:relative;">
+            <i class="icon-vid"
+           data-modal-id="profileVideoModal"
+           data-modal-url="<%= '/modal/profile-video/'+profile.id %>"
+            ></i>
+            <img src="<%= profile.profile_photo_url || '/img/user.png' %>" class="imgProfile userImg img-f" /> 
+          </div>
+          <div class="videoHolder">
+            <video src="<%= profile.intro_video_url %>" data-uuid="video-<%= profileLeftPaneId %>" 
+            data-crop-to-fit data-square-video style="display:none;" 
+            data-username="<%= profile.username %>" preload="none" >       
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="<%= genUrl(profile.username) %>">
+    <h2 class="nm"><%= profile.name %></h2>
+  </a>
+
+  <h5 class="scolor">@<%= profile.username %></h5>
+
+
+  <% if (profile.is_following && me) { %> 
+    <div class="button alt fullwidth s-ws-top tiny followBtn success "
+      data-state="following"
+      data-target="<%= '/unfollow/'+profile.id %>" data-profile="true" data-username="<%= profile.username %>">
+      <i class="icon-check"> </i> Followed 
+    </div>
+  <% } else {%>
+    <div class="button alt fullwidth s-ws-top tiny followBtn"
+      data-state="not-following"
+      data-target="<%= '/follow/'+profile.id %>" data-profile="true" data-username="<%= profile.username %>">
+      <i class="icon-plus"></i> Follow 
+    </div>
+  <% } %>
+
+  <p class="m-ws-top s">
+    <%= profile.bio %>
+  </p>
+
+  <div class="row s b-ws-top">
+    <div class="row s b-ws-top">
+      <div class="columns small-4 m-ws-top">
+        <div>
+          <%= profile.views %>
+        </div>
+
+        <div>
+          <span class="s scolor">Views</span>
+        </div>
+      </div>
+
+      <div class="columns small-4 m-ws-top">
+        <div class="followers-count">
+          <%= profile.followers %>
+        </div>
+
+        <div>
+          <span class="s scolor">Followers</span>
+        </div>
+      </div>
+
+      <div class="columns small-4 m-ws-top">
+        <div>
+          <%= profile.answer_count %>
+        </div>
+
+        <div>
+          <span class="s scolor">Answers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

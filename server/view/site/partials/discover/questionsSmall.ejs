@@ -1,0 +1,5 @@
+<h5><i class="bc icon-hashtag"></i> <%= title %></h5>
+
+<% feed.items.map(function (item) { %>
+  <%- include(partials.questionSm, {question: item.model, isPanel: true}) %>
+<% }) %>

@@ -1,0 +1,41 @@
+  <div class="lgbg">
+    <div class="row">
+      <div class="small-6 columns xs-ws-top xs-ws-bottom s">
+        <% if (me) { %>
+          Welcome <%= me.name || me.username %>
+        <% } %>
+      </div>
+      <div class="small-6 columns text-right xs-ws-top xs-ws-bottom s">
+        <% if (me === null) { %>
+          <a class="signin-link"> Login </a>
+        <% } else {%>
+          <a class="logout"> Logout</a>
+          <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div id="alert-hook">
+    <div data-alert id="alert-box" class="alert-box-wrapper alert-box radius nbrrtop text-center" style="display:none;">
+      
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+
+  <script>
+      //signin 
+  var $signin = $('.signin-link');
+  $signin.on('click', function (ev) {
+    ev.preventDefault();
+    app.utils.loadModal('#authModal', '/modal/auth');
+  });
+  var $logOutBtn = $('.logout');
+  $logOutBtn.on('click', function (ev) {
+    ev.preventDefault();
+    app.utils.ajax.post("/logout").then(function (){
+      app.utils.reloadNavAndPanel();
+      app.utils.notify('Logged Out', 'success', 10);
+      app.$document.find('#fb-tracker').remove();
+    });
+  });
+  </script>

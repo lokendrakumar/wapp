@@ -1,0 +1,5 @@
+<% if (post.is_answered) { %>
+  <%- include(partials.answerLg, {answer: post.answer, isProfileView: true}) %>
+<% } else { %>
+  <%- include(partials.questionLg, {question: post.question, isProfileView: true}) %>
+<% } %>

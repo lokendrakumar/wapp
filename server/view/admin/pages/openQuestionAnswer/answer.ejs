@@ -1,0 +1,19 @@
+<% var answerbar = componentId('answerbar') %>
+
+<div class="<%= answerbar %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.openquestionAnswers($('.<%= answerbar %>'));
+    });
+  </script> 
+
+  <%- include(partials.answerTable) %>
+  <ul class="collapsible collapse-button-border" data-collapsible="accordion">
+    <li>
+      <a class="btn collapsible-header theme-color-red" style="border-bottom:0" data_qid="<%= question_id %>">Stuff</a>
+      <div class="collapsible-body">
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>      
+    </li>
+  </ul>
+</div>

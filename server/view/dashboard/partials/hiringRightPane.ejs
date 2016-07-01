@@ -1,0 +1,69 @@
+<% var roles = roles != null ? roles : [] %>
+<% var dashboardObj = dashboardObj != null ? dashboardObj : [] %>
+
+
+<div id="page-content-wrapper" class="hiringRightPane">
+  <script>
+    $(function () {
+      app.components.hiringRightPane($('.hiringRightPane'));
+    });
+  </script>
+
+  <div class="page-content" style='margin-left:220px;'>
+    <div class="nav-container">
+      <div class='right-pane-wrapper'>
+        <div class='filter-as-wrapper'>
+          <% if(roles != "login") { %>
+          <button style='margin: 5px -20px 5px 5px;' class="btn btn-default pull-right get-widget" data-username=<%=me.username%>> Get Widget</button>
+          <button class="btn btn-info pull-right download-excelsheet margin"><span
+                    class="glyphicon glyphicon-cloud-download"></span> ExcelSheet
+          </button>
+          <button class="btn btn-danger pull-right delete-profile margin"><span
+                    class="glyphicon glyphicon-trash"></span> <%=dashboardObj.Title%></button>
+          <button class="btn btn-warning pull-right edit-profile margin"><span
+                    class="glyphicon glyphicon-pencil"></span> <%=dashboardObj.Title%></button>
+          <button class="btn btn-success pull-right create-profile margin"><%=dashboardObj.Create_Profile%></button>
+          <input type="hidden" class="btn btn-default pull-right hidden-edit-profile" data-toggle="modal"
+                 data-target="#editJob"/>
+
+          <div class="dropdowns dropdown pull-right" id="dropdownMenu" style='margin: 5px 5px;'>
+            <button class="btn btn-defaults" data-toggle="dropdown">
+              <span id="dropdown_title" class='hiring-default-role'><%=dashboardObj.All_Profiles%></span>
+              <span class="pull-right caret" style='margin-top: 10px;'></span>
+            </button>
+            <ul class="dropdown-menu dropdown-scroll">
+              <li class='hiring-current-role select-position'>
+                <a tabindex="-1" style='cursor:pointer'><%=dashboardObj.All_Profiles%></a>
+              </li>
+              <% roles.forEach(function (item) { %>
+              <li class='hiring-current-role' data-role-id='<%=item.id%>'>
+                <a tabindex="-1"
+                   style='cursor:pointer;overflow: hidden !important;text-overflow: ellipsis;'><%=item.display_name%>
+                </a>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+          <% } %>
+          <div class="btn-group manage" style='margin-top:5px;display:none'>
+            <button type="button" class="btn btn-success candidate-status" data-status-id='selected'>Select Applicant
+            </button>
+            <button type="button" class="btn btn-danger candidate-status" data-status-id='rejected'
+                    style='margin: 0px 2px'>Reject
+            </button>
+            <button type="button" class="btn btn-info btncolor candidate-status" data-status-id='pending'>Pending
+            </button>
+          </div>
+        </div>
+        <!-- filter wrapper ned -->
+      </div>
+      <!-- right pane ned -->
+
+      <%-include(partials.tableHeader)%>
+      <!-- container ned -->
+    </div>
+  </div>
+  <!-- page content ned -->
+  <%-include(partials.createJobModal)%>
+  <%-include(partials.editModals)%>
+</div><!-- page content wrapper ned -->

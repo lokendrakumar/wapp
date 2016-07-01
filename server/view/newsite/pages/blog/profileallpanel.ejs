@@ -1,0 +1,24 @@
+<% var isProfileView = typeof(isProfileView) === 'undefined' ? false : true %>
+<% var feedHolderId = componentId('feedHolder') %>
+<% var questionIndex = typeof(questionIndex) === 'undefined' ? 0 : questionIndex %>
+<% var postIndex = typeof(postIndex) === 'undefined' ? 0 : postIndex %>
+<% var userindex = typeof(userindex) === 'undefined' ? 0 : userindex %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.stdFeedHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed">
+    <% blogs.items.forEach(function (answer) { %>
+      <% if (answer.type === "blog"){ %>
+        <div class="col s12 m6">
+          <%- include(partials.answerCard, {post: {answer: answer.model}})%>
+        </div>
+      <% } %> 
+    <% }) %>
+  </div>
+    <div class="feed-end col s12 m6" data-question-index="<%= questionIndex %>" data-post-index="<%= postIndex %>" data-user-index="<%= userindex %>">&nbsp;
+    </div>
+</div>

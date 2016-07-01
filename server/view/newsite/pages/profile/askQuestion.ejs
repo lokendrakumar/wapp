@@ -1,0 +1,66 @@
+<% var askBoxId = pagename+'-askBox' %>
+<% var targeturl = (me !==null && me.id === user.id) ? ('/openquestion/ask/'+ me.id) : ('/ask/' + profile.id) %>
+<div id="<%= askBoxId %>" data-user-id="<%= profile.id %>" data-target="<%= targeturl %> ">
+  <script>
+    $(function () {
+      app.components.askBox($('#<%= askBoxId %>'), false);
+    });
+  </script>
+  <div class="columns small-9">
+    <div class="panel">
+      <div class="alert-box radius large share-alert success" data-alert style="display:none;">
+        <div class="row margin-top20">
+          <div class="col s12 m9">
+            <p class="wc nm">I just asked <%= profile.name || profile.username %>
+              <i class="last-question"></i>
+            </p>
+          </div>
+          <div class="small-2 columns">
+            <div id="icon-share-<%= askBoxId %>"
+               data-url="">
+            </div>
+            <br/>
+            Share 
+        </div>
+      </div>
+      <a class="close" href="#">&times;</a>
+      </div>
+
+      <div class="col s12 m8">
+
+          <div class="row margin-top20">
+              <div class="col s12 m8">
+                  <div class="upload-video">
+                    <textarea class="alt nm brr post-textarea postArea" data-maxlength="300" data-minlength="15" placeholder="Ask something sensible" rows="1" style="min-height:1rem;"></textarea>
+                  </div>
+              </div>
+
+              <div class="col s12 m4">
+
+                <% if(me !==null && me.id === user.id){ %>
+                  <div class="button fullwidth small nm postBtn link btn-upload-video waves-effect waves-light">
+                    Ask Open Question
+                  </div>
+                <% } else { %>
+                  <div class="button fullwidth small nm postBtn link btn-upload-video waves-effect waves-light">
+                    Ask Question
+                  </div>
+                  <div class="switch tiny round m-ws-top anonymousDiv" style="display:none;">
+                    <input id="anon" type="checkbox">
+                    <label class="anonLabel" for="anon" style="vertical-align:middle;"></label><span class="scolor2 s2 s-ws-left anonymousSpan"> Anonymous</span>
+                  </div>
+                <%}%>
+                <div class="scolor s s-ws-top countDisplay" style="display:block;">
+                  <span class="character-count"></span>
+                </div>
+              </div>
+
+
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+

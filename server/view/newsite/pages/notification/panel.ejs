@@ -1,0 +1,24 @@
+<% var panelId = componentId('notificationpanel') %>
+
+<div class="row" id="<%=panelId%>">
+  <script>
+      $(function () {
+          app.components.notificationPanel($('#<%=panelId%>'));
+      });
+  </script>
+  <div class="col s12 m12" style="margin-bottom: 32px;"><h5 class="center"><i class="icon-notifications"></i> Notifications</h5></div>
+  <div class="col s12 m2">
+    <ul class="custom-tabs-menu">
+      <li><div class="current tab-all"><a href="#tab-all">YOU</a></div></li>
+      <li><div class="tab-post"><a href="#tab-post">NEWS</a></div></li>
+    </ul>
+  </div>
+  <div class="col s12 m10">
+    <div class="my-tab">
+      <div id="tab-all" class="my-tab-content">
+          <%- include(partials.feed)%>
+      </div>
+    </div>
+  </div>
+</div>
+

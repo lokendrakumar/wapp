@@ -1,0 +1,80 @@
+<% var openQuestionCardId = componentId('openQuestion', post.question.id) %>
+<% var flagRedirect = flagRedirect %>
+<% var parentUrl = parentUrl %>
+
+<div id='<%= openQuestionCardId%>'>
+  <script>
+    $(function () {
+      app.components.openQuestion($('#<%= openQuestionCardId %>'));
+    });
+  </script>
+  <div class="frankly-card white grey-text test-darken-5">
+    <div class="question-card-content"  data-url="<%= genUrl('/widgets/openQuestionPage/' + post.user.username + '/' + post.question.slug)%>">
+      <div class="row valign-wrapper"  style="margin-bottom: 0px;">
+        <div class="col s4 pading-none videoContainer circle-container valign" style="padding: 0px; margin-left:1em;">
+          <div class="videoHolder link">
+            <video id="profile-video" data-crop-to-fit="" data-square-video="" src="<%=post.user.intro_video_url%>" poster="<%=post.user.thumbnail_url%>" style="width: 100%;" class="introVideo"></video>
+          </div>
+        </div>
+        <div class="col s8 right valign">
+          <span><a href="<%=genUrl(post.user.username)%>" target="_blank" style="color:#9E9E9E !important; font-size: 14px;">@<%=post.user.username%></a> asked</span>
+        </div>
+      </div>
+      <div class="row">
+        <p class="col s12" style="color:#9E9E9E!important">
+          <%=post.question.body%>
+        </p>
+
+        <div class="col s12 " style= "padding:10px 10px;">
+          <div class="col s2 offset-s6 " style= "padding:0px 2px;">
+          <a href="#"><img src="/img/facebook_flat_rounded_24.png"  class="facebook-icon small right mdi-action-class toggle" ></a></div>
+          <a href="#"><div class="col s2" style= "padding:0px 2px;">
+          <img src="/img/twitter_flat_rounded_24.png"  data-text='Hey guys,<%=post.user.username%> is looking for your opinions. Answer on ' class="twitter-icon right small  mdi-action-class toggle"  ></a></div>
+          <a href="#"><div class="col s2" style= "padding:0px 2px;">
+          <img src="/img/google_plus_flat_rounded_24.png" class="google-icon right small mdi-action-class "></a></div>
+          <!-- <div class="col s3 shareIcon" style="display:none"><img src="/img/youtube_square_gray_32.png" class="youtube-icon small mdi-action-class toggle" ></img></div> -->
+        </div>
+
+          <% if (!post.question.is_answered) { %>
+
+        <div class="col s12" >
+          <div class="btn red lighten-2 btn-full waves-effect waves-light popupRecorder" data-url="<%= genUrl('recorder/recorder?type=question&resourceId=' + post.question.id+'&widget=true') %>" style="text-transform: inherit; padding: 0 1em;">Add Answer</div>
+        </div>
+          <% } else { %>
+        <div class="col s12" >
+          <div class="btn red lighten-2 btn-full waves-effect waves-light popupAnswer" data-url="<%= genUrl(me.username + '/' + question.slug) %>" style="text-transform: inherit; padding: 0 1em;">View Answer</div>
+        </div>
+
+          <% }; %>
+      </div>
+    </div>
+    <% if (answers.length > 0) { %>
+      <div class="question-card-content " style="padding-bottom: 0px; background-color: #ebebeb">
+        <div class="row">
+          <div class=" col s12 grey-text ">
+            <span style="font-size: 12px; ">What other people said</span>
+            <span class="viewAll right red-text " style="font-size: 12px;cursor: pointer;border-radius: 3px;border: 1px solid;padding: 3px 8px;" data-url="<%= genUrl('widgets/openQuestionPage/' + post.user.username + '/' + post.question.slug)%>" data-flag-redirect="<%= flagRedirect %>" data-parentUrl="<%= parentUrl + '/openQuestionPage/' + post.user.username + '/' + post.question.slug%>" >View All</span>
+        </div>
+          <div class="col s12">
+            <div class="row valign-wrapper" style="margin:0px">
+                  <ul style="white-space:nowrap ;width:280px ;overflow: auto ;overflow-y: hidden ;max-width: 100%;margin:0px;padding:0px">
+              <div class="valign" >
+            <% answers.forEach(function (answer){%>
+              <%var answerId = componentId('answer', answer.id);%>
+                    <li style="display:inline-block ; margin:15px 10px;">
+                      <a href="javascript:void(0)" class="greyscale" style="display:block">
+                       <!-- keep the div's height and width in 16:9 ratio -->
+                      <div class="answerVideo"   poster="" data-uuid="video-<%=answerId%>" style=" background: url('<%=answer.thumbnail_url%>');background-size: cover;background-repeat: no-repeat;height:80px;width:45px" data-url="<%= genUrl('widgets/popup/plugin/' + answer.author.username + '/' + post.question.slug)%>"></div>
+                      </a>
+                   </li>
+              <% }) %>
+              </div>
+          </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>

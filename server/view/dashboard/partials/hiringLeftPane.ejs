@@ -1,0 +1,64 @@
+<% var dashboardObj = dashboardObj != null ? dashboardObj:[] %>
+<% var urlType = urlType != null ? urlType:[] %>
+<% var isImage = me.profile_photo_url ? me.profile_photo_url:''%>
+ <div id="wrapper" class='hiringLeftPane'>
+ <script>
+    $(function () {
+      app.components.hiringLeftPane($('.hiringLeftPane'));
+    });
+  </script>
+     <div id="sidebar-wrapper" style="padding-top:20px;">
+      <% if(isImage){ %>
+      <li style ='cursor:none'>
+        <input type="image"  class ='image-background' src="<%= me.profile_photo_url%>">
+      </li>
+      <%}else{%>
+      <li class='nav-text-wrapper nav-btn' >
+         <div style="position:relative;">
+          <a class='btn  upload_img'>
+            Upload Logo
+            <input type="file" data-user-id ='<%= me.id %>'  style='height:40px;cursor:pointer;position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" class ='upload-campaign-logo'>
+          </a>
+          &nbsp;
+          <span class='label label-info' id="upload-file-info"></span>
+        </div>
+      </li>
+      <%}%>
+      <li class="sidebar-brand">
+        <div class="dropdown campaign-dropdownMenu" style = 'margin: 5px 5px;'>
+          <button class="btn btn-defaults" data-toggle="dropdown">
+            <span id="campaign-dropdown_title" class='hiring-default-role'><%= dashboardObj.Select_Campaign %></span>
+            <span class="pull-right caret" style = 'margin-top: 10px;'></span>
+          </button>
+          <ul class="dropdown-menu nav-campaign" style = 'width: 100%;'>
+             <% surveyList.forEach(function (item) { %>
+            <li class='campaign'data-survey-type-id ="<%= item.type %>"  data-id = '<%= item.id  %>'>
+              <a  tabindex="-1"style ='cursor:pointer'><%= item.title  %></a></li>
+             <% }) %>
+           </ul>
+         </div>       
+      </li>
+        <li class='nav-text-wrapper nav-btn open-create-company-modal' >
+          <div class ='create-btn'></div> <div class='nav-text'>Create Campaign</div>
+        </li>
+        <li class='nav-text-wrapper nav-btn open-edit-compaign-modal'>
+          <div class ='create-btn'></div> <div class='nav-text'>Edit Campaign</div>
+        </li>
+        <li class='nav-text-wrapper nav-btn open-delete-compaign-modal'>
+          <div class ='create-btn'></div> <div class='nav-text'>Delete Campaign</div>
+        </li>
+      <div id="loadingModal" data-backdrop="static" data-keyboard="false" class="modal fade loading-modal" style=" overflow: auto !important;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body" style="text-align: center; margin-top: 1%;">
+                <h4 style="text-align: center;">Loading</h4>
+                <img src="img/spinner.gif" alt="">
+              </div>        
+            </div>
+          </div>
+        </div>
+      </div>
+  <%- include(partials.editCampaignModal) %>
+  <%- include(partials.campaignModal) %>
+
+</div>

@@ -1,0 +1,35 @@
+<% users.forEach(function (u) { %>
+  <% var userCardId = 'user'+u.id+'HomeCard' %>
+  <% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? true :false %>
+  <% var videoUrlDash = isDashSupported ? (u.dash_video_url ? u.dash_video_url  : u.intro_video_url) : u.intro_video_url %>
+  <% var videoUrl = u.intro_video_url %>
+
+  <li style="position:relative;" id="<%= userCardId %>">
+    <script>
+      $(function () {
+        app.components.userCardSm($('#<%= userCardId %>'));
+      });
+    </script>
+
+    <div class="pv xtsmall">
+      <div style="border-radius: 50%; margin-bottom: 15px; overflow: hidden; -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);" class="dvHolder videoContainer">
+        <div class="dvImgOverlay" style="position:relative;">
+          <i class="icon-vid"
+         data-modal-id="profileVideoModal"
+         data-modal-url="<%= '/modal/profile-video/'+u.id %>"
+          ></i>
+          <img class="img-f userImg" src="/img/user.png" data-src="<%= u.profile_photo_url || '/img/user.png' %>"/>  
+        </div>
+        <div class="videoHolder">
+          <video src="<%= videoUrl %>" data-uuid="video-<%= userCardId %>" 
+          data-crop-to-fit data-square-video style="display:none"
+          data-username="<%= u.username %>" data-profile-status="1" data-dash="<%= isDashSupported %>" preload="none" >
+          </video>
+        </div>
+     </div>
+    </div>
+   
+    <a href="<%= genUrl(u.username) %>"><h5 class="s-ws-top"><%= u.name %></a></h5>
+  </li>
+<% }) %>
+

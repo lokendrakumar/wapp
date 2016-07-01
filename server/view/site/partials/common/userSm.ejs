@@ -1,0 +1,81 @@
+<% var isPanel = typeof(isPanel) === 'undefined' ? false : true %>
+<% var showTitle = typeof(showTitle) === 'undefined' ? false : true %>
+<% var showBio = typeof(showBio) === 'undefined' ? false : true %>
+<% var isXs = typeof(isXs) === 'undefined' ? false : true %>
+<% var cardId = componentId('userSm', user.id) %>
+<% var page = ['askPopup'].indexOf(pagename) !==-1 ? true : false %>
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? true :false %>
+<% var videoUrlDash = isDashSupported ? (user.dash_video_url ? user.dash_video_url  : user.intro_video_url) : user.intro_video_url %>
+<% var videoUrl = user.intro_video_url %>
+<% var twitterExists = user.twitter_handle ? true : false %>
+<% var twitterText = user.twitter_text %>
+<div class="text-center <%= isPanel ? 'panel' : '' %>" id="<%= cardId %>">
+  <script>
+    $(function () {
+      app.components.userCardSm($('#<%= cardId %>'));
+    });
+  </script>
+  
+  <div class="pv small">
+    <div style="border-radius: 50%; margin-bottom: 15px; overflow: hidden; -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);" class="videoContainer dvHolder">
+      <div class="dvImgOverlay" style="position:relative;">
+        <i class="icon-vid" data-modal-id="profileVideoModal"
+           data-modal-url="<%= '/modal/profile-video/'+user.id %>"
+        >
+        </i>
+        <img class="img-f s-ws-bottom nm userImg" data-src="<%= user.profile_photo_url || '/img/user.png'                                        %>" src="/img/user.png"/>  
+      </div>
+      <div class="videoHolder">
+        <video src="<%= videoUrl %>" data-uuid="video-<%= cardId %>" 
+        data-crop-to-fit data-square-video style="display:none"
+        data-username="<%= user.username %>" data-profile-status="1" data-dash="<%= isDashSupported %>" preload="none" data-me="<%= me %>" preload="none">        
+        </video>
+      </div>
+    </div>
+  </div>
+ 
+  
+  <% if (isXs) { %>
+    <h5 class="nm">
+      <a href="<%= genUrl(user.username) %>"><%= user.name %></a>
+    </h5>
+  <% } else { %>
+    <h4 class="nm">
+      <a href="<%= genUrl(user.username) %>"><%= user.name %></a>
+    </h4>
+  <% } %>
+
+  <% if (showTitle) { %>
+    <div class="scolor s">
+      <%= user.title %>
+    </div>
+  <% } %>
+
+  <% if (showBio) { %>
+    <p class="scolor s nm"><%= user.bio %></p>
+  <% } %>
+
+  <% if (!user.to_invite || !twitterExists) {%>
+    <% if (user.is_following && me) { %> 
+      <div class="button alt fullwidth s-ws-top tiny followBtn success"
+        data-state="following"
+        data-target="<%= '/unfollow/'+user.id %>" data-username="<%= user.username %>" data-page="<%=page%>"
+      >
+        <i class="icon-check"> </i> Followed 
+      </div>
+    <% }else {%>
+      <div class="button alt fullwidth s-ws-top tiny followBtn sec"
+        data-state="not-following"
+        data-target="<%= '/follow/'+user.id %>" data-username="<%= user.username %>" data-page="<%=page%>"
+      >
+        <i class="icon-plus"></i> Follow 
+      </div>
+    <% } %>
+  <% } else { %>
+    <div class="button alt fullwidth s-ws-top tiny inviteBtn sec"
+      data-username="<%= user.username %>" data-page="<%=page%>"
+    >
+      <a href="https://twitter.com/intent/tweet?text=<%=twitterText%>"><i class="icon-plus"> </i> Invite </a>
+    </div>
+  <% } %>
+</div>

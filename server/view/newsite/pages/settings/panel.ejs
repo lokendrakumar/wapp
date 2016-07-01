@@ -1,0 +1,202 @@
+<% var settingsId = componentId('settings', me.id) %>
+	<div id="<%= settingsId %>">
+		<script type="text/javascript">
+			$(function() {
+				app.components.settings("#<%= settingsId %>");
+			})
+
+		</script>
+		<div class="row">
+			<div class="col s12 center-align">
+				<h3 class="sett_tittle grey-text text-darken-3 font_400"><i class="material-icons">settings</i>  Settings</h3>
+			</div>
+		</div>
+
+
+		<!-- <div class="row">
+   <form class="col s10 offset-s1 card" style="background-color: transparent;">
+     <div class="row" style="padding: 30px;">
+       <div class="col s12">
+         <h5 class="black-text">Accounts</h5>
+         <hr />
+       </div>
+       <div class="col s6">
+         <span style="height: 66px; line-height: 66px; display: inline-block;">Username</span>
+       </div>
+       <div class="input-field col s6">
+         <i class="material-icons prefix">account_circle</i>
+         <input id="icon_prefix" type="text" class="validate" value="<%= me.username %>" placeholder="Username">
+       </div>
+       <div class="col s6">
+         <span style="height: 66px; line-height: 66px; display: inline-block;">Bio</span>
+       </div>
+       <div class="input-field col s6">
+         <i class="material-icons prefix">note_add</i>
+         <input id="icon_prefix" type="text" class="validate" value="<%= me.bio %>" placeholder="Bio">
+       </div>
+       <div class="col s12 center-align">
+         <a href="#" class="btn waves-effect red lighten-2">Submit</a>
+       </div>
+     </div>
+   </form>
+ </div> -->
+
+
+
+
+
+		<div class="row">
+			<form class="col s10 offset-s1 card no-bg">
+				<div class="section sett_wrap">
+					<h5 class="font_500 grey-text text-darken-3 card_tittle">Accounts</h5>
+					<div class="divider divider-2"></div>
+					<div class="section">
+						<div class="row no_mr_bt">
+							<div class="col s4 font_400 grey-text text-darken-2">Username </div>
+							<div class="col s7 font_400 grey-text text-darken-1"> <span class="field_val">@usename</span>
+
+								<div class="row no_mr_bt edit_wrap">
+									<div class="col s12">
+										<input type="text" placeholder="Your Name (Required)" /> </div>
+									<div class="col s12 edit_btn"><a class="waves-effect waves-light btn font_400 grey darken-1">Cancel</a><a class="waves-effect waves-light btn font_400 red lighten-2">Save</a></div>
+								</div>
+							</div>
+							<div class="col s1 grey-text text-darken-1 edit_btn"><i class="material-icons">mode_edit</i></div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="divider"></div>
+					<div class="section">
+						<div class="row no_mr_bt ">
+							<!-- edit_open -->
+							<div class="col s4 font_400 grey-text text-darken-2">Password </div>
+							<div class="col s7 font_700 grey-text text-darken-1 pass_pan"> <span class="field_val">........ </span>
+								<div class="row no_mr_bt edit_wrap font_400">
+									<div class="col s12">
+										<input type="password" placeholder="Old Password" /> </div>
+									<div class="col s12">
+										<input type="password" placeholder="New Password" /> </div>
+									<div class="col s12">
+										<input type="password" placeholder="Confirm Password" /> </div>
+									<div class="col s12 edit_btn"><a class="waves-effect waves-light btn font_400 grey darken-1">Cancel</a><a class="waves-effect waves-light btn font_400 red lighten-2">Save</a></div>
+								</div>
+							</div>
+							<div class="col s1 grey-text text-darken-1 edit_btn"><i class="material-icons">mode_edit</i></div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="divider"></div>
+					<div class="section">
+						<div class="row no_mr_bt">
+							<div class="col s4 font_400 grey-text text-darken-2">Notification </div>
+							<div class="col s8 font_400 grey-text text-darken-1">
+								<div class="switch">
+									<label>
+										<input type="checkbox">
+										<span class="lever"></span> </label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
+					<div class="section">
+						<div class="row no_mr_bt">
+							<div class="col s4 font_400 grey-text text-darken-2">Allow anonymous Question </div>
+							<div class="col s8 font_400 grey-text text-darken-1">
+								<div class="switch">
+									<label>
+										<input type="checkbox">
+										<span class="lever"></span> </label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="section social_wrap">
+						<h5 class="font_500 grey-text text-darken-3 card_tittle">Social</h5>
+						<div class="divider divider-2"></div>
+						<div class="section">
+							<div class="row no_mr_bt social_conect">
+								<div class="col s12">
+									<a class="waves-effect waves-light btn font_400 fb_btn"><i class="icon-facebook-transparent"></i>Connect <i class="material-icons">done</i></a>
+									<a class="waves-effect waves-light btn font_400 twt_btn"><i class="icon-twitter"></i>Connect <i class="material-icons">done</i></a>
+									<a class="waves-effect waves-light btn font_400 gplus_btn"><i class="icon-google-plus"></i>Connect <i class="material-icons">done</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="divider"></div>
+						<div class="section">
+							<div class="row no_mr_bt">
+								<div class="col s12 font_400 grey-text text-darken-2 mr_bt_10">Invite Friends </div>
+								<div class="col s12">
+									<a class="waves-effect waves-light btn font_400 fb_btn"><i class="icon-facebook-transparent"></i></a>
+									<a class="waves-effect waves-light btn font_400 twt_btn"><i class="icon-twitter"></i></a>
+									<a class="waves-effect waves-light btn font_400 gplus_btn"><i class="icon-google-plus"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="section">
+						<h5 class="font_500 grey-text text-darken-3 card_tittle">Sharing</h5>
+						<div class="divider divider-2"></div>
+						<div class="section">
+							<div class="row no_mr_bt">
+								<div class="col s4 font_400 grey-text text-darken-2">Facebbok </div>
+								<div class="col s8 font_400 grey-text text-darken-1">
+									<div class="switch">
+										<label>
+											<input type="checkbox">
+											<span class="lever"></span> </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="divider"></div>
+						<div class="section">
+							<div class="row no_mr_bt">
+								<div class="col s4 font_400 grey-text text-darken-2">Twitter </div>
+								<div class="col s8 font_400 grey-text text-darken-1">
+									<div class="switch">
+										<label>
+											<input type="checkbox">
+											<span class="lever"></span> </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="divider"></div>
+						<div class="section">
+							<div class="row no_mr_bt">
+								<div class="col s4 font_400 grey-text text-darken-2">Google+ </div>
+								<div class="col s8 font_400 grey-text text-darken-1">
+									<div class="switch">
+										<label>
+											<input type="checkbox">
+											<span class="lever"></span> </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="divider divider-2"></div>
+						<div class="section">
+							<h5 class="font_500 grey-text text-darken-3 card_tittle">About Frankly</h5>
+						</div>
+						<div class="divider divider-2"></div>
+
+						<div class="section">
+							<h5 class="font_500 grey-text text-darken-3 card_tittle">Support</h5>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+
+
+
+
+
+
+
+
+	</div>

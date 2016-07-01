@@ -1,0 +1,15 @@
+<% comments.list.forEach(function (c) { %>
+  <% var profilePic = c.author.profile_picture ?
+                        c.author.profile_picture
+                      : '/img/user.png'
+  %>
+  <div class="row">
+    <div class="columns xs-ws-bottom small-2 np"><a href="<%= genUrl(c.author.username) %>"><img class="img-c img-f gs hv" src="<%= profilePic %>"></a></div>
+
+    <div class="columns xs-ws-bottom small-10 scolor2">
+      <p class="s2 scolor nm"><%= c.body %></p>
+      <div class="s2 scolor2"><p class="s nm"><a href="<%= genUrl(c.author.username) %>" class="scolor2"><%= c.author.username%></a></p></div>
+    </div>
+  </div>
+<% }) %>
+

@@ -1,0 +1,28 @@
+<% var isProfileView = typeof(isProfileView) === 'undefined' ? false : true %>
+<% var feedHolderId = componentId('feedHolder') %>
+<% var questionIndexValue = typeof(questionIndex) === 'undefined' ? 0 : questionIndex %>
+<% var postIndexValue = typeof(postIndex) === 'undefined' ? 0 : postIndex %>
+<% var userIndexValue = typeof(userindex) === 'undefined' ? 0 : userindex %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.stdFeedHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed">
+    <% feed.items.forEach(function (i) { %>
+
+      <% if (i.type === 'question' && !i.model.is_open) { %>
+        <%- include(partials.questionLg, {question: i.model, isProfileView: isProfileView}) %>
+      <% } %>
+
+      <% if (i.type === 'answer') { %>
+        <%- include(partials.answerLg, {answer: i.model, isProfileView: isProfileView}) %>
+      <% } %>
+
+    <% }) %>
+  </div>
+    <div class="feed-end" data-question-index="<%= questionIndexValue %>" data-post-index="<%= postIndexValue %>" data-user-index="<%= userIndexValue %>">&nbsp;
+    </div>
+</div>

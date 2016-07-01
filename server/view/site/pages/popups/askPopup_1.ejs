@@ -1,0 +1,292 @@
+<% var askPopupId = componentId('askPopup', profile.id) %>
+<!-- <link rel="stylesheet" type="text/css" href="<%= genUrl('css/app-m.css') %>"> -->
+<div id="<%= askPopupId %>" data-user-id="<%= profile.id %>" data-target="<%= '/ask/'+profile.id %>">
+  <script>
+    $(function () {
+      app.components.askPopupN($('#<%= askPopupId %>'));
+    });
+  </script>
+  <style>
+    .video-wrapper-cir {
+      width: 100%; 
+      border-radius: 50%;
+      overflow: hidden;
+      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+    }
+
+  /* to be removed for circular profile videos  */
+    video {
+      /*display: none;*/
+      width: 100%;
+    }
+  </style>
+  <div class="row ask-overview fixed" style="top:3em;">
+    <div class="   small-12 columns">
+      <div class="panel" id="s3" >
+       <div class="row" >   
+          <div class="large-9 small-12 columns">
+            <textarea style="height:96px; min-height:1rem;" class="alt nm brr postArea fbl" data-maxlength="300" placeholder="Ask something sensible to @<%= profile.username %>" rows="4"></textarea>
+            <div class="row collapse profile-holder" id="e5">
+              <div class="small-8 medium-9 columns text-right"> 
+                <h5 class=" nm"><%= profile.name || profile.username %></h5>
+                <h6 class="scolor nm s2">@<%= profile.username %></h6>
+              </div>
+              <div class="small-3 medium-2 s-ws-right columns s-ws-top text-right">
+                <div class="pv" style="margin-top:-3em;">
+                  <div class="lg2br pvbr cs video-wrapper-cir intro-cir videoContainer">
+                    <div class="videoOverlay introOverlay">
+                      <img src="<%= profile.profile_photo_url || '/img/user.png' %>" class="img-f">
+                      <i class="icon-vid wc" style="left:43%; top:40%;"></i>
+                    </div>
+                    <div class="videoHolder">
+                      <video src="<%= profile.intro_video_url %>" class="introVideo" data-username="<%= profile.username %>" data-profile-status="1" data-crop-to-fit data-square-video style="display:none"></video>
+                    </div>
+                    <div class="videoEnded text-center" style="display: none; background-color: #000; position: relative;">
+                      <a href="<%= genUrl(profile.username) %>" target="_blank" style="top: 40%; left: 15%; position: absolute;">/<%= profile.username %></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="large-3 small-12 columns s-ws-top">
+            <% if (me === null) { %>
+              <div class="button fullwidth small nm askBtn postIntermediateBtn">Ask Question</div>
+            <% } else {%>
+              <div class="button fullwidth small nm askBtn postBtn" >Ask Question</div>
+            <% } %>
+            <div class="switch tiny round s-ws-top text-right anonymousDiv">
+              <input class="anon" id="anon" type="checkbox">
+              <label class="anonLabel" for="anon" style="vertical-align:middle;"></label>
+              <div class="scolor2 s2 anonymousTextDiv" id="t16"> Anonymous</div>
+            </div>
+          </div>
+          <div class="scolor s s-ws-top countDisplay" style="display:none;">
+            <span class="character-count"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row show-question" id="e3" style="margin-top:20em;">
+    <div class="medium-12 columns scolor s text-center b-ws-top cs questionDropDown" id="e2">
+      View other questions asked to @<%= profile.username %> <i class="icon-down"></i>
+    </div>
+  </div>
+  
+  <div class="row question-container" id="e1" style="display:none;" data-url="<%= genUrl('popup/question/' + profile.username) %>">
+    <div class="questionFeedHolder">
+      <%- include(partials.question, {questions : questions}); %>
+    </div>
+    <div class="small-12 columns questionBottom">&nbsp;</div>
+  </div>
+
+  <div class="row ask-intermediate" id="s2" style="display:none;">
+    <div class="small-12 columns m-ws-top">
+      <div class="f-1-2-5x scolor">
+        <span id="t10"> You </span>
+        asked
+        <span class="bkc"><%= profile.name || profile.username %></span>,
+        "<span class="askQuestionBody">dfsdfsdfdfgsdfgdsfgdsfg</span>"
+      </div>
+      <div class="panel s-ws-top">
+        <div class="row ask-intermediate-name">
+          <div class="large-6 small-12 columns">
+            <label>Name
+              <input class="asker-name" type="text">
+            </label>
+          </div>
+          
+          <div class="large-6 small-12 columns s-ws-top" id="t7">
+            <div class="row">
+              <div class="small-2 columns text-right" style="margin-top:2px;">
+            <i class="icon-hint yc f-2x"></i> 
+            </div>
+            <p class="small-10 columns scolor s xs-ws-top">
+              <%= profile.name || profile.username %> would want to address you by your name in the reply
+            </p>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="row" id="t6" style="display:none;">
+          <div class="large-6 small-12 columns">
+            <label>Email
+              <input class="asker-email" type="email">
+            </label>
+          </div>
+          <div class="large-6 small-12 columns s-ws-top ">
+            <div class="row" id="t5">
+              <div class="small-2 columns text-right" style="margin-top:2px;">
+            <i class="icon-hint yc f-2x"></i> 
+            </div>
+            <p class="small-10 columns scolor s xs-ws-top">
+              We need your email to autheticate and notify you when <%= profile.name || profile.username %> replies
+            </p>
+            </div>
+          </div>
+        </div>
+        
+          
+        <div class="row ask-intermediate-password" style="display:none;">
+          <div class="large-6 small-12 medium-4 columns">
+            <label>Password
+              <input class="asker-password" type="password">
+            </label>
+          </div>
+          <div class="large-6 small-12 medium-8 columns s-ws-top ">
+            <div class="row t5">
+              <div class="small-2 columns text-right" style="margin-top:2px;">
+            <i class="icon-hint yc f-2x"></i> 
+            </div>
+            <p class="small-10 columns scolor s xs-ws-top">
+              We need you to login to notify you when <%= profile.name || profile.username %> replies
+            </p>
+            </div>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="large-6 small-12 columns text-right t4">
+            <span class="scolor2 s2 s-ws-right s-ws-top">Step 1 of 2</span>
+            <span class="button small" id="nxt">Next</span>
+          </div>
+          <div class="large-6 small-12 columns text-right t7" style="display:none;">
+            <span class="scolor2 s2 s-ws-right s-ws-top">Step 2 of 2</span>
+            <span class="button small asker-submit-btn">Submit Question</span>
+            <span class="small asker-login-btn" style="display:none">Submit Question</span>
+          </div>
+          <div class="large-5 large-offset-1 small-12 columns scolor f-l s">
+            <div>or sign up using</div> 
+            <div class="xs-ws-top">
+              <div class="button tiny fb alt"><i class="icon-facebook"></i></div>
+              <div class="button tiny twt alt s-ws-left"> <i class="icon-twitter"></i></div>
+              <div class="button ggl tiny alt s-ws-left"> <i class="icon-google"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        $('#nxt').click(function(){
+          $('#t6').delay(500).fadeIn();
+          $('.t4').fadeOut();
+          $('.t7').delay(500).fadeIn();
+          $('#t7').fadeOut();
+        });
+        $('.asker-submit-btn').click(function(){
+          $('#s2').fadeOut();
+          $('#s').delay(500).fadeIn();
+        });
+    </script>
+  </div>
+
+  <div class="row share-container" id="s5" data-url="http://frankly.me/SoumyaSarkar/another-try-at-getting-success-slfnndu" style="display:none;">
+    <div class="small-12 large-10 small-centered columns s-ws-top">
+      <div class="panel">
+        <div class="row" style="opacity:0.6">
+          <div class="large-3 small-12 columns f-2x scolor2 s-ws-bottom">
+            Step 1
+          </div>
+          <div class="large-8 small-10 columns s-ws-top s-ws-bottom">
+            Asked a sensible question
+          </div>
+          <div class="large-1 small-2 columns s-ws-top"><i class="icon-check gc f-1-5x"></i>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-3 small-12 columns scolor2 f-2x scolor">
+            Step 2
+          </div>
+          <div class="large-8 small-12 end columns s-ws-top">
+            <div>Share your question</div> 
+            <div class="b-ws-top scolor">Get more upvotes and visibility from your friends</div>
+            <div class="s-ws-top">
+              <div class="button tiny fb alt"><i class="icon-facebook"></i></div>
+              <div class="button tiny twt alt s-ws-left" data-text="Checkout the latest question to <%= profile.name || profile.username %>"> <i class="icon-twitter"></i></div>
+              <div class="button ggl tiny alt s-ws-left"> <i class="icon-google"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="large-10 small-12 columns large-uncentered medium-centered b-ws-top">
+          <hr>
+        </div>
+        <div class="row">
+          <div class="small-12 columns text-right b-ws-top">
+            <div class="button alt sec small" data-skip>Skip <i class="icon-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ask-success row" style="display:none;">
+    <div class="small-12  columns">
+    <% if (profile.answer_count > 3) {%>
+      <h5 class="s-ws-top s-ws-bottom text-center scolor">Other answers by <%= profile.name || profile.username %></h5>
+
+      <div class="row">
+        <% answers.forEach(function (a) { %>
+          <div class="small-12 medium-6 columns end">
+            <%- include(partials.widgetBatchCard, {a: a, user: profile}) %>
+          </div>
+        <% }) %>
+      </div>
+      
+    <% } else {%>
+      <h5 class="s-ws-top s-ws-bottom text-center scolor">Other Franksters</h5>
+
+      <div class="row">
+        <% users.forEach(function (u) { %>
+          <div class="large-4 medium-6 small-12 columns">
+            <%- include(partials.userSm, {user: u, showTitle: true}) %>
+          </div>
+        <% }) %>
+      </div>
+    <%}%>
+      <div class="large-6 columns large-offset-3">
+        <a href="<%= genUrl(profile.username) %>"><span class="button small fullwidth alt">View Complete Profile of <%= profile.name || profile.username %> </span> </a>
+      </div>
+      <!-- <div class="large-6 columns">
+        <span class="button medium right fullwidth">View other people like <%= profile.name || profile.username %></span>
+       </div>-->
+    </div>
+  </div>
+</div>
+
+<!-- Google Code for Questions Asked Conversion Page
+In your html page, add the snippet and call
+goog_report_conversion when someone clicks on the
+chosen link or button. -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  goog_snippet_vars = function() {
+    var w = window;
+    w.google_conversion_id = 948713539;
+    w.google_conversion_label = "XuHaCKHQ0lsQw_CwxAM";
+    w.google_remarketing_only = false;
+  }
+  // DO NOT CHANGE THE CODE BELOW.
+  goog_report_conversion = function(url) {
+    goog_snippet_vars();
+    window.google_conversion_format = "3";
+    window.google_is_call = true;
+    var opt = new Object();
+    opt.onload_callback = function() {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  }
+  var conv_handler = window['google_trackConversion'];
+  if (typeof(conv_handler) == 'function') {
+    conv_handler(opt);
+  }
+}
+/* ]]> */
+</script>
+<script type="text/javascript"
+  src="//www.googleadservices.com/pagead/conversion_async.js">
+</script>

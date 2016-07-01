@@ -1,0 +1,75 @@
+<% questions.list.forEach(function(question, index) { %>
+  <% var questionCardId = componentId('questionCard', question.id); %>
+  <div class="large-6 medium-10 large-uncentered medium-centered small-12 columns xs-ws-top" id="<%= questionCardId %>">
+    <script type="text/javascript">
+      $(function () {
+        app.components.questionCard($('#<%= questionCardId %>'));
+      });
+    </script>
+    
+    <div class="panel">
+      <div class="row">
+        <div class="medium-12 columns text-right">
+          <div style="position:absolute; right:1em; top:0.5em; height:10px; z-index:1" id="options" data-dropdown="<%=questionCardId%>dropdown" aria-controls="<%=questionCardId%>dropdown" data-options="is_hover:true; hover_timeout:5000; align:left" aria-expanded="false"><i class="icon-options scolor2 cs"></i>
+          </div>
+          <ul id="<%=questionCardId%>dropdown" class="f-dropdown" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+            <li><a href="#" class="report-user" data-id="<%= question.id %>" data-type="post">Report</a></li>
+          </ul>
+               
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <h5><%= question.body %></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns xs-ws-bottom">
+          <div class="scolor s">asked by <span class="scolor2"><%= question.from.name || question.from.username %></span>
+            <% if (question.upvotes > 0) { %>
+             and <%= question.upvotes %> others
+            <% } %>
+          </div>
+        </div>
+        <div class="small-12 columns xs-ws-bottom">
+          <div class="row">
+            <div class="small-6 columns">
+              <div class="share-container" data-url="http://frankly.me/<%=question.to.username%>/<%=question.slug%>">
+                <span style="display: inline;">
+                  <i class="icon-facebook fb button tiny alt"></i> 
+                  <i class="icon-twitter twt button tiny alt" data-text="Checkout the latest question to <%= question.to.name || question.to.username %> "></i>  
+                  <i class="icon-google ggl button tiny alt"></i>
+                </span>
+              </div>
+            </div>
+            <div class="small-6 right columns">
+              <% if(question.is_voted && me) { %>
+                <% if (question.from.id !== me.id && question.to.id !== me.id) { %> 
+                  <div class="button alt tiny right requestBtn success" data-state="downvote" data-target="<%= genUrl('downvote-answer/'+question.id) %>">Answer Requested</div>
+                <% } %>
+              <% } else {%>
+                <div class="button alt tiny right requestBtn" data-target="<%= genUrl('request-answer/'+question.id) %>" data-state="request" data-share>Request Answer</div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // $('#e2').click(function(){
+    //   $('.postArea').animate({height:'2.2em'},400).attr('rows','1');
+    //   $('#t15').fadeOut();
+    //   $('#s3 .small-3').removeClass('s-ws-top');
+    //   $('#s1').animate({top: '1.9em'}, 800).addClass('s-ws-top-p lg2bg').css('border-bottom','1px solid #dedede');
+    //   $('#nav').addClass('fixed');
+    //   $('#e1').delay(800).slideDown(1000);
+    //   $('#e2').animate({marginTop: '0em'},"slow");
+    //   $('.pvbr').animate({width: '70%'},800);
+    //   $('#e3').animate({marginTop: '12em'},"slow");
+    //   $('#e5').fadeOut();
+    // });
+
+  </script>
+<% }); %>
+<div style="display:none" data-offset-stats="<%= questions.next_index %>"></div>

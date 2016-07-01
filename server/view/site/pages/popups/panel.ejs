@@ -1,0 +1,19 @@
+  
+<% if(pagename=='replyPopup') {
+  %>
+
+
+  <%- include(partials.playableAnswerSm); %>
+
+  <%
+} else if (pagename == "questions") {
+  %>
+  <%- include(partials.question); %>
+  <%
+} else{
+  %>
+   <%- include(partials.askPopup); %>
+  <%
+}
+%>
+

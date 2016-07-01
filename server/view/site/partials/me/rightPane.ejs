@@ -1,0 +1,11 @@
+<div class="columns small-9" id="dvProfile">
+  <% if (feed.items.length>0){ %>
+  <%- include(partials.feed) %>
+  <% } else {%>
+  <div class='row'>
+    <div class='small-9 columns end b-ws-top text-center scolor'>
+      You have not posted anything yet.
+    </div>
+  </div>
+  <%}%>
+</div>

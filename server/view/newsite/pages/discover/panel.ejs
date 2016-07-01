@@ -1,0 +1,28 @@
+<%- include(partials.categoryList) %>
+
+<% var feedId = componentId('feedHolder'); %>
+<div id='<%= feedId %>'>
+
+  <script >
+    $(function () {
+      app.components.discover($('#<%= feedId %>'));
+    });
+  </script>
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs custom-tabs">
+        <li class="custom-tabs tab"><a data-id ='featured' class="link custom-category active">FEATURED
+        </a></li>
+        <li class="custom-tabs tab"><a data-id ='trending' class="link custom-category">TRENDING
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='feed-holder'>
+
+    <%- include(partials.feedHolder) %>
+
+  </div>
+</div>

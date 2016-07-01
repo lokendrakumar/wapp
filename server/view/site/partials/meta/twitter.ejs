@@ -1,0 +1,52 @@
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:site" content="@franklymeapp">
+
+
+  <% if(pagename == 'profile') { %>
+
+    <meta name="twitter:title"  content="Ask <%= profile.name %> anything on frankly"/>
+    <meta name="twitter:description"  content="Check out the latest answers from <%= profile.name %> (@<%= profile.username %>)"/>
+    <meta name="twitter:image" content="http://api.frankly.me/image_resize?image_url=<%=profile.thumbnail_url%>&h=260&w=260"/>
+    <meta name="twitter:player" content="<%=profile.promo_video_url%>"/>
+    <meta name="twitter:player:width" content="260"/>
+    <meta name="twitter:player:height" content="260"/>
+    <meta name="twitter:player:stream" content="<%=profile.promo_video_url%>"/>
+    <meta name="twitter:player:stream:content_type" content="video/mp4"/>
+    
+  <%}%>
+  
+  <% if(pagename == 'post') { %>
+    <% if (post.is_answered) { %>
+      <meta name="twitter:title" content="<%=post.answer.author.name%> answers frankly: <%=post.answer.question.body %>"/>
+      <meta name="twitter:description" content="<%=post.answer.asker.name%> asked <%=post.answer.author.name%> : <%=post.answer.question.body%>.Checkout <%=post.answer.author.name%> video answer"/>
+      <meta name="twitter:image" content="http://api.frankly.me/image_resize?image_url=<%=post.answer.thumbnail_url%>&h=260&w=260"/>
+      <!-- player should point to template container for video url -->
+      <meta name="twitter:player"  content="<%=post.answer.promo_video_url %>"/>
+      <meta name="twitter:player:width" content="260"/>
+      <meta name="twitter:player:height" content="260"/>
+      <!-- Stream Attr should have direct video url to enable video playing native twitter app-->
+      <meta name="twitter:player:stream" content="<%=post.answer.promo_video_url%>"/>
+
+      <meta name="twitter:player:stream:content_type" content="video/mp4"/>
+          
+    <% } else { %>
+      <% if (post.question.to) { %>
+        <meta name="twitter:title" content="<%=post.question.to.name%> answers frankly: <%=post.question.body %>"/>
+        <meta name="twitter:description"
+              content="<%=post.question.from.name%> asked <%=post.question.to.name%> : <%=post.question.body %>."
+        />
+      <% } else { %>
+        <meta name="twitter:title" content="You were asked frankly: <%=post.question.body %>"/>
+        <meta name="twitter:description"
+              content="<%=post.question.from.name%> asked You : <%=post.question.body %>."
+        />
+      <% } %>
+    <% } %>
+
+  <%}%>
+  
+
+
+
+
+

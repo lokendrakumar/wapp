@@ -1,0 +1,192 @@
+
+<!-- body starts here -->
+
+     
+    <!-- From partials/common/answerLg.ejs -->
+
+    <% var answer = post.answer %>
+    <% var answerCardId = 'answer'+answer.id %>
+    <% var isProfileView =  ['profile', 'post'].indexOf(pagename) > -1 %>
+
+    <div class="row answer-card" id="<%= answerCardId %>" data-answer-id="answer.id">
+      <script>
+        $(function () {
+          app.answerCardLg($('#<%= answerCardId %>'));
+        });
+      </script>
+
+      <div class="columns <%= isProfileView ? 'small-11' : 'small-12' %>">
+        <div class="overlay overlaybg" style=
+        "background-image:url('<%= answer.thumbnail_url %>')">
+        </div>
+
+        <div class="overlay bgbk text-center">
+          <div class="row collapse">
+            <div class="small-1 s-ws-left text-right s-ws-top columns">
+                <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c">
+            </div>
+            <div class="small-10 columns text-left m-ws-top">
+            <h5 class="wc s-ws-left-p lfx2"><a href="/<%=answer.author.username %>" class="wc"><%= answer.author.name || answer.author.username %></a></h5>
+            </div>
+          </div>
+          <h3 class="serif wc f-2x s-ws-bottom b-ws-top-p xs-ws-left-p xs-ws-right-p">
+            <%= answer.question.body %>
+          </h3>
+
+          <i class="icon-play f-4x brandc cs link"></i>
+
+          <div class="s xs-ws-top wc">
+            <%= answer.views %> <span class="s">views</span>
+          </div>
+        </div>
+
+        <div class="panel-header nbrrbottom">
+          <div class="row">
+            <div class="columns small-1"><i class="icon-answer scolor2  f-2x" style="line-height: 0; margin-top: -5px"></i></div>
+
+            <div class="columns small-11">
+              <h5 class="scolor serif">
+                <a href="<%= '/'+answer.author.username+'/'+answer.question.slug %>" class="scolor">
+                  <%= answer.question.body %>
+                </a>
+              </h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel nbrrtop">
+          
+
+          <div class="row">
+            <div class="columns small-7">
+              <div class="videoHolder">
+                <video class="img-f" data-uuid="video-<%= answerCardId %>">
+                  <source src="<%= answer.video_url %>" type="video/mp4">
+                </video>
+              </div>
+            </div>
+
+            <div class="columns small-5 card-meta">
+              <div class="row text-right">
+                <div class="small-12 columns">
+                  <a data-dropdown="drop<%= answer.id %>"><i class="icon-down scolor2 s"></i></a>
+                  <ul class="f-dropdown text-left tiny" data-dropdown-content=""
+                  id="drop<%= answer.id %>" tabindex="-1">
+                    <li>
+                      <a href="#" data-reveal-id="embedModal">Embed</a>
+                    </li>
+                    <li>
+                      <a href="#" id="reportBtn">Report</a>
+                    </li>
+                    <li>
+                      <a href="<%=answer.promo_answer_video_url%>" id="reportBtn" download>Download</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="small-2 columns">
+                  <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c">
+                </div>
+                <div class="small-10 columns">
+                  <div class="s-ws-left xs-ws-top scolor"><a href="/<%= answer.author.username %>" class="scolor"><%= answer.author.name || answer.author.username %></a></div>
+                </div>
+              </div>
+              <div class="row scolor s text-center">
+            
+              <%if (answer.is_liked && me) { %>
+                <div class="b-ws-top b-ws-top-p small-6 cs columns link likeBtnTrg"
+                      data-target="<%= '/unlike/'+answer.id %>" data-state="liked">
+                  <i class="icon-like f-2x likeBtnIcon brandc"></i>
+                  <div class="likeBtn">
+                    Liked <span class="s scolor2 num_likes"><%= answer.num_likes %></span>
+                  </div>
+                
+              <% } else { %>
+                <div class="b-ws-top b-ws-top-p small-6 cs columns link likeBtnTrg"
+                      data-target="<%= '/like/'+answer.id %>" data-state="unliked">
+                  <i class="icon-like f-2x likeBtnIcon"></i>
+                  <div class="likeBtn">
+                    Likes <span class="s scolor2 num_likes"><%= answer.num_likes %></span>
+                  </div>
+                
+              <% } %>  
+                  
+                </div>
+                <!-- <div class="s-ws-top small-4 cs columns">
+                <div><i class="icon-comment f-1-25x"></i></div>
+                <div>Comments <span class="s scolor2">123</span></div>
+                </div> -->
+
+                <div class="b-ws-top b-ws-top-p small-6 cs columns link">
+                <% var slugBody = answer.question.slug %>
+                <%  var lastIndex = slugBody.lastIndexOf("-"); %>
+                <%   slugBody = slugBody.substring(0, lastIndex);%>
+                <%   slugBody=slugBody.replace(/-/g,' ');%>
+                <%    var emailBody='Watch ' + answer.author.username + '\'s answer to "' + slugBody + '" at: %0A%0A' + "http://frankly.me/" + answer.author.username + "/" + answer.question.slug;%>
+
+                  <div id="icon-share-<%= answerCardId %>"
+                      data-url="http://frankly.me/<%= answer.author.username %>/<%= answer.question.slug %>"
+                      data-email="<%= answer.author.username %>"
+                      data-slug="<%= emailBody %>"
+                      data-title="A video has been shared to you via Frankly.me"
+                  ></div> 
+                  <br />
+                  <div>
+                    Share <span class="s scolor2 num_shares"><%= answer.num_shares %></span>
+                  </div>
+                </div>
+              </div>
+
+              <% var totalComments = parseInt(answer.num_comments) %>
+              <% var shownComments = answer.num_comments < 3 ? totalComments : 3 %>
+              <div class="row comments <%= isProfileView ? '' : 's' %>"
+                    style="<%= isProfileView ? 'margin-top:12.4em' : 'margin-top:11.2em' %>"
+                    data-id="<%= answer.id %>"
+                    data-source="<%= '/'+answer.id+'/comments' %>"
+                    data-loaded-comments="<%= shownComments %>"
+                    data-total-comments="<%= totalComments %>"
+              > 
+                <div class="s scolor2 xs-ws-bottom small-8 columns lfx comments-info <%= shownComments > 0 ? '' : 'hide' %>">
+                  Showing <span class="count"><%= shownComments %></span>
+                  of <span class="total"><%= totalComments %></span> comments
+                </div>
+
+                <div class="small-4 s columns text-right show-all <%= shownComments > 0 ? '' : 'hide' %>">
+                  <a class="right s scolor cmtTrg" href="#">Expand</a>
+                </div>
+
+                <div class="comment-box small-12 columns s-ws-bottom">
+                  <div class="comment-box-inner">
+                    <%- include(partials.comments, {comments: answer.comments}) %>
+                  </div>
+                  <% if (totalComments > shownComments) { %>
+                    <a href="#" class="load-more">+ Load More</a>
+                  <% } %> 
+                </div>
+
+                <div class="row comment-input">
+                  <% if (shownComments === 0) { %>
+                    <div class="small-12 columns s scolor xs-ws-bottom" style="margin-bottom: 1.8em;">
+                      No comments yet, be the first to comment
+                    </div>
+                  <% } %>
+                  <div class="small-12 columns scolor2">
+                    <input
+                      class="alt nm comment-input"
+                      placeholder="Press enter to Post" type="text"
+                      data-user-img="<%= me ? (me.profile_photo_url || '/img/user.png') : '/img/user.png' %>"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+ 
+<!-- body ends here -->

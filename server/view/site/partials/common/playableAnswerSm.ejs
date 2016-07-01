@@ -1,0 +1,36 @@
+<% var panelId = componentId('playableAnswerSm', answer.id) %>
+
+<div class="panel fx m-ws-bottom np" id="<%= panelId %>">
+  <script>
+    $(function () {
+      app.components.playableAnswerCard($('#<%= panelId %>'));
+    });
+  </script>
+  
+  <video src="<%= answer.video_url %>" class="img-f nm" style="display:block;" data-username="<%=answer.author.username %>" data-uuid="video-<%= panelId %>" preload="none">
+  </video>
+
+  <div class="overlay fx bgbk text-center">
+    <div style="position: relative; height: 100%">
+      <div class="row" style="position: absolute; bottom: 12px; left: 10px;">
+        <div class="small-4 medium-3 large-2 columns s-ws-left s-ws-top" >
+          <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c img-f">
+        </div>
+        <div class="small-7 medium-8 large-9 columns text-left wc s-ws-top">
+          <div class=" s lfx"><%= answer.author.name || answer.author.username %></div>
+        </div>
+      </div>
+      <div class="question-play">
+        <h6 class="s f-l wc s-ws-top-p s-ws-bottom xs-ws-left-p xs-ws-right-p"><%= answer.question.body %> %></h6>
+        <i class="icon-play f-2x brandc cs link"
+          data-modal-id="answerVideoModal"
+          data-modal-url="<%= '/modal/answer-video/'+answer.id %>"></i>
+      </div>
+      <div class="s2 xs-ws-top wc">
+        <% if(answer.views > 0) { %>
+          <%= answer.views %> <span class="s">views</span>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

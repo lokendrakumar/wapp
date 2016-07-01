@@ -1,0 +1,18 @@
+<%- include(partials.top) %>
+<!-- body starts here -->
+
+<%- include(partials.modals) %>
+
+<% var navIsSticky = ['homepage'].indexOf(pagename) === -1 %>
+<!-- NOTE: div below should have class 'fixed' in homepage and 'sticky' in others -->
+<!-- Add 'reveal' class to .contain-to-grid and .nav on 100px scroll -->
+<div class="contain-to-grid fixed" id="nav">
+  <%- include(partials.nav) %>
+</div>
+
+<div id="panel">
+  <%- include(partials.panel) %>
+</div>
+
+<!-- body ends here -->
+<%- include(partials.bottom) %>

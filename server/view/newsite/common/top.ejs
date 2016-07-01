@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <% var deepLink = deepLink %>
+
+    <title><%= _.isString(title) ? title : 'Frankly.me | Ask me anything' %></title>
+    <%- include(view('/site/partials/meta/facebook')) %>
+    <%- include(view('/site/partials/meta/google')) %>
+    <%- include(view('/site/partials/meta/twitter')) %>
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/newsite.css">
+    <link rel="stylesheet" href="/css/frankly-icons.css">
+    <link rel="stylesheet" href="/css/nprogress.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!-- <link rel="stylesheet" href="/css/materialize.min.css"> -->
+    <!-- <link href="https://fontastic.s3.amazonaws.com/kCG2HLP9avBFEWJu2yZ2zd/icons.css" rel="stylesheet"> -->
+
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">window._trackJs = { token: '67d3c74d6ef34fdbbab5854412f01740' };</script>
+    <script type="text/javascript" src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" crossorigin="anonymous"></script>
+    <!-- END TRACKJS -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/pushstream.js" async></script>
+    <script src="https://frankly.me/js/jquery.carousel.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          carouselWidth:230,
+          carouselHeight:250,
+          directionNav:true,
+          reflection: false,
+          shadow:true
+        });
+        $('ul.video-tabs li').click(function(){
+          var tab_id = $(this).attr('data-tab');
+          $('ul.tabs li').removeClass('current');
+          $('.tab-content').removeClass('current');
+          $(this).addClass('current');
+          $("#"+tab_id).addClass('current');
+        })
+      });
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53424885-5', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <% if (deepLink !== undefined) { %>
+    <link rel="alternate"
+              href="<%= deepLink %>" />
+    <% } %>
+
+
+  </head>
+  <% var from = typeof velfie == "undefined" ? '' : velfie; %>
+  <% var token = typeof token == "undefined" ? '' : token; %>
+  <% if (me) { %>
+    <body  data-from="<%=from ? from : ''%>" data-username="<%=me.username%>" data-tok="<%=token%>">
+  <%} else { %>
+      <body data-from="<%=from ? from : ''%>" data-tok="<%=token%>">
+  <%}%>
+  	<style>
+  	    body {
+  	        background: #FFFEF0!important;
+  	    }
+  	</style>

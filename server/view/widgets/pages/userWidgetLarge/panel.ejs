@@ -1,0 +1,31 @@
+<div class="row userWidgetLarge" style="margin-bottom: 0px">
+  <script>
+    $(function () {
+      app.components.askUserWidgetLarge($('.userWidgetLarge'));
+    });
+  </script>
+  <div class="col s12 m8 l6" style="padding: 0px;">
+    <div class="row valign-wrapper" style="margin-top:15px;">
+      <div class="col s5 valign center-align padding-none videoContainer circle-container">
+        <div class="valign-wrapper videoHolder">
+          <video class="introVideo" data-crop-to-fit="" data-square-video="" src="<%=user.intro_video_url%>" preload="none" poster="/img/loader.gif" style="width:100%; display:none;"></video>
+          <img class="userImg" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%=user.thumbnail_url %>" style="width: 100%;cursor:pointer;">
+        </div>
+      </div>
+      <div class="col s7 valign">
+        <div>
+          <p>
+            <span class="grey-text text-darken-2" style="font-size: 1em; font-weight:bold;"><a style="color:#9E9E9E" href="<%=genUrl(user.username)%>" target="_blank">@<%=user.username%></a></span><br/>
+            <%=user.bio%>
+          </p>
+        </div>
+        <div class="btn btn-full btn-decoration-none waves-effect red lighten-1 askBtn" data-url="<%=genUrl('widgets/ask/' + user.username + '/question')%>">
+          <img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image"> Ask <%=user.username%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,104 @@
+
+<!--static page-->
+
+<div class="static-page-header">
+  <div class="container">
+    <img src="http://frankly.me/img/logo.png" class="left" />
+    <a href="http://frankly.me" target="_blank" class="header-nav left"><i class="icon-home"></i>Home</a>
+    <a href="http://frankly.me/discover" target="_blank" class="header-nav active left"><i class="icon-compass"></i>Discover</a>
+   
+    <ul class="right">
+      <% if (me == null) { %>
+        <li><a href="#frankly-auth-modal" class="modal-trigger header-nav btn-login" style="line-height: 35px;">Login</a></li>
+      <% } else { %>
+        <li><a href="" class="logout header-nav btn-login"  style="line-height: 35px;">Logout</a></li>
+      <% } %>
+    </ul>
+  </div>
+</div>
+<script>
+  var $logOutBtn = $('.logout');
+  $logOutBtn.on('click', function (ev) {
+   ev.preventDefault();
+   app.utils.ajax.post("/logout").then(function (){
+     Materialize.toast('Logged Out', 5000);
+     window.location.reload();
+   });
+  });
+</script>
+<!--static page end-->
+<div class="">
+ <%- include(partials.header) %>
+</div>
+<% var campaignPanelId = 'campaignPanel' + user.id %>
+<div class="campaigns-panel" id="<%= campaignPanelId %>">
+  <script>
+  $(function() {
+    app.components.campaignPanel($('#<%= campaignPanelId %>'));
+  });
+  </script>
+  <p>&nbsp;</p>
+  
+<!-- for particular campaign , to be deleted when campaign is over  -->
+
+  <% if (description && user.username === "RadioAmity") { %>
+  <div class="card-panel">
+    <p style="font-size: smaller;
+    font-style: italic;
+    font-family: sans-serif">
+      Whoa! Here is your chance to become a Radio Jockey at Radio Amity 107.8 FM. Show what you’ve got! Download FranklyMe app on your smartphone, and connect with the Amity Radio profile on FranklyMe to register and post your audition by answering four simple questions.</br></br>
+       
+      Wait, there’s more! RJ Rahul Makin will be judging and mentoring the contest. So if you want to interact with him, or have any questions for him, visit his FranklyMe profile (RJRahulMakin) </br></br>
+       
+      You can’t get a better platform to prove your mettle. For more information about the contest visit <a href="https://www.facebook.com/radioamity107.8?fref=ts">
+       https://www.facebook.com/radioamity107.8?fref=ts
+      </a>
+    </p>
+  </div>
+  <style>
+  .background-profile{
+   background:url(/img/5.jpg) no-repeat center center; 
+   background-size: cover;
+
+  }
+  </style>
+
+  <%  }; %>
+
+
+  <% if (description && user.username === "YouthEngagementTeam") { %>
+  <div class="card-panel">
+    <p style="font-size: small;
+    font-style: italic;
+    font-family: sans-serif">
+      Your friendship is too crazy to be expressed in a friendship band! This Friendship Day, Show your friend ship in a video selfie. </br>
+      Tag your pals.</br>
+      Share it with your friends & the world. </br>
+      Win prizes. </br>
+    </p>
+  </div>
+  <style>
+  .background-profile{
+   background:url(/img/friendship-campaign.jpg) no-repeat center center; 
+   background-size: cover;
+  
+  }
+  .profile-user {
+    font-weight: 500;
+    font-size: 18px;
+    text-shadow: 2px 2px 2px black;
+  }
+  </style>
+
+  <%  }; %>
+
+<!-- end of specific campaign content  -->
+
+  <div class="row masonryGrid">
+    <% openQuestions.forEach(function (i) { %>
+      <div class="col s12 l4 m6 openQuestionPartial masonryGridItem" data-url="<%= genUrl('widgets/openQuestionWidget/'+user.username+'/'+i)  %>" data-slug="<%=i%>" data-username="<%=user.username%>">
+            
+      </div>
+    <% }); %>
+  </div>
+</div>

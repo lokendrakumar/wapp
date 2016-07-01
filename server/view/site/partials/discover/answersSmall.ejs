@@ -1,0 +1,5 @@
+<h5><i class="gc icon-pulse"></i> <%= title %></h5>
+
+<% feed.items.forEach(function (item) { %>
+  <%- include(partials.answerSm, {answer: item.model}) %>
+<% }) %>

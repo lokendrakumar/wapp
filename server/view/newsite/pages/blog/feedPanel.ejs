@@ -1,0 +1,22 @@
+<% var feedHolderId = componentId('profileFeedRight') %>
+  <div class="row" id="<%= feedHolderId%>">
+    <script>
+      $(function() {
+        app.components.profileFeedRight($('#<%= feedHolderId %>'));
+      });
+    </script>
+
+    <div id="container">
+      <div class="col s12 m4">
+        <ul class="custom-tabs-menu">
+            </ul>
+        </div>
+
+    <div class="col s12 m8">
+        <div class="my-tab">
+            <div id="tab-all" class="my-tab-content">
+                    <%- include(partials.profileall, blogs)%>
+             </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<% var tracks = componentId('tracks') %>
+<% var category = category ? category : 'Category Name'%>
+
+<div class="card white avl-tarcks custm-karaoke-card" id="<%=tracks%>">
+		<script>
+			$(function () {
+			  app.components.dubCategoryAudio($('#<%=tracks%>'));
+			});
+		</script>
+ <h6 class=" grey-text text-darken-2 karaoke-sectitle"><span class="font-500">Selected Category:</span> <%= category %></h6>
+<ul class="collection margin-none  with-header track trackwrap">
+
+	<% feed.items.forEach(function (item) { %>
+		<li class="collection-item  grey-text text-darken-2" data-trackid="<%= item.track.id %>"><span><%= item.track.display_name %></span>
+			<div class="btn-control">
+				<div class="right toggle-opt"><i class="material-icons toggle-pos">more_vert</i>
+					<div class="opt-wrap"> Place Above:
+						<input type="text" placeholder="Type a Num..">
+						<i class="material-icons toggle-close">close</i>
+					</div>
+				</div>
+				<i class="material-icons right deleteBtn" data-cat-id="<%= category_id %>" data-song-id="<%= item.track.id %>">close</i>
+				<i class="material-icons right playBtn">
+					play_arrow
+				</i>
+				<audio class="audio">
+					<source src="<%=item.track.url%>" type="audio/mp3">
+				</audio>
+			</div>
+		</li>
+		<% }) %>
+</ul>
+
+</div>
+
+<script>
+	$(document).ready(function () {
+		$(".toggle-opt .toggle-pos").click(function () {
+			$(".opt-wrap").hide();
+			$(this).parent().find(".opt-wrap").show();
+		});
+		$(".toggle-opt .toggle-close").click(function () {
+			$(".opt-wrap").hide();
+		});
+
+	});
+</script>

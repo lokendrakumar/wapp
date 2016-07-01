@@ -1,0 +1,26 @@
+<% var feedHolderId = componentId('widgetFeedHolder') %>
+<% var questionIndexValue = typeof(questionIndex) === 'undefined' ? 0 : questionIndex %>
+<% var postIndexValue = typeof(postIndex) === 'undefined' ? 0 : postIndex %>
+<% var userIndexValue = typeof(userindex) === 'undefined' ? 0 : userindex %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.stdFeedHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div >
+    <div class="row row-columns">
+    <ul class="feed">
+      <% answers.forEach(function (answer) {  %>
+      <li>
+        <div class="col s12 m6 end">
+          <%- include(partials.answerCard, {post: {answer: answer}} )%>
+        </div>
+        </li>
+      <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="feed-end" data-post-index="<%= pageNum %>"></div>
+</div>

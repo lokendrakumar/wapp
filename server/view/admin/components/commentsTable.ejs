@@ -1,0 +1,32 @@
+<% var comment = componentId('comment') %>
+
+<tbody id="<%= comment %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.commentModerate($('#<%= comment %>'));
+    });
+  </script>
+  <% feed.comments.forEach(function (comment){ %> 
+    <tr>
+      <td>
+        <span class="font_500">@<%= comment.comment.author.username %></span> wrote
+      </td>
+      <td>
+        <span class="font_500">@<%= comment.post.author %></span>
+      </td>
+      <td class="center-align">
+        <span><a class="grey-text text-darken-2" target="_blank" href="<%= comment.post.web_link %>"><i class="material-icons">launch</i></a> </span>
+      </td>
+      <td>
+        <textarea class="commentText" type="text" row="5" data-flag="false" data-comment="<%= comment.comment.id %>"> <%= comment.comment.body %> </textarea>
+      </td>
+      <td class="center-align">
+        <a class="font_400 commentApprove tooltipped" data-position="bottom" data-delay="50" data-tooltip="Approve this comment"><i class="material-icons">done</i></a>
+      </td>
+      <td class="center-align">
+        
+        <a class="font_400 commentDelete tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete this comment"><i class="material-icons">delete</i></a>
+      </td>
+    </tr>
+  <% }) %>
+</tbody>

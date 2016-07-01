@@ -1,0 +1,21 @@
+<div class="row videoComment">
+  <script>
+    $(function () {
+      app.components.videoComment($('.videoComment'));
+    });
+  </script>
+  <!-- <div class="row">
+    <div class="col s12 m6 l4">
+      <div class="commentBtn" data-url="/recorder/recorder">
+        <div class="btn waves-effect btn-decoration-none red lighten-1 ">
+          <img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image" > comment
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="col s12 m6 l4">
+    <div class="commentBtn" data-url="<%= genUrl('recorder/recorder?type=blog&resourceId=&sourceUrl=' + sourceUrl) %>">
+      <div class="waves-effect waves-light btn red lighten-1" style="text-transform: capitalize!important"><img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image">Add Video comment</div>
+    </div>
+  </div>
+</div>

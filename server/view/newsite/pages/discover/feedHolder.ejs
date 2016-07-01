@@ -1,0 +1,33 @@
+
+<% var feedHolderId = componentId('feedHolderId', categoryName ) %>
+
+<% if(categoryName ==='featured') { %>
+  <% var feedCategoryName ="Featured" %>
+<% } else { %>
+  <% var feedCategoryName ="Trending" %>
+<% } %>
+
+<div class = '<%= categoryName %>'>
+  <div class ='row'>
+    <div class="col s12 m12">
+      <div class="card custom-card-bgcolor">
+        <div class="card-content black-text custom-card-content">
+          <div class="card-header-custom">
+            <span><%= feedCategoryName%> Franksters</span>
+          </div>
+          <% feed.items.forEach(function (item) { %>
+            <% if(item.type === 'user_list') { %>
+              <% item.user_list.forEach(function (useritem) { %>
+                <div class="col s12 m4">
+                  <%- include(partials.userCard, {users: useritem.model}) %>
+                </div>
+              <% }); %>
+            <% } %>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include(partials.feed, {feed: feed}); %>

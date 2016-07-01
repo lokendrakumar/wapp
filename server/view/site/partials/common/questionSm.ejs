@@ -1,0 +1,67 @@
+<% var prefix = typeof(prefix) === 'undefined' ? '' : prefix %>
+<% var isPanel = typeof(isPanel) === 'undefined' ? false : isPanel %>
+<% var bottomSpace = typeof(bottomSpace) === 'undefined' ? false : bottomSpace %>
+<% var panelId = componentId('questionSm', question.id) %>
+<% var namedUpvotes = 1 %>
+
+<div class="<%= isPanel ? 'panel' : '' %> <%= bottomSpace ? 'm-ws-bottom' : '' %>" id="<%= panelId %>">
+  <script>
+    $(function () {
+      app.components.questionCard($('#<%= panelId %>'));
+    });
+  </script>
+  <div class="row">
+    <div class="small-3 columns">
+      <img class="img-c img-f" src="<%= question.to.profile_photo_url || '/img/user.png' %>">
+    </div>
+
+    <div class="small-7 end columns scolor s lfx xs-ws-top">
+      <% if (question.to) { %>
+        <a href="<%= genUrl(question.to.username) %>" class="scolor">
+          <%= question.to.name || question.to.username %>
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+  <h6 class="serif xs-ws-top">
+    <% if (question.to) { %>
+      <a href="<%= genUrl(question.to.username + '/' + question.slug) %>"><%= question.body %></a>
+    <% } else { %>
+      <a><%= question.body %></a>
+    <% } %>
+  </h6>
+  
+  <div class="row">
+    <p class="small-7 columns s2 scolor2 nm">
+      Asked by 
+      <span class="spanYou">
+        <% if(question.is_voted && me) { 
+            namedUpvotes++;
+            %>
+          You, 
+        <% } %>
+      </span>
+      <% if (question.from.username !== 'Anonymous') {%>
+        <a href="<%= genUrl(question.from.username) %>" class="scolor"><%= question.from.name || question.from.username %></a>
+      <% } else { %>
+        <span class="scolor"><%= question.from.name || question.from.username %></span>
+      <%}%> 
+      <span class="upvoteText">and <span class="spanUpvotes"><%= question.upvotes - namedUpvotes %></span> others </span>
+    </p>
+    
+    <div class="small-5 columns text-right">
+      <% if(question.is_voted && me) { %>
+        <% if (question.from.id !== me.id && question.to.id !== me.id) { %> 
+          <div class="button tiny alt requestBtn fullwidth success"  data-state="downvote" data-target="<%= '/downvote-answer/'+question.id %>">
+              <i class="icon-check"></i> Answer Requested
+          </div>
+        <% } %>
+      <% } else {%>
+          <div class="button tiny alt fullwidth requestBtn sec" data-target="<%= '/request-answer/'+question.id %>" data-state="request">
+            Request Answer
+          </div>
+      <%}%>
+    </div>
+  </div>
+</div>

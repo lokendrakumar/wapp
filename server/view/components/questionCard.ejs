@@ -1,0 +1,68 @@
+<% var questionCardId = componentId('question', question.id) %>
+
+<div class="frankly-question-card  grey darken-4 " id ='<%=questionCardId%>' >
+
+   <script>
+    $(function () {
+      app.components.questionCard($('#<%=questionCardId%>'));
+    });
+  </script>
+
+  <div class="card-header" style="background-color: #2b2b2b;">
+
+    <% if (!question.is_anonymous) { %>
+    <span><strong><a href="<%= genUrl(question.from.username) %>" target="_blank" class="">@<%= question.from.username %></a></strong> asked</span>
+    <%} else{ %>
+      <span><strong>@<%= question.from.username %></strong> asked</span>
+    <%}%>
+    <i class="icon-options dropdown-button-new right white-text link" data-activates="<%=question.id %>dropdown0">
+        <ul id="<%=question.id %>dropdown0" class="dropdown-content-new">
+      <li><a href="" class="report-user" data-id="<%= question.id %>" data-type="post">Report</a></li>
+    </ul>
+    </i>
+    
+  </div>
+  <div class="card-content question-text" style="padding: 10px; background-color: #343434">
+    <div class="valign-wrapper" style="padding: 5px 0 15px 0;">
+      <p class="valign"><a href="<%= genUrl(question.to.username+'/'+question.slug) %>"><%=question.body %></a></p>
+    </div>
+    <div class="row valign-wrapper"  style="margin-bottom: 0px;">
+      <div class="col s4 videoContainer circle-container" style="padding: 0px; margin-left:1em;">
+        <div class="videoHolder link">
+          <video id="profile-video" data-crop-to-fit="" data-square-video=""
+          src="<%=question.to.intro_video_url%>" style="width: 100%; display: none;" class="qustionCardIntroVideo" data-uuid="intro-question-<%= question.to.id %>" preload="none" poster="/img/loader.gif"></video>
+          <img class="userImg" data-src="" src="<%= question.to.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+        </div>
+      </div>
+      <div class="col s8 right valign">
+        <div style="padding: 10px;">
+          <a href="<%= genUrl(question.to.username) %>" target="_blank"
+            class="">
+            @<%= question.to.username %>
+          </a>
+        </div>
+
+        <% if(me && question.to.id === me.id) { %>
+            <div class="btn-follow center-align custom-center recordBtn success"  data-state="downvote" data-target="<%= genUrl('recorder/recorder?type=question&resourceId=' + question.id) %>">
+                <i class="icon-check"></i> Record Answer
+            </div>
+          
+
+        <%} else if(question.is_voted && me) { %>
+          <% if (question.from.id !== me.id && question.to.id !== me.id) { %>
+            <div class="btn-follow center-align custom-center requestBtn success"  data-state="downvote" data-target="<%= '/downvote-answer/'+question.id %>">
+                <i class="icon-check"></i> Answer Requested
+            </div>
+          <% } %>
+        <% } else {%>
+            <div class="btn-follow center-align custom-center requestBtn sec" data-target="<%= '/request-answer/'+question.id %>" data-state="request">
+              Request Answer
+            </div>
+        <%}%>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

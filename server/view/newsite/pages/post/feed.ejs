@@ -1,0 +1,9 @@
+<%if(!post.is_answered && !post.question.is_open) { %>
+  <%- include(partials.questionCard, {question :post.question} ) %>
+<%}%>
+<%if(post.is_answered) { %>
+  <%- include(partials.answerCard ) %>
+<%}%>
+<%if(!post.is_answered && post.question.is_open) { %>
+  <%- include(partials.openQuestionCard, {post :{question:post.question, user: user}} ) %>
+<%}%>

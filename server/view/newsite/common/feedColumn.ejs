@@ -1,0 +1,9 @@
+<% if(item.type === 'answer') { %>
+  <%- include(partials.answerCard, {post: {answer:item.model}}) %>
+<% } %>
+<% if(item.type === 'question' && !item.model.is_open) { %>
+  <%- include(partials.questionCard, {question: item.model}) %>
+<% } %>
+<%if(item.type === 'user'){ %>
+  <%- include(partials.singleUserCard, {users : item.model})%>
+<% } %>

@@ -1,0 +1,108 @@
+<% var topDiv = componentId('topDiv') %>
+<div class="<%= topDiv %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.topPanelDubsmash($('.<%= topDiv %>'));
+    });
+  </script>
+ <div class="row search-wrap no-mr-bt">
+	<div class="col s6">
+		<input type="search" placeholder="Search.." class="grey-text text-darken-2 no-mr-bt search-dubsmash" data-id="">
+	</div>
+
+	<div class="col s6 relative">
+
+
+		<a class="waves-effect waves-light btn right btn-add-category"><i class="material-icons left">library_add</i>Add Category </a>
+
+		<a class="waves-effect waves-light btn right mr-rt-10 btn-add-track">
+			<i class="material-icons left">playlist_add</i>Add New Track
+		</a>
+
+		<div class="add-wrap category-add card">
+			<div class="input-field">
+				<input placeholder="Category Name" type="text" class="categoryName">
+			</div>
+			<div class="file-field input-field">
+				<input class="file-path validate" type="text" />
+				<div class="btn">
+					<span>Add Image</span>
+					<input type="file" class="categoryImage" />
+				</div>
+			</div>
+			<div class="input-field">
+				<input placeholder="Twitter handle" type="text" class="categoryTwitter">
+			</div>
+
+			<p>
+				<input type="checkbox" class="filled-in categoryTop" id="filled-in-box" />
+				<label for="filled-in-box">Add on Top</label>
+			</p>
+
+			<div class="input-field">
+				<input value="Add New Category" type="submit" class="waves-effect waves-light btn addCategory">
+			</div>
+		</div>
+
+
+		<div class="add-wrap track-add card">
+			<div class="input-field">
+				<input placeholder="Track Name" type="text" class="trackName">
+			</div>
+			<div class="file-field input-field">
+				<input class="file-path validate" type="text" />
+				<div class="btn">
+					<span>Instumental MP3</span>
+					<input type="file" class="instrumentMP3" />
+				</div>
+			</div>
+			<div class="file-field input-field">
+				<input class="file-path validate" type="text" />
+				<div class="btn">
+					<span>Voice MP3</span>
+					<input type="file" class="voiceMP3" />
+				</div>
+			</div>
+			<div class="input-field">
+				<input placeholder="Twitter handle" type="text" class="trackTwitter">
+			</div>
+
+			<div class="input-field">
+				<input value="Add New Track" type="submit" class="waves-effect waves-light btn addTrack">
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+	<script>
+		$(document).ready(function () {
+			$(".btn-add-category").click(function () {
+				$(".track-add").slideUp();
+				$(".category-add").slideToggle();
+			});
+
+			$(".btn-add-track").click(function () {
+				$(".category-add").slideUp();
+				$(".track-add").slideToggle();
+			});
+		});
+	</script>
+
+</div>
+<div class="card transparent search_resultspan searchResult" style="display:none">
+	<ul class="collection margin-none ul-searchResult" data-id="">
+		<li class="collection-item  grey-text text-darken-2 li-searchResult">
+			<i class="material-icons right closeBtn">close</i>
+			<i class="material-icons right addTrack">library_add</i>
+			<i class="material-icons right playBtn">play_arrow</i>
+			<audio class="audio-search">
+				<source src="" type="audio/mp3">
+			</audio>
+			<span class="trackName">
+      </li>
+    </ul>
+  </div>
+</div>

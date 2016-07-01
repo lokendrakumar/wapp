@@ -1,0 +1,202 @@
+<% var isProfileView = typeof(isProfileView) === 'undefined' ? false : true %>
+<% var questionCardId = componentId('answerableQuestionLg', question.id) %>
+
+<% var attachedVideoModalId = questionCardId+'attachedVideoModal' %>
+<% var videoPreviewModalId = questionCardId+'videoPreviewModal' %>
+<% var videoCaptureModalId = questionCardId+'videoCaptureModal' %>
+<% var namedUpvotes = 1 %>
+
+<div id="<%= attachedVideoModalId %>" class="reveal-modal small np" data-reveal>
+  <div class="row">
+    <div class="small-8 columns videoContainer" style="min-height: 500px;">
+      <div style="overflow:hidden; display:block; height:100%;" class="videoHolder">
+        <video data-crop-to-fit data-record></video>
+        <audio style="display: none;"></audio>
+      </div>
+    </div>
+    <div class="small-4 columns b-ws-top">
+      <div class="button fullwidth small uploadVideoButton" >Add Video</div>
+      <div class="s-ws-top text-center rejectVideoButton" ><a>Reject Answer</a></div>
+    </div>
+  </div>
+</div>
+
+<div id="<%= videoCaptureModalId %>" class="reveal-modal small np" data-reveal>
+  <!-- Not setting autoplay here because videos and audios might need synchronization -->
+  <!-- based on the os of the end user -->
+
+  <div class="row">
+    <div class="small-8 columns videoContainer" style="min-height: 500px;">
+      <div class="videoHolder" style="overflow:hidden; display:block; height:100%;">
+        <video autoplay data-crop-to-fit data-record></video>
+      </div>
+    </div>
+    <div class="small-4 columns b-ws-top b-ws-top-p">
+      <div class="recordBtn button alt fullwidth small"><i class="icon-record"></i> <span class="recordVideo">Record</span></div>
+      <div class="row">
+        <div class="small-8 columns">
+          <span class="time-played">0:00</span> / <span class="max-time">1:30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- -------------Modals End---------------- -->
+
+<div class="row question-card" id="<%= questionCardId %>"
+  data-attached-video-modal-id="<%= attachedVideoModalId %>"
+  data-preview-video-modal-id="<%= videoPreviewModalId %>"
+  data-capture-video-modal-id="<%= videoCaptureModalId %>"
+  data-question-id="<%= question.id %>" 
+  >
+  <script>
+    $(function () {
+      app.components.answerableQuestionCard($('#<%= questionCardId %>'));
+    });
+  </script>
+
+  <div class="columns <%= isProfileView ? 'small-9' : 'small-10' %>">
+    <div class="panel">
+      <div class="row collapse">
+        <div class="small-1 small-offset-1 columns">
+          <img src="<%= question.to.profile_photo_url || '/img/user.png' %>" class="img-c img-h">
+        </div>
+        <div class="small-7 columns">
+          <div class="scolor lfx" style="margin-top:4px;">
+            <a href="/<%= question.to.username %>" class="scolor">
+              <%= question.to.name || question.to.username %>
+            </a>
+          </div>
+        </div>
+
+        <div class="small-3 columns text-right">
+          <a data-dropdown="drop<%= questionCardId %>"><i class="icon-down scolor2 s"></i></a>
+
+          <ul class="f-dropdown text-left tiny" data-dropdown-content=""
+              id="drop<%= questionCardId %>" tabindex="-1">
+            <!-- <li>
+              <a href="#">Embed</a>
+            </li> -->
+
+            <li>
+              <a href="#" class="report-user" data-id="<%= question.id %>" data-type="question">Report</a>
+            </li>
+          </ul> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns small-1 xs-ws-top"><i class="scolor2 icon-question f-2x"></i></div>
+
+        <div class="columns small-11 xs-ws-top">
+          <h3 class="serif"><a href="/<%= question.to.username %>/<%= question.slug %>"><%= question.body %></a></h3>
+
+          <div class="row s-ws-top">
+            <div class="columns small-8 scolor2 s upvotes-dialog">
+              <i class="icon-user"></i> Asked by 
+              <span class= "scolor">
+                <span class="spanYou">
+                  <% if(question.is_voted && me) { %>
+                    <% namedUpvotes++; %>
+                    You, 
+                  <% } %>
+                </span>
+                <% if (question.from.username !== 'Anonymous') {%>
+                  <a href="<%= genUrl(question.from.username) %>" class="scolor"><%= question.from.name || question.from.username %></a>
+                <% } else { %>
+                  <span class="scolor"><%= question.from.name || question.from.username %></span>
+                <%}%>
+                
+              </span> 
+              <span class="upvoteText">and <span class="spanUpvotes"><%= question.upvotes - namedUpvotes %></span> others </span>
+            </div>
+            <div class="columns small-4 text-right" style="margin-top:0px;">
+              <div class="button sec fullwidth tiny alt requestBtn dvAddAnswerButton" >
+                Add Answer
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="row dvSubmitAnswer" style="display:none;">
+        <div class="small-7 columns s-ws-top">
+
+          <img src="http://placehold.it/900x1600">
+        </div>
+        <div class="small-5 columns b-ws-top b-ws-top-p">
+          <div class="button small fullwidth"><i class="icon-check"></i> Submit Answer</div>
+          <div class="text-center s-ws-top s"><a>Reject</a></div>
+          <div class="m-ws-top scolor">Spread this to your friends</div>
+
+        </div>
+      </div>
+
+      <div class="row dvProcessing">
+        <div class="small-12 columns b-ws-top">
+          <div class="progressBarHolder" style="display: none;">
+            <div class="scolor labelProcessing" >Processing</div>
+            <div class="progress small-12 success radius">
+              <span class="meter" style="width: 30%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row dvVideoPane" style="display:none;">
+        <div class="small-6 columns text-center scolor m-ws-top cs hv">
+          <i class="f-2x cs icon-attach">
+          </i>
+
+          <div>
+            Attach Video
+          </div>
+          <input type="file" name="questionCardVideo" style="opacity:0;display:block;position:absolute;width:100%;height:100%;z-index:99;top:0;left:0;cursor:pointer" accept="video/*">
+          <!-- <input type="file" name="vid" accept="video/*"> -->
+
+          <div class="s scolor2">
+            or drag and drop your file here
+          </div>
+        </div>
+
+        <div class="small-6 columns text-center scolor m-ws-top cs hv dvRecordVideo">
+          <i class="f-2x icon-record" ></i>
+
+          <div>
+            Record Video
+          </div>
+
+          <div class="s scolor2">
+            Requires additional permissions
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns <%= isProfileView ? 'small-3' : 'small-2' %> scolor s-ws-top s">
+
+    <div class="row hv-actv shareBtn">
+      <div class="cs columns small-5">
+        <div class="cs columns small-5 s-ws-top-p" >
+          Share
+        </div>
+      </div>
+      <div class="columns small-6 s-ws-top link">
+        <% var slugBody = question.slug %>
+           <%  var lastIndex = slugBody.lastIndexOf("-"); %>
+           <%   slugBody = slugBody.substring(0, lastIndex);%>
+           <%   slugBody=slugBody.replace(/-/g,' ');%>
+           <%   var emailBody=question.to.username + ' was asked frankly: "' + slugBody + '" at: %0A%0A' + "http://frankly.me/" + question.to.username + "/" + question.slug;%>
+
+        <div id="icon-share-<%= questionCardId %>"
+             data-url="http://frankly.me/<%= question.to.username %>/<%= question.slug %>"
+             data-slug="<%= emailBody %>"
+              data-title="A question has been shared to you via Frankly.me"
+              class="sharer-0" style="display:block">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

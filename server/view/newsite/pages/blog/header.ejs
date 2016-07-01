@@ -1,0 +1,49 @@
+
+<% var userId = componentId('answer', user.id) %>
+<% var isFollowed = user.is_following %>
+<div class="profile-header" id="<%= userId %>">
+  <script>
+  $(function() {
+    app.components.profilepanel($('#<%= userId %>'));
+  });
+  </script>
+<div>
+    <div class="row background-profile">
+        <div class="col m12">
+            <div class="video-w profile-video">
+                <div class=" videoContainer circle-container">
+                  <video id="profile-video" data-crop-to-fit="" data-square-video="" 
+                  src="<%=user.intro_video_url%>" style="width: 100%; display: none;" class="introVideo" data-uuid="intro-<%=userId%>" preload="none" poster="/img/loader.gif"></video>
+                  <img class="userImg" data-src="" src="<%= user.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+                </div>
+            </div>
+            <a href="" class="play-video">
+                <i class="icon-video-play"></i>
+            </a>
+            <div class="profile-user">
+              <!-- @<%= user.username %> -->
+            </div>
+            <div class="profile-wrapper">
+                <ul class="profile-links">
+                  <li><a><span>Followers</span><span class="followers-count" style="font-size: 16px !important; font-weight: normal !important;"><%= user.followers %></span></a></li>
+                  <li><a><span>Views</span><%= user.views %></a></li>
+                  <li><a><span>Posts</span><%= user.answer_count %></a></li>
+                </ul>
+
+                <% if((me && me.id!==user.id) || (!me)){if(isFollowed) {%>
+                  <div class='btn-profile followBtn btn following' data-state="following"
+                    data-target="<%= '/unfollow/'+user.id %>" data-username="<%= user.username%>" style="background: transparent !important;">
+                    Followed
+                  </div>
+                <% } else{ %>
+                  <div class="followBtn btn-profile btn" data-state="not-following"
+                    data-target="<%= '/follow/'+user.id %>" data-username="<%= user.username %>" style="background: transparent !important;">
+                    Follow
+                 </div>
+                <% } }%>
+            </div>
+
+
+        </div>
+    </div>
+</div>

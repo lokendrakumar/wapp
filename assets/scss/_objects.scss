@@ -1,0 +1,263 @@
+
+.serif{
+	font-family: $font-family-serif;
+}
+.f-l{
+	font-weight:300;
+}
+.scolor{
+	color:$gray;
+	@include transition (color 0.5s);
+}
+.s{
+	font-size:0.875em;
+}
+p.s{
+	line-height:1.25;
+}
+.s2{
+	font-size:0.75em;
+}
+p.s2{
+	line-height:1.2;
+}
+.scolor2{
+	color:$gray-light;
+	@include transition (color 0.5s);
+}
+.link{
+	&:hover
+	{
+		color: $black;
+		cursor: pointer;
+	}
+}
+.cs{
+	&:hover{
+		cursor: pointer;
+	}
+}
+.ct{
+	text-transform: capitalize;
+}
+.gs{
+	@include filter(grayscale(100%));
+	@include transition (all 0.5s);
+	&.hv{
+		&:hover,&:focus{
+			@include filter(grayscale(0%));
+			@include transition (all 0.5s);
+		}
+	}
+}
+.scolor3{
+	color:$gray-lighter;
+	@include transition (color 0.5s);
+}
+.wc{
+	color:$white;
+	@include transition (color 0.5s);
+}
+.bkc{
+	color:$black;
+	@include transition (color 0.5s);
+}
+.yc{
+	color:$yellow;
+	@include transition (color 0.5s);
+}
+.rc{
+	color:$red;
+	@include transition (color 0.5s);
+}
+.gc{
+	color:$green;
+	@include transition (color 0.5s);
+}
+.bc{
+	color:$blue;
+	@include transition (color 0.5s);
+}
+.wbg{
+	@include bgcolor($white);
+}
+.lgbg{
+	@include bgcolor($gray-light);
+}
+.rbg{
+	@include bgcolor($red);
+}
+.ybg{
+	@include bgcolor($yellow);
+}
+.bbg{
+	@include bgcolor($blue);
+}
+.dbbg{
+	@include bgcolor($darkblue);
+}
+.gbg{
+	@include bgcolor($green);
+}
+.brandc{
+	color:$primary-color;
+	@include transition (color 0.5s);
+}
+.f-1-25x{
+	font-size:1.25em;
+	@include transition (all 0.5s);
+}
+.f-1-5x{
+	font-size:1.5em;
+	@include transition (all 0.5s);
+}
+.f-2x{
+	font-size:2em;
+	@include transition (all 0.5s);
+}
+.f-2-5x{
+	font-size:2.5em;
+	@include transition (all 0.5s);
+}
+.f-3x{
+	font-size:3em;
+	@include transition (all 0.5s);
+}
+.f-4x{
+	font-size:4em;
+	@include transition (all 0.5s);
+}
+.xs-ws-top{
+	margin-top:0.5em;
+}
+.xs-ws-bottom{
+	margin-bottom:0.5em;
+}
+.s-ws-top{
+	margin-top:1em;
+}
+.s-ws-top-p{
+	padding-top:1em;
+}
+.m-ws-top{
+	margin-top:2em;
+}
+.m-ws-top-p{
+	padding-top:2em;
+}
+.b-ws-top{
+	margin-top:3em;
+}
+.b-ws-top-p{
+	padding-top:3em;
+}
+.s-ws-bottom{
+	margin-bottom:1em;
+}
+.s-ws-bottom-p{
+	padding-bottom:1em;
+}
+.m-ws-bottom{
+	margin-bottom:2em;
+}
+.b-ws-bottom{
+	margin-bottom:3em;
+}
+.b-ws-bottom-p{
+	padding-bottom:3em;
+}
+.s-ws-right{
+	margin-right:1em;
+}
+.xs-ws-right{
+	margin-right:0.5em;
+}
+.s-ws-left{
+	margin-left:1em;
+}
+.s-ws-left-p{
+	padding-left:1em;
+}
+.xs-ws-left-p{
+	padding-left:0.5em;
+}
+.xs-ws-right-p{
+	padding-right:0.5em;
+}
+.bs-ws-top{
+	margin-top:2.5em;
+	
+}
+.nm{
+	margin:0 !important;
+}
+.nm2{
+	margin-bottom:0 !important;
+}
+.nl{
+	line-height:1;
+}
+.np{
+	padding:0 !important;
+}
+.np2{
+	padding-bottom:0 !important;
+}
+.img-f{
+	width:100%;
+	@include transition(all 1s);
+}
+.img-h{
+	width:50%;
+	@include transition(all 1s);
+}
+.img-ht{
+	height:100%;
+}
+.fullwidth{
+	width:100%;
+}
+.img-c{
+	border-radius:50%;
+}
+.nbrrtop{
+	border-top-left-radius:0 !important;
+	border-top-right-radius:0 !important;	
+}
+.nbrrbottom{
+	border-bottom-left-radius:0 !important;
+	border-bottom-right-radius:0 !important;	
+}
+.nbr{
+	border:none !important;
+}
+.tr{
+	@include transition (all 0.5s);
+}
+.brr{
+	border-radius:3px;
+}
+.rbr{
+	border-color: $red;
+	@include transition(all 0.5s);
+}
+.lgbr{
+	border-color: $gray-light;
+	@include transition (all 0.5s);
+}
+.lg2br{
+	border-color: $gray-lighter;
+	@include transition (all 0.5s);
+}
+::-moz-selection { /* Code for Firefox */
+    color: $white;
+    background: $primary-color;
+}
+
+::selection {
+    color: $white; 
+    background: $primary-color;
+}
+
+
+/////

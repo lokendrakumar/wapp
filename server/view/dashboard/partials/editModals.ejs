@@ -1,0 +1,121 @@
+  <div id="editJob" class="modal fade edit-job-modal" style="overflow:auto;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title job-modal-title" style="text-align: center"><%=dashboardObj.Edit_Profile_Heading%></h3>
+
+        </div>
+        <div class="modal-body">
+          <!-- <div class="input-group"> -->
+            <input type="text" class="form-control edit-job-title-input"  placeholder="<%=dashboardObj.Create_Profile_Name_Placeholder%>" style="width: 100%">
+            <small class="job-name-required" style="display:none; color:red;">Required</small>
+          </br>
+          <input type="text" class="form-control edit-job-description-input"  placeholder="<%=dashboardObj.Create_Profile_Description_Placeholder%>" aria-describedby="basic-addon2" style="width: 100%">
+          <small class="job-name-required" style="display:none; color:red;">Required</small>
+          <!-- </div> -->
+        </div>
+         <div class="modal-footer" style="text-align: left !important">
+          <span>Select the details you want from candidates</span>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><%=dashboardObj.Details.Name%></label>
+              </div>              
+            </div>
+            <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><%=dashboardObj.Details.PhoneNumber%></label>
+              </div>             
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <div class="checkbox">
+              <label><input type="checkbox" value=""><%=dashboardObj.Details.Email%></label>
+            </div>             
+            </div>
+            <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><%=dashboardObj.Details.Experience%></label>
+              </div>              
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><%=dashboardObj.Details.College%></label>
+              </div>              
+            </div>
+            <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><%=dashboardObj.Details.PreviousCompany%></label>
+              </div>              
+            </div>
+          </div>          
+          <button class="btn btn-danger button-update-job" style="width:100%; margin-top: 3%"><%=dashboardObj.Edit_Profile_Button_Text%></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="writeQuestionModal" class="modal fade edit-question-modal" style="overflow:auto;" data-id="">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style=" text-align: center">Edit Questions</h4>
+        </div>
+        <div class="modal-body edit-question-modal-body">
+          <span class="add-question-text-help help-block" style="margin-top: 5px">Add question you want to ask to candidates for respective job role</span>
+          <div>
+            <textarea placeholder="Write a question here..." class="edit-modal-text-area"></textarea>
+            <div class="submit-button-div">              
+              <button class="btn-xs btn-danger pull-right button-add-question" style="margin-top:1%; margin-right:1%">Add question</button>
+            </div>
+            <small class="error-add-question" style="display:none; color:red;">Add questions for the applicants</small>
+
+            <!-- <button class="btn btn-default" style="margin-top:1%">+ Add a question</button>  -->
+          </div>
+          <button class="btn btn-danger button-edit-question-finish" style="width:100%; margin-top: 3%;">Finish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="congratsModal" class="modal fade edit-congrats-modal" style="display: none; overflow: auto !important;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align: center; margin-top: 1%;">
+          <h4 style="text-align: center;">Congrats</h4>
+          <span style="text-align: center;"><%=dashboardObj.CongratsMessage%></span>
+          <button class="btn btn-danger edit-okay-button" style="width:60%; margin-top:2%">Okay</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <div id="loadingModal" data-backdrop="static" data-keyboard="false" class="modal fade loading-modal" style=" overflow: auto !important;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align: center; margin-top: 1%;">
+          <h4 style="text-align: center;">Loading</h4>
+          <img src="img/spinner.gif" alt="">
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="modal fade delete-profile-modal" style="display: none; overflow: auto !important;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align: center; margin-top: 1%;">
+          <span style="text-align: center;"> Are You Sure You Want To Delete.</span></br>
+          <button class="btn btn-danger delete-okay-button" style="width:60%; margin-top:2%">Yes</button>
+          <button class="btn btn-success delete-no-button" style="width:60%; margin-top:2%">No</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+

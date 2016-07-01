@@ -1,0 +1,33 @@
+<div class="widgetAudition" style="margin-bottom: 0px">
+  <script>
+    $(function () {
+      app.components.widgetAudition($('.widgetAudition'));
+    });
+  </script>
+  <div class="row">
+    <div class="col m4">
+
+    </div>
+
+    <div class="col m4">
+      
+    </div>
+    <div class="col m4">
+      <div class="website-widgets">
+<!--         <img class="website-widgets-header" src="<%= survey.banner_image %>">
+         -->        
+        <div class="website-widgets-body">
+          <h1><%= survey.title %></h1>
+          <p><%= survey.description %></p>
+          <div class="btn-widgets giveAuditionBtn link" data-url="<%=genUrl('widgets/survey/' + user.username + '/' + survey.id + '/profiles')%>">
+            <% if (survey.survey_type == 'hiring') { %>
+              Get Hired
+            <% } else if (survey.survey_type == 'audition') { %>
+              Give Audition
+            <% }; %> 
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

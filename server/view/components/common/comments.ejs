@@ -1,0 +1,12 @@
+<% comments.forEach(function (item) { %>
+  <div class="row answer-comment-list">
+     <div class="col s3 pading-none " style="padding: 0px;">
+            <img style ="height:65px;width:65px" src="<%= item.author.profile_picture || '/img/user.png' %>" class=" circle responsive-img">
+     </div>
+     <div class="col s9 right valign">
+        <span class="white-text user-name"><a href="<%= genUrl(item.author.username) %>"><%=item.author.username%></a></span>
+        <span class="white-text user-comment"><%= item.body%></span>
+        <!--&lt;!&ndash;<span class="white-text user-mintues"></span>&ndash;&gt; comments Time was here-->
+     </div>
+  </div>
+<%})%>

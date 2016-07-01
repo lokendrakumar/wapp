@@ -1,0 +1,112 @@
+
+<% var feedHolderId = componentId('feedHolderId', categoryName ) %>
+<% var hasAnswer = false %>
+<% var hasQuestion = false %>
+<% var hasUser = false %>
+<% var AnswerFound = false %>
+<% var QuestionFound = false %>
+<% var UserFound = false %>
+<% var hasMoreUser = false %>
+
+  <% if(Feed) { %>
+    <% Feed.items.forEach(function (item) { %>
+      <% if(item.type === 'answer' && !AnswerFound) {%>
+        <% hasAnswer = true %>
+        <% AnswerFound = true %>
+      <% } %>
+      <% if(item.type === 'question' && !QuestionFound) {%>
+        <% hasQuestion = true %>
+        <% QuestionFound = true %>
+      <%}%>
+      <% if(item.type === 'user_list') { %>
+        <% hasUser = true %>
+      <% } %>
+    <% }) %>
+  <% } %>
+
+  <% if(moreUser) {%>
+    <% hasMoreUser = true %>
+  <% } %>
+
+  <%if(categoryName ==='featured') {%>
+    <% var feedCategoryName ="Featured"%>
+  <%} else {%>
+    <% var feedCategoryName ="Trending"%>
+  <% } %>
+
+  <div class = '<%= categoryName %>'>
+    <% if(hasUser) {%>
+      <div class ='row'>
+        <div class="col s12 m12">
+          <div class="card custom-card-bgcolor">
+            <div class="card-content black-text custom-card-content">
+              <div class="card-header-custom">
+                <span><%= feedCategoryName%> Franksters</span>
+              </div>
+              <% Feed.items.forEach(function (item) { %>
+                <% if(item.type === 'user_list') { %>
+                  <% item.user_list.forEach(function (useritem) { %>
+                    <div class="col s12 m4">
+                      <%- include(partials.userCard, {users: useritem.model}) %>
+                    </div>
+                  <% })%>
+                <% } %>
+              <% })%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+<div id="<%= feedHolderId %>" class = '<%=categoryName%>' data-category-id ='<%=categoryName%>' >
+  <script>
+    $(function () {
+      app.components.stdFeed($('#<%=feedHolderId %>'));
+    });
+  </script>
+    <% if(hasAnswer || hasQuestion || hasUser || hasMoreUser) { %>
+        <div class="row">
+          <div class="feed grid">
+          <% if(hasMoreUser) {%>
+            <% moreUser.items.forEach(function (item) { %>
+              <% if(item.type === 'user') { %>
+                <%# <section>%>
+                  <div class="col s12 m6 l4 grid-item">
+                    <%- include(partials.userCard, {users: item.model}) %>
+                  </div>
+                <%# </section>%>
+              <% } %>
+             <% })%>
+          <% } %>
+          <% if(hasAnswer || hasQuestion) {%>
+            <% Feed.items.forEach(function (item) { %>
+              <% if(hasAnswer) {%>
+                <% if(item.type === 'answer') { %>
+
+                <%# <section>%>
+                    <div class="col s12 m6 l4 grid-item">
+                      <%- include(partials.answerCard, {post: {answer:item.model}}) %>
+                    </div>
+                  <%# </section>%>
+                <% } %>
+            <% } %>
+            <% if(hasQuestion) {%>
+              <% if(item.type === 'question') { %>
+
+              <%# <section>%>
+                  <div class="col s12 m6 l4 grid-item">
+
+                    <%- include(partials.questionCard, {question: item.model}) %>
+                  </div>
+                <%# </section>%>
+              <% } %>
+            <% } %>
+          <% }) %>
+        <% } %>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+    <div class="feed-end" data-post-index="<%= pageNum %>" data-userpost-index='<%= useroffset %>'></div>
+</div>

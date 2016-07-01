@@ -1,0 +1,39 @@
+<% var auditionPopupId = componentId('auditionPopupId', survey.id); %>
+<div class="auditionPopup" id="<%= auditionPopupId %>" data-creater="<%= survey.created_by.id %>">
+    <script>
+        $(function () {
+            app.components.auditionPopup($('#<%= auditionPopupId %>'));
+        });
+    </script>
+    <!-- roles list -->
+    <div class="row">
+        <div class="col s12 profiles-list">
+            <div class="widget-popups">
+                <div class="widget-popups-header"><h1>Select Role</h1></div>
+                <div class="widget-popups-body">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <% profiles.forEach(function(role) { %>
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="popup-radio">
+                                    <input class="with-gap profile" name="group1" type="radio" id="<%= role.id %>"
+                                           data-url="/widgets/survey/<%= survey.id %>/<%= role.id %>"
+                                           value="<%= role.id %>"/>
+                                    <label for="<%= role.id %>"><%= role.display_name %></label>
+                                </div>
+                            </div>
+                            <div class="collapsible-body"><p><%= role.description %></p></div>
+                        </li>
+                        <% }); %>
+                    </ul>
+                    <a href="#" class="btn-widgets-inline right next-btn">Next</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- form for applying -->
+    </div>
+    <!-- /row -->
+</div> <!-- /container -->
+
+

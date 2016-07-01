@@ -1,0 +1,50 @@
+<% var panelId = componentId('playableAnswerSm', answer.id) %>
+
+<div class="panel fx m-ws-bottom np" id="<%= panelId %>">
+  <script>
+    $(function () {
+      app.playableAnswerCard($('#<%= panelId %>'));
+    });
+  </script>
+
+  <div style="min-height:549px">
+    <div class="videoContainer">
+      <div class="videoHolder">
+        <video class="img-f nm" src="<%= answer.video_url %>"
+          data-uuid="video-<%= panelId %>"
+          syle="height: 100%" data-crop-to-fit
+          data-username="<%= answer.author.username %>" poster="<%=answer.thumbnail_url%>" preload="none"> 
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="overlay fx bgbk text-center">
+    <div style="position: relative; height: 100%">
+      <div class="row" style="position: absolute; bottom: 12px; left: 10px;">
+        <div class="small-4 medium-3 large-2 columns s-ws-left s-ws-top" >
+          <img src="<%= answer.author.profile_photo_url || '/img/user.png' %>" class="img-c img-f">
+        </div>
+        <div class="small-7 medium-8 large-9 columns text-left wc s-ws-top">
+          <div class=" s lfx name"><a href="http://frankly.me/<%=answer.author.username%>"><%= answer.author.name || answer.author.username %></div>
+        </div>
+      </div>
+      <div class="question-play">
+        <i class="icon-play f-2x brandc cs link"
+          data-modal-id="answerVideoModal"
+          data-modal-url="<%= '/modal/answer-video/'+answer.id %>"></i>
+      </div>
+      <div class="s2 xs-ws-top wc">
+        <% if(answer.views > 0) { %>
+          <%= answer.views %> <span class="s">views</span>
+        <% } %>
+      </div>
+      <div class="share-container xs-ws-top" data-url="http://frankly.me/<%= answer.author.username %>/<%=answer.question.slug%>">
+        <span style="display: inline;">
+          <i class="icon-facebook fb button alt"></i> 
+          <i class="icon-twitter twt button alt" data-text="Checkout the latest question to <%= answer.author.name || answer.author.username %> "></i>  
+          <i class="icon-google ggl button alt"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

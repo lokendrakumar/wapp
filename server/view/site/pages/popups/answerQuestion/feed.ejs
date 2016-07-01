@@ -1,0 +1,19 @@
+<% var feedHolderId = componentId('feedHolder') %>
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.feed($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed">
+    <div class="row">
+      <% answers.forEach(function (answer) { %>
+      <div class="medium-6 large-4 small-12 columns end">
+        <%- include(partials.playableAnswerSm, {answer: answer} )%>
+      </div>
+    <% }) %>
+    </div>
+  </div>
+ 
+  <div class="feed-end" data-page="<%= offset %>"></div>
+</div>

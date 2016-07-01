@@ -1,0 +1,13 @@
+<h5><i class="gc icon-pulse"></i> <%= title %></h5>
+  
+<div class="row">
+  <% feed.items.forEach(function (item, index) { %>
+    <% if (index % 2 === 0) { %>
+      <div class="small-6 columns">
+    <% } %>
+        <%- include(partials.questionSm, {question: item.model, isPanel: true, bottomSpace: true}) %>
+    <% if (index % 2 === 1 || index === feed.items.length-1) { %>
+      </div>
+    <% } %>
+  <% }) %>
+</div>

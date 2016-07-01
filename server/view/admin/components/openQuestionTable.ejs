@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td>
+      <span><strong>@<%= user.question.from.username %></strong> asked</span>
+    </td>
+    <td>
+      <textarea class="questionText" type="text" data-flag="false"> <%= user.question.body %> </textarea>
+    </td>
+    <td class="center-align">
+      <a class="font_400 questionApprove tooltipped" data-position="bottom" data-delay="50" data-tooltip="Approve this question"><i class="material-icons">done</i></a>
+    </td>
+    <td class="center-align">
+      <a class="font_400 questionDelete tooltipped" data-position="bottom" data-delay="50" data-tooltip="Notify this question"><i class="material-icons">notifications</i></a>
+    </td>
+    <td class="center-align">
+      <a class="font_400 questionDelete tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete this question"><i class="material-icons">delete</i></a>
+    </td>
+    <td style="width:9%;" class="center-align" data-field="price">
+      <a class='dropdown-button btn theme-color-red' href='#' data-activates='dropdown1'>share</a>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">all</a></li>
+        <li><a href="#!">followers</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">none</a></li>
+      </ul>
+    </td>
+  </tr>
+</table>

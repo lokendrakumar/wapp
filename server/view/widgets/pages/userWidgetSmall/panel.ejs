@@ -1,0 +1,53 @@
+<% var user = user.user %>
+<div class="row userWidgetSmall" style="margin-bottom: 0px">
+  <script>
+    $(function () {
+      app.components.askUserWidgetSmall($('.userWidgetSmall'));
+    });
+  </script>
+  <div class="col s12 m4 l3" style="padding: 0px;">
+    <div class="row">
+      <div class="col s12 center-align padding-none videoContainer circle-container">
+        <div class="valign-wrapper videoHolder" style="width:100%;">
+          <video class="introVideo" data-crop-to-fit="" data-square-video="" src="<%=user.intro_video_url%>" preload="none" poster="/img/loader.gif" style="width:100%; display:none;"></video>
+          <img class="userImg" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%=user.thumbnail_url %>" style="width:100%; cursor:pointer;">
+        </div>
+      </div>
+      <div class="col s12 center-align padding-2-percent">
+        <div class="waves-effect waves-teal btn btn-full btn-decoration-none red lighten-1 askBtn" data-url="<%=genUrl('widgets/ask/' + user.username + '/question')%>">
+          <img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image">
+           Ask <%= user.username %>
+        </div>
+      </div>
+      <% if(user.answer_count > 0) { %>
+      <div class="col s12 center-align padding-2-percent grey-text" style="font-size:12px;">
+        Previous Replies
+      </div>
+      <div class="col s12 center-align padding-2-percent">
+        <div class="row">
+          <% 
+          var items = feed.slice(0, 3);
+          items.forEach(function (ans) { %>
+          <% if (items.length == 1) { %>
+            <div class="col s4 offset-s4"> 
+          <% } else if (items.length == 2) { %>
+            <div class="col s4 offset-s1"> 
+          <% } else { %>
+            <div class="col s4"> <% } %>
+              <div class="greyscale ansThumb" id="at" data-url="<%=genUrl('widgets/popup/plugin/'+user.username+'/'+ans.model.question.slug)%>">
+                <!-- <img src="<%= ans.model.thumbnail_url %>" alt="" class="responsive-img"> -->
+                <div style=" background: url('<%=ans.model.thumbnail_url%>');background-size: cover;background-repeat: no-repeat;height:80px;width:45px;margin:auto; cursor:pointer;"><i class="mdi-av-play-arrow play-icon small" style="margin-top:20px;display:inline-block"></i></div>
+              </div>  
+            </div>
+          <% }) %>
+          <div class="col s12 center-align padding-2-percent">
+            <a class="btn btn-full btn-decoration-none white lighten-1 ansBtn btn-hollow" href="<%=genUrl(user.username)%>" target="__blank" data-username="<%=user.username%>">
+              <img src="http://embed.frankly.me/v1/common/img/logo-white.png" class="left btn-image"> View all replies
+            </a>
+          </div>
+          <% } %>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div> <!-- indentation is right :)  -->

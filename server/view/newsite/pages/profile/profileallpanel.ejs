@@ -1,0 +1,39 @@
+<% var isProfileView = typeof isProfileView == 'undefined' ? false : true %>
+<% var feedHolderId = componentId('feedHolder') %>
+<% var questionIndexValue = typeof questionIndexValue == 'undefined' ? 0 : questionIndexValue %>
+<% var postIndexValue = typeof postIndexValue == 'undefined' ? 0 : postIndexValue %>
+<% var userIndexValue = typeof userIndexValue == 'undefined' ? 0 : userIndexValue %>
+
+<div id="<%= feedHolderId %>">
+  <script>
+    $(function () {
+      app.components.profileFeedHolder($('#<%= feedHolderId %>'));
+    });
+  </script>
+  <div class="feed"  >
+  <% if(pageNum>-1){ %>
+    <div class="row">
+      <div class="col s12 m6 l6 column1">
+        <div class="row" data-feed-class>
+          <% for (var i = 0; i <  feed.items.length; i += 2) { %>
+            <div class="col s12">
+              <%- include(partials.feedColumn, {answer: feed.items[i]} ) %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="col s12 m6 l6 column2">
+        <div class="row">
+          <% for (var i = 1; i <  feed.items.length; i += 2) { %>
+            <div class="col s12">
+              <%- include(partials.feedColumn, {answer: feed.items[i]} ) %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
+    <div class="feed-end col s12 m6" data-question-index="<%= questionIndexValue %>" data-post-index="<%= postIndexValue %>" data-user-index="<%= userIndexValue %>">&nbsp;
+    </div>
+</div>

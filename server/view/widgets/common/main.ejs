@@ -1,0 +1,25 @@
+<%- include(partials.top) %>
+<!-- body starts here -->
+
+<% var nav = nav == undefined ? false : nav; %>
+<% var container = container == undefined ? true : container; %>
+<%- include(partials.auth) %>
+
+<% if(nav) { %>
+  <div class="nav">
+    <%- include(partials.nav) %>
+  </div>
+<% } %>
+
+<% if(header) { %>
+  <div class="header">
+    <%- include(partials.header) %>
+  </div>
+<% } %>
+
+<div class="<%= container === false ? '' : 'container' %>">
+  <%- include(partials.panel) %>
+</div>
+
+<!-- body ends here -->
+<%- include(partials.bottom) %>

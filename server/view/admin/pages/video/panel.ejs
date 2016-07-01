@@ -1,0 +1,26 @@
+<% var navbar = componentId('navbar') %>
+
+<div id="<%= navbar %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.questionModerateMenu($('#<%= navbar %>'));
+    });
+  </script>
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="right">
+        <li class="active public"><a>Public</a></li>
+        <li class="celeb"><a>Celeb</a></li>
+      </ul>
+    </div>
+  </nav>
+
+	<div class="section flag-pan font_500 grey-text text-darken-3 active">
+	<i class="material-icons">class</i>   Flag
+	</div>
+	
+
+  <div class='tablediv'>
+    <%- include(partials.feedHolder) %>
+  </div>
+</div>

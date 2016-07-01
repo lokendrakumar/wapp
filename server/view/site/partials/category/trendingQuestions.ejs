@@ -1,0 +1,3 @@
+<% feed.items.forEach(function (item) { %>
+  <%- include(partials.questionSm, {question: item.model, prefix: 'trending', isPanel: true}) %>
+<% }) %>

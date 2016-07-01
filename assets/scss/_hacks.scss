@@ -1,0 +1,55 @@
+.ifx{
+	vertical-align:15%;
+}
+.ifx2{
+	vertical-align:10%;
+}
+.lfx{
+	margin-left:-16px;
+}
+.lfx2{
+	margin-left:-32px;
+}
+.rfx{
+	margin-right:-16px;
+}
+.rfx2{
+	margin-right:-32px;
+}
+.tfx{
+	margin-top:-16px;
+}
+button, .button{
+	border-radius: $global-radius;
+}
+.panel{
+	border-radius: $global-radius;
+}
+.panel-header{
+	border-radius: $global-radius;
+}
+input[type="submit"]{
+	border-radius: $global-radius;
+}
+
+.panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6{
+	line-height:1.2;
+}
+
+// .panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li, .panel dl{
+// 	color changed
+// }
+blockquote{
+	border-left:none !important;
+}
+.hv-reset{
+	a.active{
+		img {
+			@include filter(grayscale(0%));
+		}
+	}
+}
+
+.reveal-modal{
+	position:fixed;
+}

@@ -1,0 +1,456 @@
+<% var answerCardId = componentId('answer', post.answer.id) %>
+<% var isFollowed = post.answer.author.is_following %>
+<% var isLiked = post.answer.is_liked%>
+<% var comments = post.answer.comments.list %>
+<% var totalComments = post.answer.num_comments%>
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? false : false %>
+<% var videoUrlDash = isDashSupported ? post.answer.dash_video_url : post.answer.video_url %>
+<% var videoUrl = videoUrlDash %>
+<% var introVideoUrl = isDashSupported ? (post.answer.author.dash_video_url ? post.answer.author.dash_video_url  : post.answer.author.intro_video_url) : post.answer.author.intro_video_url; %>
+<% var meId =  me ? me.id: '' %>
+<% var userId =post.answer.author.id%>
+
+
+
+<%if(totalComments>3) {%>
+  <% var shownComments = 3%>
+<%} else {%>
+  <% var shownComments = totalComments%>
+<%}%>
+
+<div class="frankly-answer-card  grey darken-4" id ='<%=answerCardId%>' data-share-url="<%= genUrl(post.answer.author.username+'/'+post.answer.question.slug) %>" data-share-text="<%= post.answer.question.body %>" data-post-id="<%= post.answer.id %>">
+
+  <script>
+    $(function () {
+      app.components.answerCard($('#<%=answerCardId%>'));
+    });
+  </script>
+
+  <div class="answer-first" style="display:block">
+    <div class="card-header" style="background-color: #2b2b2b">
+      <span><a href="<%= genUrl(post.answer.asker.username) %>" target="_blank" class=""><strong>@<%= post.answer.asker.username %></strong></a> asked</span>
+      <i class="icon-options dropdown-button-new link right white-text" data-activates="<%=answerCardId%>dropdown0">
+      <ul id="<%=answerCardId%>dropdown0" class="dropdown-content-new" style="left: 180px !important;">
+                      <!-- <li><a href="#" class="embedBtn">Embed</a></li> -->
+        <li><a href="#" class="report-user" data-id="<%= post.answer.id %>" data-type="post">Report</a></li>
+        <li>
+          <a href="<%= genUrl(post.answer.promo_video_url) %>" download="<%= (post.answer.promo_video_url) %>">Download</a>
+        </li>
+        <% if(meId === userId) { %>
+          <li class = 'delete-video' data-user-id ="<%= post.answer.id %>">
+            <a href="" >Delete</a>
+          </li>
+        <% } %>
+      </ul>
+      </i>
+
+
+    </div>
+    <div class="card-content question-text" style="padding: 10px; background-color: #343434">
+      <a href="<%=genUrl(post.answer.author.username + '/' + post.answer.question.slug)%>" >
+        <div class="valign-wrapper">
+          <p class="valign" style="white-space:normal;"><%=post.answer.question.body %></p>
+        </div>
+      </a>
+
+    </div>
+    <div class="" style="min-height: 280px;">
+      <img class="answerImg" src="https://api.frankly.me/image/resize?image_url=<%=post.answer.thumbnail_url%>&h=280&w=280" style="width: 100%" ></img>
+    </div>
+    <div class="card-credits">
+      <div class="row">
+        <div class="col s12 center-align answerImg">
+        <i class="icon-play link red-text text-lighten-2" style="font-size: 30px"></i>
+        <p class="count-view"><%= post.answer.views%> views</p>
+        </div>
+      </div>
+      <div class="row valign-wrapper"  style="margin-bottom: 0px;">
+
+        <div class="col s4 videoContainer circle-container link" style="padding: 0px; margin-left:1em;">
+          <div class="videoHolder">
+            <video id="profile-video" data-crop-to-fit="" data-square-video=""
+            src="<%=introVideoUrl%>" style="width: 100%; display: none;" class="introVideo" data-uuid="intro-<%=answerCardId%>" preload="none" data-dash="<%= isDashSupported %>"></video>
+            <img class="userImg" data-src="" src="<%= post.answer.author.thumbnail_url || '/img/user.png' %>" style="width: 100%">
+          </div>
+        </div>
+        <div class="col s8 right valign">
+          <a href="<%= genUrl(post.answer.author.username) %>" target="_blank">@<%= post.answer.author.username %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-video" style="display:none; max-height: 500px;">
+    <div class="videoContainer">
+       <div class="videoHolder">
+          <video data-crop-to-fit="" src="<%= videoUrl%>"
+          data-user-id ='<%=post.answer.author.id %>' style="width: 100%;" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>"  class="answerVideo" data-uuid="answer-<%=answerCardId%>" data-dash="<%= isDashSupported %>" preload="auto"></video>
+       </div>
+     </div>
+  </div>
+
+  <div class="answer-paused grey darken-4"  style="display:none ;height:100%">
+     <div class="card-header">
+        <div class="white-text social-icon-group">
+           <div class="share-icons">
+            <span style="float:left"><a href="<%= genUrl(post.answer.asker.username) %>" target="_blank" class=""><strong>@<%= post.answer.asker.username %></strong></a> asked</span>
+              <i class="icon-comment  comment-popup link"></i>
+              <!-- <i class="mdi-social-share"></i> -->
+              <i class="icon-options dropdown-button-new link white-text" data-activates="<%=answerCardId%>dropdown1">
+              <ul id="<%=answerCardId%>dropdown1" class="dropdown-content-new" style="left: 180px !important;">
+                              <!-- <li><a href="#" class="embedBtn">Embed</a></li> -->
+                <li><a href="#" class="report-user" data-id="<%= post.answer.id %>" data-type="post">Report</a></li>
+                <li>
+                  <a href="<%= genUrl(post.answer.promo_video_url) %>" download>Download</a>
+                </li>
+                <% if(meId === userId) { %>
+                  <li class = 'delete-video' data-user-id ="<%= post.answer.id %>">
+                    <a href="" >Delete</a>
+                  </li>
+                <% } %>
+
+              </ul>
+              </i>
+
+           </div>
+        </div>
+     </div>
+     <div class="card-content question-text overlay-text" style="padding: 10px;">
+      <a href="<%=genUrl(post.answer.author.username + '/' + post.answer.question.slug)%>" >
+        <%=post.answer.question.body %>
+      </a>
+     </div>
+     <div class="card-credits">
+        <div class="row">
+           <div class="col s12 center-align play-video-icon">
+              <p><i class="icon-play  link"></i></p>
+           </div>
+        </div>
+        <div class="row center-align" style="margin-bottom: 0px;">
+           <div class="col s4 like-group">
+            <%if (isLiked) { %>
+              <div class=" likeBtnTrg"
+                    data-target="<%= '/unlike/'+post.answer.id %>" data-state="liked">
+                <i class="mdi-action-thumb-up red-text link"></i>
+                <div>
+                  <span class ='num_likes'><%= post.answer.num_likes %></span><span class ="likeBtn">&nbsp;Liked</span>
+                </div>
+              </div>
+            <% } else { %>
+              <div class="likeBtnTrg"
+                    data-target="<%= '/like/'+post.answer.id %>" data-state="unliked">
+                <i class="mdi-action-thumb-up link"></i>
+                <div>
+                  <span class ='num_likes'><%= post.answer.num_likes %></span><span class ="likeBtn" >&nbsp;Likes</span>
+                </div>
+              </div>
+            <% } %>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-facebook-transparent icon-facebook link"></i>
+              <div class="row">
+                <span class="fb-share-count"><%= post.answer.facebook_shares %></span><span>&nbsp;fb shares</span>
+              </div>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-twitter link"></i>
+              <div class="row">
+                <span class="twt-share-count"><%= post.answer.twitter_shares %></span><span>&nbsp;tweets</span>
+              </div>
+           </div>
+           <div class="col s12">
+              <hr />
+           </div>
+           <div class="col s6 user-name-display">
+              <a href="<%= genUrl(post.answer.author.username) %>" target="_blank" class="grey-text">@<%= post.answer.author.username%></a>
+           </div>
+           <% if (meId !== post.answer.author.id){%>
+             <div class="col s6">
+              <% if(isFollowed) {%>
+                <div class ='followBtn btn-follow right following' data-state="following"
+               data-target="<%= '/unfollow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>" data-entity-type="<%= post.question%>">
+                Followed</div>
+              <% } else{ %>
+              <div class="followBtn btn-follow right" data-state="not-following"
+              data-target="<%= '/follow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>" >
+                Follow</div>
+              <% } %>
+             </div>
+          <% } %>
+        </div>
+     </div>
+  </div>
+
+  <div class="answer-blank grey darken-4"  style="display:none ;height:100%">
+     <div class="card-header">
+        <div class="white-text social-icon-group">
+           <div class="share-icons">
+            <span style="float:left"><a href="<%= genUrl(post.answer.asker.username) %>" target="_blank" class=""><strong>@<%= post.answer.asker.username %></strong></a> asked</span>
+              <i class="icon-comment  comment-popup link"></i>
+              <!-- <i class="mdi-social-share"></i> -->
+              <i class="icon-options dropdown-button-new link white-text" data-activates="<%=answerCardId%>dropdown2">
+                <ul id="<%=answerCardId%>dropdown2" class="dropdown-content-new" style="left: 180px !important;">
+                              <!-- <li><a href="#" class="embedBtn">Embed</a></li> -->
+                <li><a href="#" class="report-user" data-id="<%= post.answer.id %>" data-type="post">Report</a></li>
+                <li>
+                  <a href="<%= genUrl(post.answer.promo_video_url) %>" download>Download</a>
+                </li>
+                <% if(meId === userId) { %>
+                  <li class = 'delete-video' data-user-id ="<%= post.answer.id %>">
+                    <a href="" >Delete</a>
+                  </li>
+                <% } %>
+              </ul>
+              </i>
+
+           </div>
+        </div>
+     </div>
+     <div class="card-content question-text overlay-text advertise-blank">
+      <a href="<%=genUrl(post.answer.author.username + '/' + post.answer.question.slug)%>" >
+        <%=post.answer.question.body %>
+      </a>
+     </div>
+     <div class="card-credits">
+        <div class="col s12 center-align red-text replay-video-icon">
+          <p><i class="mdi-av-replay medium link"></i></p>
+        </div>
+        <div class="row center-align" style="margin-bottom: 0px;">
+           <div class="col s4 like-group">
+              <%if (isLiked) { %>
+                <div class=" likeBtnTrg"
+                    data-target="<%= '/unlike/'+post.answer.id %>" data-state="liked" data-username="<%= post.answer.author.name %>" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>" data-entity-type="<%= post.question%>" >
+                  <i class="mdi-action-thumb-up brandc link"></i>
+                  <div>
+                    <span class ='num_likes'><%= post.answer.num_likes %></span><span class ="likeBtn">&nbsp;Liked </span>
+                  </div>
+                </div>
+              <% } else { %>
+                <div class="likeBtnTrg"
+                    data-target="<%= '/like/'+post.answer.id %>" data-state="unliked" data-username="<%= post.answer.author.name %>" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>" >
+                  <i class="mdi-action-thumb-up link"></i>
+                  <div>
+                    <span class ='num_likes'><%= post.answer.num_likes %></span><span class="likeBtn">&nbsp;Likes</span>
+                  </div>
+                </div>
+              <% } %>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-facebook-transparent icon-facebook link"></i>
+              <div class="row">
+                <span class="fb-share-count"><%= post.answer.facebook_shares %></span><span>&nbsp;fb shares</span>
+              </div>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-twitter link"></i>
+              <div class="row">
+                <span class="twt-share-count"><%= post.answer.twitter_shares %></span><span>&nbsp;tweets</span>
+              </div>
+           </div>
+           <div class="col s12">
+              <hr />
+           </div>
+           <div class="col s6 user-name-display">
+              <a href="<%= genUrl(post.answer.author.username) %>" target="_blank" class="white-text">@<%= post.answer.author.username%></a>
+           </div>
+          <% if (meId !== post.answer.author.id) { %>
+            <div class="col s6">
+              <% if(isFollowed) {%>
+                <div class ='followBtn btn-small user-follow following' data-state="following" style="margin: auto;"
+               data-target="<%= '/unfollow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>">
+                Followed</div>
+              <% } else{ %>
+              <div class="followBtn btn-small user-follow" data-state="not-following" style="margin: auto;"
+              data-target="<%= '/follow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>">
+                Follow</div>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+     </div>
+  </div>
+
+  <div class="answer-advertisement grey darken-4"  style="display:none;height:100%">
+     <div class="card-header">
+        <div class="white-text social-icon-group">
+           <div class="share-icons">
+              <i class="icon-comment  comment-popup link"></i>
+              <i class="icon-options dropdown-button-new link white-text" data-activates="<%=answerCardId%>dropdown3">
+
+              <ul id="<%=answerCardId%>dropdown3" class="dropdown-content-new" style="left: 180px !important;">
+                              <!-- <li><a href="#" class="embedBtn">Embed</a></li> -->
+                <li><a href="#" class="report-user" data-id="<%= post.answer.id %>" data-type="post" data-username="<%= post.answer.author.name %>" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>" >Report</a></li>
+                <li>
+                  <a href="<%= genUrl(post.answer.promo_video_url) %>" download>Download</a>
+                </li>
+                <% if(meId === userId) { %>
+                  <li class = 'delete-video' data-user-id ="<%= post.answer.id %>">
+                    <a href="" >Delete</a>
+                  </li>
+                <% } %>
+              </ul>
+              </i>
+
+           </div>
+        </div>
+     </div>
+     <div class="card-content question-text overlay-text advertise">
+        <img src="">
+        <p> <strong></strong>
+        </p>
+        <p>
+
+        </p>
+     </div>
+     <div class="card-credits">
+        <div class="row">
+           <div class="col s12 center-align">
+              <div class="right btn-follow">Buy <i class="mdi-image-crop-5-4"></i></div>
+           </div>
+        </div>
+        <div class="row center-align" style="margin-bottom: 0px;">
+          <div class="col s4 like-group">
+            <%if (isLiked) { %>
+              <div class=" likeBtnTrg"
+                  data-target="<%= '/unlike/'+post.answer.id %>" data-state="liked">
+                <i class="mdi-action-thumb-up red-text link"></i>
+                <div>
+                  <span class ='num_likes'><%= post.answer.num_likes %></span><span class ="likeBtn">&nbsp;Liked </span>
+                </div>
+              </div>
+            <% } else { %>
+              <div class="likeBtnTrg"
+                  data-target="<%= '/like/'+post.answer.id %>" data-state="unliked">
+                <i class="mdi-action-thumb-up link"></i>
+                <div>
+                  <span class ='num_likes'><%= post.answer.num_likes %></span><span class="likeBtn">&nbsp;Likes</span>
+                </div>
+              </div>
+            <% } %>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-facebook-transparent icon-facebook link"></i>
+              <div class="row">
+                <span class="fb-share-count"><%= post.answer.facebook_shares %></span><span>&nbsp;fb shares</span>
+              </div>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-twitter link"></i>
+              <div class="row">
+                <span class="twt-share-count"><%= post.answer.twitter_shares %></span><span>&nbsp;tweets</span>
+              </div>
+           </div>
+           <div class="col s12">
+              <hr />
+           </div>
+           <div class="col s6 user-name-display">
+             <a href="<%= genUrl(post.answer.author.username) %>" target="_blank" class="white-text">@<%= post.answer.author.username%></a>
+           </div>
+            <% if (meId !== post.answer.author.id){ %>
+               <div class="col s6">
+                <% if(isFollowed) {%>
+                  <div class ='followBtn following' data-state="following"
+                 data-target="<%= '/unfollow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>">
+                  <div class="right btn-follow">Followed</div></div>
+                <% } else{ %>
+                <div class="followBtn" data-state="not-following"
+                data-target="<%= '/follow/'+post.answer.author.id %>" data-username="<%= post.answer.author.name %>">
+                  <div class="right btn-follow">Follow</div></div>
+                <% } %>
+              </div>
+            <%}%>
+        </div>
+     </div>
+  </div>
+
+  <div class="answer-comments grey darken-4"  style="display:none;height:100%" data-username=" <%= post.answer.author.username%>" data-userid="<%= post.answer.author.id %>" data-entity-link="<%= post.answer.video_url%>"  >
+     <div class="card-header">
+        <div class="white-text social-icon-group">
+           <div class="share-icons">
+              <i class="icon-comment  link"></i>
+              <!-- <i class="mdi-social-share"></i> -->
+              <i class="icon-options dropdown-button-new link white-text" data-activates="<%=answerCardId%>dropdown4">
+                <ul id="<%=answerCardId%>dropdown4" class="dropdown-content-new" style="left: 180px !important;">
+                              <!-- <li><a href="#" class="embedBtn">Embed</a></li> -->
+                <li><a href="#" class="report-user" data-id="<%= post.answer.id %>" data-type="post">Report</a></li>
+                <li>
+                  <a href="<%= genUrl(post.answer.promo_video_url) %>" download>Download</a>
+                </li>
+                <% if(meId === userId) { %>
+                  <li class = 'delete-video' data-user-id ="<%= post.answer.id %>">
+                    <a href="" >Delete</a>
+                  </li>
+                <% } %>
+
+
+              </ul>
+              </i>
+
+           </div>
+        </div>
+     </div>
+      <div class="card-content question-text overlay-text advertise">
+        <div class="row commentinfo" data-id="<%= post.answer.id %>" data-source="<%= '/'+post.answer.id+'/comments' %>" data-loaded-comments="<%= shownComments %>" data-total-comments="<%= totalComments %>">
+           <div class="col s10 full-width">
+              <span class="comment-text valign-wrapper comment-showing" style="<%= totalComments <= 0 ? 'display:none' : '' %>">Showing&nbsp;<span class="count"> <%= shownComments %></span>&nbsp;of&nbsp;<span class="total"><%= totalComments%> </span>&nbsp;comments</span>
+              <span class="comment-text white-text no-comment" style="<%= totalComments > 0 ? 'display:none' : '' %>">No comments yet, be the first to comment</span>
+              <a href="#" class="right arrow-up-icon"><i class="mdi-hardware-keyboard-arrow-down link"></i>
+              </a>
+           </div>
+        </div>
+        <div class="comment-height comment-box-inner">
+          <% if (totalComments) { %>
+            <%- include(partials.comments, {comments: comments}) %>
+          <% } %>
+        </div>
+      </div>
+
+     <div class="card-credits">
+      <% if (totalComments > 3) {%>
+        <a class="right load-more">Load more...</a>
+      <% } %>
+        <div class="col s12">
+           <div class="row" >
+              <div class="input-field col s12">
+                 <input style ='height:40px;' placeholder ='Press enter to post.' class="materialize-textarea input-textarea" data-user-img="<%= me ? (me.profile_photo_url || '/img/user.png') : '/img/user.png' %>"
+                  data-user-name="<%= me ? me.username: '' %>"/>
+                 <!-- <label class="postion-left-30">Press enter the post.</label> -->
+              </div>
+           </div>
+        </div>
+        <div class="row center-align like-group-margin">
+          <div class="col s4 like-group">
+          <%if (isLiked) { %>
+            <div class=" likeBtnTrg"
+                  data-target="<%= '/unlike/'+post.answer.id %>" data-state="liked">
+              <i class="mdi-action-thumb-up red-text link"></i>
+              <div>
+                <span class ='num_likes'><%= post.answer.num_likes %></span><span class ="likeBtn">&nbsp;Liked </span>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="likeBtnTrg"
+                  data-target="<%= '/like/'+post.answer.id %>" data-state="unliked">
+              <i class="mdi-action-thumb-up link"></i>
+              <div>
+                <span class ='num_likes'><%= post.answer.num_likes %></span><span class="likeBtn">&nbsp;Likes</span>
+              </div>
+            </div>
+          <% } %>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-facebook-transparent icon-facebook link"></i>
+              <div class="row">
+                <span class="fb-share-count"><%= post.answer.facebook_shares %></span><span>&nbsp;fb shares</span>
+              </div>
+           </div>
+           <div class="col s4 like-group">
+              <i class="icon-twitter link"></i>
+              <div class="row">
+                <span class="twt-share-count"><%= post.answer.twitter_shares %></span><span>&nbsp;tweets</span>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

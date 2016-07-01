@@ -1,0 +1,28 @@
+<% var u = users %>
+
+<% var userCardId = componentId('userCard', u.id); %>
+<div class=" userContainer" id="<%= userCardId %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.userCard($('#<%= userCardId %>'));
+    });
+  </script>
+    <div class="card-videos video-w u-background">
+      <div class="videoContainer circle-container">
+        <div class="videoHolder link">
+          <video data-crop-to-fit="" data-square-video=""
+          src="<%=u.intro_video_url%>" class="introVideo" data-uuid="intro-user-<%=userCardId%>" preload="none" poster="/img/loader.gif" style ='display:none'></video>
+          <img class="userImg link" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%= u.thumbnail_url || '/img/user.png' %>">
+        </div>
+      </div>
+      <div class ='user-content center-align'>
+        <span class ='link' style="margin-top: 10px"><a class="black-text" href ="<%= genUrl(u.username) %>"> @<%=u.username %> </a></span>
+        <p><%= u.bio %></p>
+        <% if (u.is_following && me) { %>
+        <a class = "link user-follow-btn followBtn" data-target="<%= '/unfollow/'+u.id %>" data-state="following" data-user-id="<%=u.id%>">Followed</a>
+        <% } else { %>
+        <a class = "link user-follow-btn followBtn" data-target="<%= '/follow/'+u.id %>" data-state="not-following" data-user-id="<%=u.id%>">Follow</a>
+        <%}%>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<% var feedHolderId = pagename + 'FeedHolder' %>
+
+<div id="<%= feedHolderId %>">
+  <div class="feed">
+    <% var hasTrendingQuestions = trendingQuestions.items.length > 0 %>
+    <% var hasPopularAnswers = popularAnswers.items.length > 0 %>
+    <% var hasFeaturedUsers = featuredUsers.items.length > 0 %>
+    <% var hasFeaturedAnswers = featuredAnswers.items.length > 0 %>
+    <% var hasPopularQuestions = popularQuestions.items.length > 0 %>
+    
+    <% if (hasTrendingQuestions || hasPopularAnswers || hasFeaturedUsers || hasFeaturedAnswers || hasPopularQuestions) { %>
+      <div class="row m-ws-top">
+      <% if (hasTrendingQuestions || hasPopularAnswers) { %>
+        <div class="small-4 columns">
+          <div class="row " id="wallId">
+            <h5 class="categoryName text-left"><i class="icon-star yc"></i> Categories</h5>
+            <script>
+              $(function () {
+                app.components.categoryArea($('#wallId'));
+              });
+
+            </script>
+            <ul class="small-block-grid-4">
+              <% categories.forEach(function (item, index) { %>
+                <li>
+                  <a class="scolor category" href="<%= genUrl('category/' + item.slug) %>" data-category="<%= item.name %>">
+                    <img src='<%= item.icon_url %>' class="s-ws-bottom img-f" />
+                  </a>
+                </li>
+              <% }); %>
+            </ul>
+          </div>
+        <% if (hasTrendingQuestions) { %>
+          <%- include(partials.questionsSmall, {title: 'Trending Questions', feed: trendingQuestions}) %>
+        <% } %>
+        <% if (hasPopularAnswers) { %>
+          <%- include(partials.answersSmall, {title: 'Popular Answers', feed: popularAnswers}) %>
+        <% } %>
+        </div>
+      <% } %>
+      
+      <% if (hasFeaturedUsers || hasFeaturedAnswers || hasPopularQuestions) { %>
+        <div class="small-8 columns">
+        <% if (hasFeaturedUsers) { %>
+          <%- include(partials.usersLarge, {title: 'Featured Franksters', feed: featuredUsers}) %>
+        <% } %>
+        <% if (hasFeaturedAnswers) { %>
+          <%- include(partials.answersLarge, {title: 'Featured Answers', feed: featuredAnswers}) %>
+        <% } %>
+        <% if (hasPopularQuestions) { %>
+          <%- include(partials.questionsLarge, {title: 'Popular Questions', feed: popularQuestions}) %> 
+        <% } %>
+      <% } %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+  <div class="feed-end" data-page="<%= pageNum %>"></div>
+</div>

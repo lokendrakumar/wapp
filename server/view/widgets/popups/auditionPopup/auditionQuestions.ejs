@@ -1,0 +1,25 @@
+<div class="auditionQuestion">
+  <div class="col s12 m8 offset-m2">
+    <div class="widget-popups">
+      <div class="widget-popups-header"><h1>Give Interview</h1></div>
+      <div class="widget-popups-body">
+        <ul class="record-audition">
+          <% questions.items.forEach( function (question) { %>
+          <% question = question.model %>  
+          <% var auditionQuestionId = componentId('auditionQuestionId', question.id); %>
+          <li class="question-container" id="<%= auditionQuestionId %>" style="width:100%" data-username="<%= me.username %>">
+            <script>
+              $(function () {
+                app.components.auditionQuestions($('#<%= auditionQuestionId %>'));
+              });
+            </script>
+            <p><%= question.body %> </p>
+              <a href="#" data-url="<%= '/recorder/recorder?type=question&resourceId=' + question.id %>" class="popupRecorder right" >
+              Record Answer</a>
+          </li>  
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>  

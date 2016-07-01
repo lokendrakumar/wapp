@@ -1,0 +1,30 @@
+<% var question = componentId('question') %>
+
+<tbody id="<%= question %>">
+  <script type="text/javascript">
+    $(function () {
+      app.components.questionModerate($('#<%= question %>'));
+    });
+  </script>
+  <% feed.questions.forEach(function (user){ %> 
+    <tr>
+      <td class="center-align">
+          <img src="<%= genUrl(user.question.to.profile_picture) || '/img/user.png' %>" class="responsive-img circle"/>
+      </td>
+      <td>
+        <span><strong>@<%= user.question.from.username %></strong> asked</span>
+      </td>
+      <td>
+        <textarea class="questionText" type="text" data-flag="false" data-question="<%= user.id %>"> <%= user.question.body %> </textarea>
+      </td>
+      <td class="center-align">
+  
+        <a class="font_400 questionApprove tooltipped" data-position="bottom" data-delay="50" data-tooltip="Approve this question"><i class="material-icons">done</i></a>
+      </td>
+      <td class="center-align">
+        
+        <a class="font_400 questionDelete tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete this question"><i class="material-icons">delete</i></a>
+      </td>
+    </tr>
+  <% }) %>
+</tbody>

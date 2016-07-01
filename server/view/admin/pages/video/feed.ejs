@@ -1,0 +1,40 @@
+<% var isDashSupported = uaData.ua.toString().indexOf('Chrome') !== -1 ? false : false %>
+  
+  <tr><td class ='table-nextindex' data-next-index ='<%= postIndex %>'> </td> </tr>
+
+  <% feed.videos.forEach(function (video){ %> 
+    <tr>
+      <td>
+        <span><strong><%= video.video.body %></strong></span>
+      </td>
+      <td>
+        <span><strong>@<%= video.video.answer_author%></strong> asked</span>
+      </td>
+      <td>
+        <% var videoWrapper= componentId('videoWrapper') %>
+        <script type="text/javascript">
+          $(function () {
+            app.components.playVideo($('#<%=videoWrapper %>'));
+          });
+        </script>
+          <div class="row" id = "<%= videoWrapper %>">
+            <div class="col s4 videoContainer circle-container link" style="padding: 0px; margin-left:1em;">
+              <div class="videoHolder">
+                <video data-crop-to-fit="" data-square-video="" 
+                src="<%=video.video.video_url.original%>" style="width: 100%; display: none;" class="introVideo" data-uuid="intro-<%= videoWrapper%>" preload="none" data-dash="<%= isDashSupported %>"></video>
+                <img class="userImg" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%= video.video.thumbnail_url || '/img/user.png' %>" style="width: 100%"> 
+              </div>
+            </div>
+          </div>
+      </td>
+
+      <td class="center-align">
+				<a class="waves-effect waves-light font_400 approveVideo tooltipped" data-id ='<%= video.video.id %>' data-type ='approve' data-position="bottom" data-delay="50" data-tooltip="approve this answer"><i class="material-icons">done</i></a>
+      </td>
+      <td class="center-align">
+				<a class="waves-effect waves-light font_400 approveVideo tooltipped" data-id ='<%= video.video.id %>'  data-type ='delete'data-position="bottom" data-delay="50" data-tooltip="delete this answer"><i class="material-icons">delete</i></a>
+      </td>
+    </tr>
+ 
+
+  <% }) %>

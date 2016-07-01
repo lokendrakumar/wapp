@@ -1,0 +1,29 @@
+<div class="feed-holder">
+    <script>
+        $(function () {
+            app.components.stdFeedHolder($('.feed-holder'));
+        });
+    </script>
+
+    <div class="feed">
+        <div class="custom-container-fixed">
+            <div class="custom-container">
+                <div class="row">
+                    <% items.forEach(function (item) { %>
+                    <% if(item.type === 'answer') { %>
+                    <div class="col s12 m6">
+                        <%-include(partials.answerCard, {post: {answer: item.model}})%>
+                    </div>
+                    <% } %>
+                    <% if (item.type === 'question' && !item.model.is_open) { %>
+                    <div class="col s12 m6">
+                        <%-include(partials.questionCard, {question: item.model})%>
+                    </div>
+                    <% } %>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feed-end" data-post-index="<%=pageNum%>"></div>
+</div>

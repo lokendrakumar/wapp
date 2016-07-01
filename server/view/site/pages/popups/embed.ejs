@@ -1,0 +1,274 @@
+<%- include(partials.top) %>
+<% var handle = ['rjsayema', 'rjsayema', 'rjsayema', 'newslaundry']; 
+    if(me != null){
+      for(var i=0; i<4; i++) handle[i] = me.username;
+    }
+%>
+
+<!-- body starts here -->
+<div id="alert-hook">
+    <div class="alert-box-wrapper alert-box radius nbrrtop text-center"
+    data-alert="" id="alert-box" style="display:none;">
+      Loading... <a class="close" href="#" >&times;</a>
+    </div>
+</div>
+
+<header class="header-wrapper" style="height:27em;">
+  <div class="overlay fx overlaybg" style="background:url('https://download.unsplash.com/photo-1416339684178-3a239570f315') no-repeat; background-size:cover; background-position:50%;">
+  </div>
+  <div class="overlay fx bgbk">
+    <div class="row">
+      <div class="small-12 columns text-center b-ws-bottom-p">
+        <h2 class="wc f-4x b-ws-top-p  f-l">
+          Get Frankly for your site
+        </h2>
+        <!-- <h3 class="wc f-2x b-ws-top"><span class="f-l">It is time for you to test your limits.</span> By pushing them.</h3> --> 
+      </div>
+    </div>
+  </div>
+</header>
+<div data-magellan-expedition="fixed" class="np">
+  <dl class="sub-nav large center text-center">
+    <dd data-magellan-arrival="askBtn" style="margin:0 3em;">
+      <a href="#askBtn">
+        <div><img src="http://placehold.it/200x200" class="img-c s-ws-bottom"></div>
+        <div class="f-1-5x f-l rc">Ask Button</div>
+        <div class="s">some content explaining the widget</div>
+      </a>
+    </dd>
+
+    <dd data-magellan-arrival="userSm" style="margin:0 3em;">
+      <a href="#userSm">
+        <div><img src="http://placehold.it/200x200" class="img-c s-ws-bottom"></div>
+        <div class="f-1-5x f-l rc">User Widget</div>
+        <div class="s">some content explaining the widget</div>
+      </a>
+    </dd>
+    <dd data-magellan-arrival="userLg" style="margin:0 3em;">
+      <a href="#userLg">
+        <div><img src="http://placehold.it/200x200" class="img-c s-ws-bottom"></div>
+        <div class="f-1-5x f-l rc">User Widget (Large)</div>
+        <div class="s">some content explaining the widget</div>
+      </a>
+    </dd>
+    <dd data-magellan-arrival="userBh" style="margin:0 3em;">
+      <a href="#userBh">
+        <div><img src="http://placehold.it/200x200" class="img-c s-ws-bottom"></div>
+        <div class="f-1-5x f-l rc">Ask Button</div>
+        <div class="s">some content explaining the widget</div>
+      </a>
+    </dd>
+  </dl>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+
+
+    <div class="row">
+      <p class="small-8 small-centered columns text-center m-ws-top b-ws-top scolor f-1-5x f-l b-ws-bottom m-ws-top">
+        Grab our code and copy paste it on your site and you are good to go
+      </p>
+    </div>
+
+
+
+    <div id="Widget1">
+      <a name="askBtn"></a>
+      <h3 data-magellan-destination="askBtn" class="text-center b-ws-top">Ask Button</h3>
+      <div class="scolor f-1-25x text-center f-l s-ws-bottom">Add a Spotify Play Button to your blog, website, or social page—all your fans have to do is hit “Play” to enjoy the music.</div>
+      
+      <div class="row">
+        <p class="small-8 columns small-centered text-center scolor">
+         
+        </p>
+      </div>
+      
+      <div class="row">
+        <div class="small-5 columns b-ws-top" id='frame1'>
+          <h5 class="scolor">Preview</h5>
+          <iframe frameborder="0" height="70px" width="265px" src="http://localhost:8000/askBtnLg/template.html?user=<%= handle[0] %>"> </iframe>
+        </div>
+        
+        <div class="small-7 columns b-ws-top">
+          
+          <div class="panel">
+            <h5 class="scolor m-ws-top">Step 1: <span class="f-l">Add your Frankly handle</span></h5>
+            
+            <input type="text" id="handle1" placeholder="for eg. rjsayema"
+                <% if(me!=undefined) { %>
+                  value="<%= me.username %>" 
+                <% } %>
+              >
+
+            <h5 class="scolor m-ws-top">Step 2: <span class="f-l">Select widget size</span></h5>
+              <label class="button alt small s-ws-right" for="size1"><input id="size1" type="radio" name="size1" class="nm" checked><span class="s-ws-left">Small</span></label>
+              <label class="button alt small s-ws-right" for="size2"><input id="size2" type="radio" name="size1" class="nm"><span class="s-ws-left">Large</span></label>
+            <h5 class="scolor m-ws-top">Step 3: <span class="f-l">Copy and paste the code on your website</span><span class="right button tiny alt">copy code</span></h5>
+            <textarea rows="3" class="scolor"><iframe frameborder="0" height="70px" width="265px" src="http://localhost:8000/askBtnLg/template.html?user=<%= handle[0] %>"></iframe></textarea>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div id="Widget2">
+      <a name="userSm"></a>
+      <h3 data-magellan-destination="userSm" class="text-center b-ws-top">User widget (small)</h3>
+
+      <div class="scolor f-1-25x text-center f-l s-ws-bottom">Add a Spotify Play Button to your blog, website, or social page—all your fans have to do is hit “Play” to enjoy the music.</div>
+      <div class="row">
+        <p class="small-8 columns small-centered text-center scolor">
+         
+        </p>
+      </div>
+      
+      <div class="row">
+        
+        <div class="small-5 columns b-ws-top" id='frame2'>
+          <h5 class="scolor">Preview</h5>
+          <iframe frameborder="0" height="444px" width="202px" src="http://localhost:8000/userWidgetSm/template.html?user=<%= handle[1] %>"> </iframe></div>
+        
+        <div class="small-7 columns b-ws-top">
+          <div class="panel">
+            <h5 class="scolor m-ws-top">Step 1: <span class="f-l">Add your Frankly handle</span></h5>
+
+            <input type="text" id="handle2" placeholder="for eg. rjsayema"
+                <% if(me!=undefined) { %>
+                  value="<%= me.username %>" 
+                <% } %>
+              >
+
+            <h5 class="scolor m-ws-top">Step 2: <span class="f-l">Select widget size</span></h5>
+              <label class="button alt small s-ws-right" for="size1"><input id="size1" type="radio" name="size1" class="nm" checked><span class="s-ws-left">Small</span></label>
+              <label class="button alt small s-ws-right" for="size2"><input id="size2" type="radio" name="size1" class="nm"><span class="s-ws-left">Large</span></label>
+            <h5 class="scolor m-ws-top">Step 3: <span class="f-l">Copy and paste the code on your website</span><span class="right button tiny alt">copy code</span></h5>
+            <textarea rows="3" class="scolor"><iframe frameborder="0" height="444px" width="202px" src="http://localhost:8000/userWidgetSm/template.html?user=<%= handle[1] %>"> </iframe></textarea>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div id="Widget3">
+      <a name="userLg"></a>
+      <h3 data-magellan-destination="userLg" class="text-center b-ws-top">User widget (large)</h3>
+
+      <div class="scolor f-1-25x text-center f-l s-ws-bottom">Add a Spotify Play Button to your blog, website, or social page—all your fans have to do is hit “Play” to enjoy the music.</div>
+      
+      <div class="row">
+        <p class="small-8 columns small-centered text-center scolor">
+          
+        </p>
+      </div>
+      
+      <div class="row">      
+        <div class="small-12 columns b-ws-top text-center" id='frame3'>
+          <h5 class="scolor">Preview</h5>
+          <iframe frameborder="0" height="600px" width="600px" src="http://localhost:8000/userWidgetLg/template.html?user=<%= handle[2] %>"> </iframe>
+        </div>
+      </div>    
+         
+       <div class="row">
+          <div class="small-8 small-centered columns s-ws-top">
+            <div class="panel">
+              <h5 class="scolor m-ws-top">Step 1: <span class="f-l">Add your Frankly handle</span></h5>          
+              <input type="text" id="handle3" placeholder="for eg. rjsayema"
+                  <% if(me!=undefined) { %>
+                    value="<%= me.username %>" 
+                  <% } %>
+                >
+
+            <h5 class="scolor m-ws-top">Step 2: <span class="f-l">Select widget size</span></h5>
+              <label class="button alt small s-ws-right" for="size1"><input id="size1" type="radio" name="size1" class="nm" checked><span class="s-ws-left">Small</span></label>
+              <label class="button alt small s-ws-right" for="size2"><input id="size2" type="radio" name="size1" class="nm"><span class="s-ws-left">Large</span></label>
+            <h5 class="scolor m-ws-top">Step 3: <span class="f-l">Copy and paste the code on your website</span><span class="right button tiny alt">copy code</span></h5>
+            <textarea rows="3" class="scolor"><iframe frameborder="0" height="600px" width="600px" src="http://localhost:8000/userWidgetLg/template.html?user=<%= handle[2] %>"> </iframe></textarea>
+          </div>
+
+        </div>
+      </div>     
+
+    </div>
+        
+
+    <div id="Widget4">
+      <a name="userBh"></a>
+      <h3 data-magellan-destination="userBh" class="text-center b-ws-top">Show Answers widget</h3>
+
+      <div class="scolor f-1-25x text-center f-l s-ws-bottom">Add a Spotify Play Button to your blog, website, or social page—all your fans have to do is hit “Play” to enjoy the music.</div>
+      <div class="row">
+        <p class="small-8 columns small-centered text-center scolor">
+         
+        </p>
+      </div>
+      
+      <div class="row">
+        <div class="small-12 columns b-ws-top text-center" id='frame4'>
+          <h5 class="scolor">Preview</h5>
+          <iframe frameborder="0" height="600px" width="1000px" src="http://localhost:8000/userWidgetBatch/template.html?user=<%= handle[3] %>"> </iframe></div>
+      </div>
+        
+      <div class="row">
+        <div class="small-8 small-centered columns s-ws-top">
+        
+          <div class="panel">
+            <h5 class="scolor m-ws-top">Step 1: <span class="f-l">Add your Frankly handle</span></h5>
+
+            <input type="text" id="handle4" placeholder="for eg. newslaundry"
+                <% if(me!=undefined) { %>
+                  value="<%= me.username %>" 
+                <% } %>
+              >
+
+
+            <h5 class="scolor m-ws-top">Step 2: <span class="f-l">Select widget size</span></h5>
+              <label class="button alt small s-ws-right" for="size1"><input id="size1" type="radio" name="size1" class="nm" checked><span class="s-ws-left">Small</span></label>
+              <label class="button alt small s-ws-right" for="size2"><input id="size2" type="radio" name="size1" class="nm"><span class="s-ws-left">Large</span></label>
+            <h5 class="scolor m-ws-top">Step 3: <span class="f-l">Copy and paste the code on your website</span><span class="right button tiny alt">copy code</span></h5>
+            <textarea rows="3" class="scolor"><iframe frameborder="0" height="600px" width="800px" src="http://localhost:8000/userWidgetBatch/template.html?user=<%= handle[3] %>"> </iframe></textarea>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+(function($){
+
+for(var i=0; i<4;i++)
+  $( '#handle'+ (i+1).toString() ).change(function(){
+      
+      var j = $(this).attr('id').substring(6);
+      
+      var u = $(this).val();
+
+      var t = $(this).siblings('textarea');     
+      var l1 = $(t).val().indexOf('user=');
+      $(t).val( $(t).val().substring(0,l1) + 'user=' + u + '"> </iframe>');
+
+      var f = $( '#frame' + j.toString() ).children('iframe');
+      var l2 = $(f).attr('src').indexOf('user=');
+      $(f).attr('src', $(f).attr('src').substring(0,l2) + 'user=' + u  );
+
+  });
+
+
+
+})(jQuery);
+
+</script>
+
+<!-- body ends here -->
+<%- include(partials.bottom) %>

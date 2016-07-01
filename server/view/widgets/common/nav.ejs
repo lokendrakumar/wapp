@@ -1,0 +1,42 @@
+<style>
+  .widget-brand-logo {
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    left: 0%;
+
+    &.center {
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+
+    &.right {
+      right: 0.5rem;
+      padding: 0;
+    }
+  }
+</style>
+
+<ul id="nav-user-dropdown" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper black">
+      <div class="container">
+        <ul class="right">
+          <% if (me == null) { %>
+          <li><a href="#frankly-auth-modal" class="modal-trigger">SIGN IN</a></li>
+          <% } else { %>
+          <li><a href="" class="logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

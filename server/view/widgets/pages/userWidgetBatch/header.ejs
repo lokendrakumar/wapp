@@ -1,0 +1,218 @@
+<% var username = user.username; %>
+<% var followers = user.followers; %>
+<% var views = user.views; %>
+<% var posts = user.answer_count; %>
+<% var isFollowed = user.is_following %>
+  <div class="always-fixed-navbar" id="batchHeaderWidget1" style="display:none">
+  <script >
+  $(function(){
+    app.components.batchHeader($('#batchHeaderWidget1'));
+  });
+  </script>
+
+    <div class="always-width">
+
+      <ul class="always-user-fixed left">
+      <li class="hide-on-small-only">
+        
+        <div class="always-video" style="width: 70px;">
+        <div class=" videoContainer circle-container link">
+        <div class="valign-wrapper videoHolder" style="width: 100%;">
+          <video class="introVideo" data-crop-to-fit="" data-square-video="" src="<%= user.intro_video_url %>" poster="/img/loader.gif" style="width: 100%; display:none;"
+          preload="none"></video>
+          <img class="userImg" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%=user.thumbnail_url %>" style="width: 100%">
+        </div>
+      </div>
+      </div>
+
+      </li>
+      <li>
+        
+        <div class="always-username">
+          <a href="<%=genUrl(user.username)%>" target="_blank" style="color:#6c6c6c;" class="username">@<%=username%></a>
+        </div>
+
+      </li>
+      </ul>
+        
+
+      <ul class="always-user-fixed right">
+        <li>
+        <% if((me && me.id!==user.id) || (!me)){if(isFollowed) {%>
+            <div class ='followBtn btn-rounded user-follow btn-top following' data-state="following"
+              data-target="<%= '/unfollow/'+user.id %>" data-username="<%= user.username%>">
+               Followed
+            </div>
+          <% } else{ %>
+            <div class="followBtn btn-rounded user-follow btn-top" data-state="not-following"
+              data-target="<%= '/follow/'+user.id %>" data-username="<%= user.username %>">
+             Follow 
+           </div>
+          <% } }%>
+
+        </li>
+
+        <li>
+          <a href="#evtAsk1" class="waves-effect waves-light btn my-button btn-top askBtn" data-url="<%=genUrl('widgets/ask/' + user.username + '/question')%>">ASK QUESTION</a>
+        </li>
+        </ul>
+
+    </div>
+
+  </div>
+
+<div class="fix-header custom-container-widget-full" id="batchHeaderWidget">
+  <script >
+  $(function(){
+    app.components.batchHeader($('#batchHeaderWidget'));
+  });
+  </script>
+
+  <div class="user-detail">
+
+    <div class="user-picture" style="width: 150px;">
+      <div class=" videoContainer circle-container link">
+        <div class="valign-wrapper videoHolder" style="width: 100%;">
+          <video class="introVideo" data-crop-to-fit="" data-square-video="" src="<%= user.intro_video_url %>" poster="/img/loader.gif" style="width: 100%; display:none;"
+          preload="none"></video>
+          <img class="userImg" data-src="https://s3.amazonaws.com/franklymestorage/93542a4981af4f94b48d5229a3616cdb/photos/efd9d0cc1d8f11e5be6b02be69940ae2.jpeg" src="<%=user.thumbnail_url %>" style="width: 100%">
+        </div>
+      </div>
+
+    </div>
+      
+    </div>
+
+  <div class="main-follow">
+    <div class="user-information">
+      <a href="<%=genUrl(user.username)%>" target="_blank" style="color:#6c6c6c;" class="username">@<%=username%></a>
+      <div class="widget-about">
+      <p class="user-about-fixed" style="font-size: 12px;"><%= user.bio  %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-links">
+    <ul class="header-links">
+
+      <li ><a> <span>Followers</span><b class="followers-count"><%=followers%></b></a></li>
+      <li><a> <span>Views</span><%=views%></a></li>
+      <li><a> <span>Posts</span><%=posts%></a></li>
+    </ul>
+    <% if((me && me.id!==user.id) || (!me)){if(isFollowed) {%>
+      <div class ='followBtn btn-rounded user-follow following' data-state="following"
+        data-target="<%= '/unfollow/'+user.id %>" data-username="<%= user.username%>">
+        Followed
+      </div>
+    <% } else{ %>
+      <div class="followBtn btn-rounded user-follow" data-state="not-following"
+        data-target="<%= '/follow/'+user.id %>" data-username="<%= user.username %>">
+        Follow
+     </div>
+    <% } }%>
+
+  </div>
+
+</div>
+<style type="text/css">
+  //avdhesh user widgets
+  @media screen and(min-width:481px) and (max-width:767px)
+  {
+    .user-detail {
+      margin: 0 auto;
+      position: relative;
+      width: 150px;
+  }
+
+  .user-picture {
+      display: block;
+      position: relative;
+      top: 0;
+  }
+
+
+  }
+
+  @media screen and(min-width:991px)
+  {
+
+    .user-detail {
+      margin: 0 auto;
+      position: relative;
+      width: 93%!important;
+  }
+  }
+
+  @media screen and(min-width:768px) and (max-width:990px)
+  {
+  .user-detail {
+      margin: 0 auto;
+      position: relative;
+      width: 93%;
+  }
+  .user-picture {
+      left: 0;
+      position: absolute;
+      top: -10px;
+  }
+  }
+
+  @media screen and(max-width:767px)
+  {
+  .main-links {
+      background:#2b2b2b;
+      padding-left: 15px;
+      width: 100%;
+      padding-bottom: 10px;
+  }
+  .header-links {
+      margin: 0 auto;
+      padding: 4px 0;
+      width: 100%;
+      text-align: center;
+  }
+
+  .user-detail {
+      margin: 0 auto;
+      position: relative;
+      width: 150px;
+  }
+  .user-picture {
+      display: block;
+      position: relative;
+      top: 0;
+  }
+  .user-follow {
+      border: 1px solid #ea6153;
+      border-radius: 3px;
+      color: #ed7d72 !important;
+      float: none;
+      margin-right: 25px;
+      margin-top: -45px;
+      padding: 5px 15px;
+      display:block!important;
+      margin-top:10px;
+      text-align: center;
+  }
+  }
+  @media screen and(min-width:670px) and (max-width:767px)
+  {
+
+    .btn-rounded {
+      border: 1px solid #ea6153;
+      border-radius: 3px;
+      color: #ed7d72 !important;
+      float: none!important;
+      margin-right: 25px;
+      margin-top: -45px;
+      padding: 5px 15px;
+      display:block!important;
+      margin-top:10px;
+      text-align: center;
+      margin-top: 10px!important;
+  }
+  }
+  //avdhesh widgets
+</style>
+
+  

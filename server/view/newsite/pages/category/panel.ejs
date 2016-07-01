@@ -1,0 +1,31 @@
+
+  <style>
+    body{background: #FFFDF1;}
+  </style>
+
+<div id = 'categoryId'>
+  
+  <script >
+    $(function () {
+      app.components.category($('#categoryId'));
+    });
+  </script>
+  <%- include(partials.categoryList) %>
+	<div class="row">
+	  <div class="col s12 m12">
+	    <ul class="tabs custom-tabs">
+	      <li class="custom-tabs tab"><a  class ="custom-category link active" data-filter-id ='franksters'>Franksters
+	      </a></li>
+	      <li class="custom-tabs tab"><a  class ='custom-category link activity-margin' data-filter-id ='activity'>Activity
+	      </a></li>
+	    </ul>
+	  </div>
+		<div class ='append-feed'>
+      <div class ='<%=categoryName%>' >
+        <div  class="col s12 m12">
+          <%- include(partials.feed, {feed: feed}); %>
+        </div>
+      </div>
+		</div>
+</div>
+</div>

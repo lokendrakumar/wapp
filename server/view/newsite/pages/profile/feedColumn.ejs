@@ -1,0 +1,9 @@
+<% if (answer.type === "answer"){ %>
+  <%- include(partials.answerCard, {post: {answer: answer.model}})%>
+<% } %> 
+<% if (answer.type === "question" && !answer.model.is_open ){ %> 
+  <%- include(partials.questionCard, {question: answer.model})%>
+<% }%>
+<% if (answer.type === "question" && answer.model.is_open ){ %> 
+  <%- include(partials.openQuestionCard, {post:{question: answer.model,user: user}, question: answer.model, answers: answer.model.answers})%>
+<% }%>

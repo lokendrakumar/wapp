@@ -1,0 +1,86 @@
+<% var applicants = applicants != null ? applicants : [] %>
+	<% if(applicants!="login") {%>
+		<div class ='table-responsive table-scroll' >
+			
+			<script>
+			  $(function () {
+			    app.components.hiringTableHeader($('.table-scroll'));
+			  });
+  		</script>
+
+			<div class="table applicant-table" style='background: #fff;'>
+				<div class="container table-div" style='padding:0px;width:100%;height: 570px'>
+					<table class="table table-striped hiring-dynamic-table">
+						<thead>
+							<th class = 'table-header-text' width="3%"><input type="checkbox" class='select-all' > </th>
+
+					    <th class = 'table-header-text' width="10%"> Name </th>
+
+					    <th class = 'table-header-text' width="5%"> Gender </th>
+					    <% if(surveyType=="hiring") {%>
+					    	<th class = 'table-header-text' width="10%"> Position </th> 
+					    <% } %>
+					    <th class = 'table-header-text' width="10%"> Date </th>
+
+					    <th class = 'table-header-text' width="20%"> Email </th>
+					    <th class = 'table-header-text' width="10%"> Contact </th>
+					    
+					    <% if(surveyType=="hiring") {%>
+
+						    <th class = 'table-header-text' width="3%"> Year </th>
+						    <th class = 'table-header-text' width="17%"> College </th>
+
+					    <% } %>
+					    <% if(surveyType=="audition") {%>
+					    	<th class = 'table-header-text' width="13%"> Current City </th>
+						    <th class = 'table-header-text' width="14%"> Native City </th>
+					    <% } %>
+					    <th class = 'table-header-text' width="10%"> Status </th>
+					    <th class = 'table-header-text' width="10%"> Answer Status</th>
+					  </thead>
+					  <tbody class = 'table-scroll-body'>
+					  	<%- include(partials.tableContent, {applicants:applicants,surveyType:surveyType,nextIndex:nextIndex}) %>
+					  </tbody >
+					</table>
+				</div>
+			</div>
+		</div>
+	<% } else {  %>
+				<h1 style="margin: 10%">Select or Create Campaign from left pane</h1>
+		<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+
+<table class="quest-table card transparent">
+  <tbody>
+    <% feed.questions.forEach(function (user){ %>
+      <tr>
+        <td>
+          <div>
+            <%- include(partials.openQuestionTable,{user: user}) %>
+          </div>
+          <%- include(partials.answer, {question_id: user.id}) %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

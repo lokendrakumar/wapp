@@ -1,0 +1,26 @@
+<div class="feed-holder">
+  <script>
+$(function() {
+  app.components.stdFeedHolder($('.feed-holder'));
+});
+  </script>
+  <div class="feed">
+    <ul class="notifications-list">
+      <% data.results.forEach(function (notification) {%>
+        <% var userImage = (notification.notification.icon === '') ? '/img/user.png' : notification.notification.icon; %>
+        <li>
+        <a href="<%= genUrl(notification.notification.link) %>">
+          <div class="notification-video">
+            <img src="<%= genUrl(userImage) %>" class="responsive-img circle-container"/>
+          </div>
+          <div class="notification-text">
+            <p><%=notification.notification.text%></p>
+            <span><%=notification.notification.time%></span>
+          </div>
+          <a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="feed-end" data-post-index="<%= nextindex %>" data-news-index="<%= newsindex %>"></div>
+</div>

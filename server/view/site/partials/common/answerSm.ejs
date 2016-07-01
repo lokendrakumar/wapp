@@ -1,0 +1,49 @@
+<% var panelId = componentId('answerSm', answer.id) %>
+
+<div class="panel fx m-ws-bottom"
+    style="background-image:url('<%= answer.thumbnail_url %>'); height:28em; background-position:50%;"
+    id="<%= panelId %>">
+  <script>
+    $(function () {
+      app.components.answerCardSm($('#<%= panelId %>'));
+    });
+  </script>
+  <div class="overlay fx bgbk text-center">
+    <div class="row" style="position: absolute; bottom: 10px; left: 10px;">
+      <div class="small-2 columns s-ws-left s-ws-top" >
+        <% if (answer.author.profile_photo_url === null) { %>
+            <img class="img-c img-f s-ws-bottom" src="/img/user.png">
+          <% } else { %>
+            <div class="pv small">
+              <div style="border-radius: 50%; margin-bottom: 15px; overflow: hidden; -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);" class="dvHolder">
+                <div class="dvImgOverlay">
+                  <img class="img-c img-f s-ws-bottom nm" src="<%= answer.author.profile_photo_url %>" />  
+                </div>
+                <video src="<%= answer.author.intro_video_url %>" data-uuid="video-<%= panelId %>" style="width: 100%; display:none; margin-top: -15%;" 
+                data-username="<%= answer.author.username %>" preload="none" >        
+                </video>
+              </div>
+            </div>
+          <% } %>
+      </div>
+      <div class="small-9 columns text-left wc s-ws-top">
+        <div class="xs-ws-top s lfx2">
+          <a href="<%= genUrl(answer.author.username) %>" class="wc">
+            <%= answer.author.name || answer.author.username %>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="question-play">
+      <h5 class="serif wc s-ws-top-p s-ws-bottom xs-ws-left-p xs-ws-right-p"><%= answer.question.body %> %></h5>
+      <i class="icon-play f-2x brandc cs link"
+        data-modal-id="answerVideoModal"
+        data-modal-url="<%= '/modal/answer-video/'+answer.id %>"></i>
+    </div>
+    <div class="s2 xs-ws-top wc">
+      <% if(answer.views > 0) { %>
+        <%= answer.views %> <span class="s">views</span>
+      <% } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="small-6 columns">
+    <div class="panel">
+      <div class="row">
+
+        <div class="small-10 columns s scolor">
+          <i class="icon-pulse gc f-1-5x" style="display:inline-block; vertical-align:middle;"></i> What's your say
+        </div>
+        <div class="small-2 columns">
+          <div id="options" data-dropdown="drop3" aria-controls="drop3" data-options="is_hover:true; hover_timeout:5000; align:left" aria-expanded="false"><i class="icon-options scolor2 cs"></i></div> 
+        </div>
+      </div>
+      <div class="row xs-ws-bottom-p">
+        <div class="small-4 columns xs-ws-top xs-ws-bottom" style="z-index:9;">
+          <img src="<%= profile.profile_photo_url %>" class="img-c lg2br pvbr cs" style="margin-bottom:-2em;">
+        </div>
+        <div class="small-8 columns xs-ws-top xs-ws-bottom np">
+          <h5 class="nm"><%= profile.name %> <small> asked</small></h5>
+          <h6 class="scolor nm s2">@<%= profile.username %></h6>
+        </div>
+        <div class="small-10 columns small-centered xs-ws-bottom">
+          <hr>
+        </div>
+      </div>
+      <div style="overflow:hidden;">
+        <div class="row" id="tr1">
+          <div class="small-12 columns">
+            <h5><%= question.body %></h5>
+          </div>
+        </div>
+        <div class="row" id="tr2" style="display:none;">
+
+          <div class="small-12 columns">
+
+            <div>
+              <img src="img/ak.png">
+
+            </div>
+            <div id="n2" class="overlay brr fx3 bgbk cs nbrrtop" style="z-index:0;">
+              <i class="icon-play scolor f-1-5x" style="position:absolute; left:0.5em; bottom:3em;"></i>
+              <div style="top:1em; position:absolute;">
+                <h5 class="wc f-1-25x small-12 columns"><%= question.body %></h5>
+
+              </div>
+              <div style="position:absolute; bottom:1em; width:100%;">
+
+                <div class="small-12 columns small-centered">
+                  <hr>
+                </div>
+                <div class="small-8 columns">
+                  <h5 class="scolor3 nm"><%= profile.name %></h5>
+                  <h6 class="scolor2 nm s2">@<%= profile.username %></h6>
+                </div>
+                <div class="small-4 columns">
+                  <img src="https://s3.amazonaws.com/franklymestorage/ba0ed8bf64dd44ed888f788e18d8367e/photos/434fe86efed111e495b902be69940ae2.jpeg" class="img-c lg2br pvbr cs" style="margin-top:-2em;">
+                </div>
+              </div>
+            </div>
+          </div>        
+        </div>
+
+        <div class="row">
+          <div class="small-12 text-right columns s-ws-top">
+            <div class="button small fullwidth">
+              <i class="icon-answer left f-1-25x" style="line-height:0"></i> Record Answer
+            </div>
+          </div>
+        </div>
+        <div class="row text-center" >
+          <h5 class="scolor s-ws-top">What others said ..</h5>
+          <div class="small-12 columns">
+            <ul class="example-orbit-content" data-orbit data-options="navigation_arrows:false; slide_number: false; timer:false; next_on_click: false">
+              <li data-orbit-slide="headline-1">
+                <div class="row">
+                  <div class="small-4 columns" id="tr3">
+                    <img src="http://placehold.it/900x1600" class="brr cs">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                  <div class="small-4 columns">
+                    <img src="http://placehold.it/900x1600" class="brr">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                  <div class="small-4 columns">
+                    <img src="http://placehold.it/900x1600" class="brr">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li data-orbit-slide="headline-2">
+                <div class="row">
+                  <div class="small-4 columns">
+                    <img src="http://placehold.it/900x1600" class="brr">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                  <div class="small-4 columns">
+                    <img src="http://placehold.it/900x1600" class="brr">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                  <div class="small-4 columns">
+                    <img src="http://placehold.it/900x1600" class="brr">
+                    <div class="text-center xs-ws-top s scolor">User</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<% var allCategory = componentId('allCat') %>
+<div class="card white custm-karaoke-card" id="<%=allCategory%>">
+  <script>
+    $(function () {
+      app.components.allCategoryKaraokeMenu($('#<%= allCategory %>'));
+    });
+  </script>
+<h6 class=" grey-text text-darken-2 white karaoke-sectitle">All Category</h6>
+
+<ul class="collection kareoke-categories margin-none  with-header">
+
+	<% feed.items.forEach(function (item){ %>
+		<li class="collection-item relative">
+			<div class="catName">
+				<img src="<%=item.category.icon_url%>" alt="" class="circle">
+				<span class="title grey-text text-darken-2 category" data-id="<%=item.category.id%>"><%=item.category.display_name%>
+          </span>
+			</div>
+			<div class="btn-control">
+				<div class="right toggle-opt">
+					<i class="material-icons toggle-pos">more_vert</i>
+					<div class="opt-wrap"> Place Above:
+						<input type="text" placeholder="Type a Num..">
+						<i class="material-icons toggle-close">close</i>
+					</div>
+				</div>
+
+				<i class="secondary-content material-icons delete-category" data-id="<%=item.category.id%>">close</i>
+				<i class="secondary-content material-icons edit-cat">edit</i>
+			</div>
+
+			<div class="category-addwrap card">
+				<div class="input-field">
+					<input placeholder="Category Name" type="text" class="edit-category-name" value='<%=item.category.display_name%>'>
+				</div>
+				<div class="file-field input-field">
+					<input class="file-path validate" type="text" />
+					<div class="btn">
+						<span>Add Image</span>
+						<input type="file" class="edit-categoryImage" />
+					</div>
+				</div>
+				<div class="input-field">
+					<input placeholder="Twitter handle" type="text" class="edit-twitter-handle" value='<%=item.category.twitter_handle%>'>
+				</div>
+				<div class="input-field">
+					<input placeholder="Latitude" type="text" class="latitude">
+				</div>
+
+				<div class="input-field">
+					<input placeholder="Longitude" type="text" class="longitude">
+				</div>
+
+				<div class="input-field">
+					<input placeholder="Radius" type="text" class="radius">
+				</div>
+				<p class="cst-chkbx">					
+					<label><input type="checkbox" class="filled-in" /> <span>Add on Top</span></label>
+				</p>
+
+				<div class="input-field">
+					<input value="Save Category" type="submit" class="waves-effect waves-light btn edit-category">
+				</div>
+			</div>
+
+		</li>
+		<%})%>
+</ul>
+
+</div>
+
+<script>
+	$(document).ready(function () {
+		$(".edit-cat").click(function () {
+			$(this).parent().parent().find(".category-addwrap").show();
+		});
+	});
+</script>

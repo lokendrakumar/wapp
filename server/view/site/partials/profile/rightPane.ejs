@@ -1,0 +1,10 @@
+<%- include(partials.askBox, {profile: profile}) %>
+<% if (feed.items.length>0){ %>
+  <%- include(partials.feed, {isProfileView: true}) %>
+<% } else {%>
+  <div class='row'>
+    <div class='small-9 columns end b-ws-top text-center scolor'>
+      <%= profile.name || profile.username %> hasn't posted anything yet. Be the first one to ask <%= profile.name || profile.username %> .  
+    </div>    
+  </div>
+<%}%>

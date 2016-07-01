@@ -1,0 +1,37 @@
+	<% applicants.forEach(function (item) { %>
+    <% var tableRow = componentId('tableRow', item.id) %>
+	<tr id = '<%= tableRow %>' class='table-content'  data-nextindex='<%= nextIndex %>'>
+        <script>
+        $(function () {
+          app.components.hiringTableContent($('#<%= tableRow %>'));
+        });
+        </script>
+	    	<td width="3%">
+      		<input id='checkbox<%= item.id  %>' type="checkbox" class ='table-checkbox' value="<%= item.id  %>">
+    		</td>
+    		<td width="7%"> <%= item.name  %> </td>
+    		<td width="3%"> <%= item.gender %> </td>
+    		<% if(surveyType=="hiring") {%>
+    			<td width="10%"> <%= item.position%> </td>
+    		<% } %>
+    		<td width="10%"> <%= item.date %> </td>
+    		<td width="20%" class ='word-rap'> <%= item.email %> </td>
+    		<td width="10%"> <%= item.phone_num %> </td>
+    		<% if(surveyType=="hiring") {%>
+	    		<td width="3%"> <%= item.experience %> </td>
+	    		<td width="17%"> <%= item.college  %> </td>
+	    	<% } %>
+	    	<% if(surveyType=="audition") {%>
+	    		<td width="13%"> <%= item.current_city %> </td>
+	    		<td width="14%"> <%= item.original_city %> </td>
+	    	<% } %>
+    		<td width="10%" id ='status<%= item.id  %>'> <%= item.status %> </td>
+    		<% if(!item.answer_status) { %>
+    			<td width="10%"><span class='not-answered'>Not Answered</span></td>
+  			</tr>
+  			<% } else {  %>
+  					<td width="10%"><span id="<%=item.id%>" class='btn-sm btn-danger button-view-answer' data-id="<%=item.id%>" data-profile-id="<%= item.profile_id%>" style="cursor: pointer;">View Answer</span></td>
+				</tr>
+  			<% } 	%>
+		<% }) %>
+

@@ -1,0 +1,15 @@
+<div class="small-2 columns">
+  <ul class="side-nav text-right">
+    <li class="<%= pagename === 'category' && section === 'franksters' ? 'active' : '' %>">
+      <a href="<%= '/category/'+category.slug+'?section=franksters&filter=featured' %>">
+        <i class="icon-user f-2x scolor2 xs-ws-right"></i><span>Franksters</span>
+      </a>
+    </li>
+
+    <li class="<%= pagename === 'category' && section === 'activity' ? 'active' : '' %>">
+      <a href="<%= '/category/'+category.slug+'?section=activity&filter=featured' %>">
+        <i class="icon-pulse f-2x scolor2 xs-ws-right"></i><span>Activity</span>
+      </a>
+    </li>
+  </ul>
+</div>

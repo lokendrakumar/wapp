@@ -1,0 +1,15 @@
+<%- include(partials.top) %>
+<!-- body starts here -->
+<% var nav = nav == undefined ? false : nav; %>
+
+<% if(nav) { %>
+  <%- include(partials.nav) %>
+<% } %>
+  <%- include(partials.auth) %>
+
+<div class="container">
+  <%- include(partials.panel) %>
+</div>
+
+<!-- body ends here -->
+<%- include(partials.bottom) %>
